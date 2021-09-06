@@ -1,10 +1,8 @@
 <?php
 $serverName = "localhost";
-$password = "password";
-$user = "user";
 
 $connectionInfo = array( "Database"=>"marketplace");
-$Conn = sqlsrv_connect( $serverName, $connectionInfo, $user, $password);
+$Conn = sqlsrv_connect( $serverName, $connectionInfo);
 if($Conn) {
      //echo "Conexión establecida.<br />";
 }else{
