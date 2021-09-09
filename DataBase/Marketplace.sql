@@ -1,4 +1,5 @@
 CREATE DATABASE marketplace
+GO
 USE marketplace
 
 CREATE TABLE tbcategoria
@@ -123,7 +124,7 @@ CREATE PROC updatesp_categoria
 AS 
 BEGIN 
 UPDATE tbcategoria
-SET id_categoria = @id_categoria,
+SET 
 	nom_categoria = @nom_categoria,
 	descripcion = @descripcion
 WHERE  id_categoria = @id_categoria
@@ -211,7 +212,7 @@ CREATE PROC updatesp_cliente
 AS 
 BEGIN 
 UPDATE tbcliente
-SET id_cliente = @id_cliente,
+SET 
 	nombre_completo = @nombre_completo,
 	correo = @correo,
 	numero_telefonico = @numero_telefonico
@@ -238,12 +239,13 @@ GO
 -------------------------------------------------------------------------------------
 --CRUD DE PROCEDIMIENTOS DE ALMACENAMIENTO DE USUARIOS
 --CREATE
-IF OBJECT_ID('csp_usuario') IS NOT NULL
+IF OBJECT_ID('csp_Usuario') IS NOT NULL
 BEGIN 
 DROP PROC sp_usuario 
 END
 GO
-CREATE PROCEDURE sp_usuarioCrear
+
+CREATE PROCEDURE sp_UsuarioCrear
 @id INT, 
 @contrasenia VARCHAR(50),
 @nombre_completo VARCHAR(50),
@@ -265,37 +267,37 @@ telefono)
 @numero_telefonico )
 SET @id = SCOPE_IDENTITY()
 SELECT 
-      contrasenia = @contrasenia,
-       nombre_completo = @nombre_completo,
-	   correo = @correo,
-	   numero_telefonico = @numero_telefonico
+      Contrasenia = @contrasenia,
+       Nombre_completo = @nombre_completo,
+	   Correo = @correo,
+	   Numero_telefonico = @numero_telefonico
 FROM tbusuario 
 WHERE  id_usuario = @id
 END
 GO
 --READ
-IF OBJECT_ID('csp_usuarioRead') IS NOT NULL
+IF OBJECT_ID('csp_UsuarioRead') IS NOT NULL
 BEGIN 
-    DROP PROC csp_usuarioRead
+    DROP PROC csp_UsuarioRead
 END 
 GO
-CREATE PROC csp_usuarioRead
+CREATE PROC csp_UsuarioRead
     @id int
 AS 
 BEGIN 
  
-    SELECT id_usuario, contrasenia, nombre_completo, correo, telefono
+    SELECT id_usuario, Contrasenia, Nombre_completo, Correo, telefono
     FROM   tbusuario  
     WHERE  (id_usuario = @id) 
 END
 GO
 --UPDATE
-IF OBJECT_ID('csp_usuarioUpdate') IS NOT NULL
+IF OBJECT_ID('csp_UsuarioUpdate') IS NOT NULL
 BEGIN 
-DROP PROC csp_usuarioUpdate
+DROP PROC csp_UsuarioUpdate
 END 
 GO
-CREATE PROC csp_usuarioUpdate
+CREATE PROC csp_UsuarioUpdate
 @id INT, 
 @contrasenia VARCHAR(50),
 @nombre_completo VARCHAR(50),
@@ -305,20 +307,20 @@ AS
 BEGIN 
 UPDATE tbusuario
 SET  
-      contrasenia = @contrasenia,
-       combre_completo = @nombre_completo,
-	   correo = @correo,
+      Contrasenia = @contrasenia,
+       Nombre_completo = @nombre_completo,
+	   Correo = @correo,
 	   telefono = @numero_telefonico
 WHERE  id_usuario = @id
 END
 GO
 --DELETE
-IF OBJECT_ID('csp_usuarioDelete') IS NOT NULL
+IF OBJECT_ID('csp_UsuarioDelete') IS NOT NULL
 BEGIN 
-DROP PROC csp_usuarioDelete
+DROP PROC csp_UsuarioDelete
 END 
 GO
-CREATE PROC csp_usuarioDelete 
+CREATE PROC csp_UsuarioDelete 
     @id int
 AS 
 BEGIN 
@@ -329,4 +331,4 @@ END
 GO
 
 --FIN DE CRUD PROCEDIMIENTOS USUARIO
--------------------------------------------------------------------------------------
+-------------------------------------------------

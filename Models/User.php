@@ -4,8 +4,6 @@ class User
 {
 	//Atributo para conexión a SGBD
 
-	private $con;
-
 		//Atributos del objeto usuario
         public $id;
         public $contrasenia;
@@ -18,7 +16,7 @@ class User
 	{
 		try
 		{
-			$this->con = Conection::Conectar();
+			//$this->con = Conection::conectar();
 		}
 		catch(Exception $e)
 		{
@@ -31,28 +29,71 @@ class User
 	{
 		try//,estado,correo,numero_telefonico,tipo_usuario,imagen
 		{
-            mssql_select_db('marketplace', $con);    
+			$serverName = "localhost";
+			$connectionInfo = array( "Database"=>"marketplace");
+			$con = sqlsrv_connect( $serverName, $connectionInfo);
+			if($con) {
+				 echo "Conexión establecida.<br />";
+			}else{
+				 echo "Conexión no se pudo establecer.<br />";
+				 die( print_r( sqlsrv_errors(), true));
+			}
 
-            $stmt = mssql_init('csp_usuario', $con);
+			/*$sql = "EXEC sp_UsuarioCrear";
+	
+	        // Initialize parameters and prepare the statement. 
+	        // Variables $qty and $id are bound to the statement, $stmt.
+	        //$qty = 0; $id = 0;
+	        $stmt = sqlsrv_prepare( 
+			    $con, 
+			    $sql, 
+			    array( 
+				    &$data->id, 
+		            &$data->contrasenia,
+		            &$data->nombre_completo,
+		            &$data->correo,
+		            &$data->numero_telefonico
+			    ));
+	        if( !$stmt ) {
+	     	    die( print_r( sqlsrv_errors(), true));
+				 echo "********************ERROR AL AGREGAR USUARIO********************";
+	        }*/
 
-            mssql_bind($stmt, '@id_usuario', $data->id, SQLINT4, false, false, 10);
-            mssql_bind($stmt, '@contrasenia', $data->contrasenia, SQLVARCHAR, false, false, 200);
-            mssql_bind($stmt, '@nombre_completo', $data->nombre_completo, SQLVARCHAR, false, false, 40);
-            mssql_bind($stmt, '@correo', $data->correo, SQLVARCHAR, false, false, 40);
-            mssql_bind($stmt, '@telefono', $data->telefono, SQLINT4, false, false, 12);
-            //mssql_bind($stmt, 'RETVAL', $p_salida, SQLINT4);
-            
-            mssql_execute($stmt);
-            mssql_free_statement($stmt);
-
-            mssql_close($con);
-
-            $_SESSION['message'] = 'Usuario creado correctamente';
-			$_SESSION['message_type'] = 'success';
+			$myparams['id'] = $data->id;
+			$myparams['contrasenia'] = $data->contrasenia;
+			$myparams['nombre_completo'] = $data->nombre_completo;
+			$myparams['correo'] = $data->correo;
+			$myparams['numero_telefonico'] = $data->numero_telefonico;
+		
+		   //Se crea un array con de parámetros
+			$procedure_params = array(
+			array(&$myparams['id'], SQLSRV_PARAM_IN),
+			array(&$myparams['contrasenia'], SQLSRV_PARAM_IN),
+			array(&$myparams['nombre_completo'], SQLSRV_PARAM_IN),
+			array(&$myparams['correo'], SQLSRV_PARAM_IN),
+			array(&$myparams['numero_telefonico'], SQLSRV_PARAM_IN),
+				
+				);
+				
+				//Se se pasan los parámetros 
+				$sql = "sp_UsuarioCrear @id = ?, 
+				@contrasenia = ?,@nombre_completo = ?,@correo = ?,@numero_telefonico = ?";
+				$stmt = sqlsrv_prepare($con, $sql, $procedure_params);
+	
+			 // Se ejecuta y se evalua 
+			if(sqlsrv_execute($stmt))
+			{
+				echo "EXITO AL AGREGAR";
+					 
+			}
+			else
+			{
+				echo "ERROR AL AGREGAR";
+	
+			}
 		} catch (Exception $e)
 		{
-			$_SESSION['message'] = 'Error al crear usuario';
-			$_SESSION['message_type'] = 'dark';
+
 		}
 	}
 	//Este método selecciona todas las tuplas de la tabla
