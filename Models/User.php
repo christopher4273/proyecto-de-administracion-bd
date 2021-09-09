@@ -35,11 +35,11 @@ class User
 
             $stmt = mssql_init('csp_usuario', $con);
 
-            mssql_bind($stmt, '@id_usuario', $id, SQLINT4, false, false, 10);
-            mssql_bind($stmt, '@contrasenia', $contrasenia, SQLVARCHAR, false, false, 200);
-            mssql_bind($stmt, '@nombre_completo', $nombre_completo, SQLVARCHAR, false, false, 40);
-            mssql_bind($stmt, '@correo', $correo, SQLVARCHAR, false, false, 40);
-            mssql_bind($stmt, '@telefono', $telefono, SQLINT4, false, false, 12);
+            mssql_bind($stmt, '@id_usuario', $data->id, SQLINT4, false, false, 10);
+            mssql_bind($stmt, '@contrasenia', $data->contrasenia, SQLVARCHAR, false, false, 200);
+            mssql_bind($stmt, '@nombre_completo', $data->nombre_completo, SQLVARCHAR, false, false, 40);
+            mssql_bind($stmt, '@correo', $data->correo, SQLVARCHAR, false, false, 40);
+            mssql_bind($stmt, '@telefono', $data->telefono, SQLINT4, false, false, 12);
             //mssql_bind($stmt, 'RETVAL', $p_salida, SQLINT4);
             
             mssql_execute($stmt);
