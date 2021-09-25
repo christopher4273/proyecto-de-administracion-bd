@@ -47,7 +47,7 @@ require_once '../DataBase/Conection.php';
             <form method="POST" action="?c=UserController&a=save" class="forma">
                 <div class="mb-2">
                     <label for="exampleInputEmail1" class="form-label">Número de cedula</label>
-                    <input type="number" name="id" class="form-control" placeholder="Ingrese el id del usuario" required />
+                    <input type="number" name="id_usuario" class="form-control" placeholder="Ingrese el id del usuario" required />
                 </div>
                 <div class="mb-2">
                     <label for="inputPassword" class="form-label">Contraseña</label>
@@ -64,7 +64,7 @@ require_once '../DataBase/Conection.php';
                 </div>
                 <div class="mb-2">
                     <label for="exampleInputEmail1" class="form-label">Telefono</label>
-                    <input type="number" name="numero_telefonico" class="form-control" placeholder="Telefono" required />
+                    <input type="number" name="telefono" class="form-control" placeholder="Telefono" required />
                 </div>
                 <div class="btnContainer mb-4">
                     <input type="submit" name="UserController" class="btn btn-success" value="Guardar">

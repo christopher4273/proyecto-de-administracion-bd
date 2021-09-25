@@ -9,11 +9,11 @@ class User
 	private $con;
 
 		//Atributos del objeto usuario
-        public $id;
+        public $id_usuario;
         public $contrasenia;
         public $nombre_completo;
         public $correo;
-        public $numero_telefonico;
+        public $telefono;
 
 	//Método de conexión a SGBD.
 	public function __CONSTRUCT()
@@ -63,25 +63,25 @@ class User
 				 echo "********************ERROR AL AGREGAR USUARIO********************";
 	        }*/
 
-			$myparams['id'] = $data->id;
+			$myparams['id_usuario'] = $data->id_usuario;
 			$myparams['contrasenia'] = $data->contrasenia;
 			$myparams['nombre_completo'] = $data->nombre_completo;
 			$myparams['correo'] = $data->correo;
-			$myparams['numero_telefonico'] = $data->numero_telefonico;
+			$myparams['telefono'] = $data->telefono;
 		
 		   //Se crea un array con de parámetros
 			$procedure_params = array(
-			    array(&$myparams['id'], SQLSRV_PARAM_IN),
+			    array(&$myparams['id_usuario'], SQLSRV_PARAM_IN),
 			    array(&$myparams['contrasenia'], SQLSRV_PARAM_IN),
 			    array(&$myparams['nombre_completo'], SQLSRV_PARAM_IN),
 			    array(&$myparams['correo'], SQLSRV_PARAM_IN),
-			    array(&$myparams['numero_telefonico'], SQLSRV_PARAM_IN)
+			    array(&$myparams['telefono'], SQLSRV_PARAM_IN)
 				
 				);
 				
 				//Se se pasan los parámetros 
-				$sql = "EXEC sp_UsuarioCrear @id = ?, 
-				@contrasenia = ?,@nombre_completo = ?,@correo = ?,@numero_telefonico = ?";
+				$sql = "EXEC sp_UsuarioCrear @id_usuario = ?, 
+				@contrasenia = ?,@nombre_completo = ?,@correo = ?,@telefono = ?";
 				$stmt = sqlsrv_prepare($this->con, $sql, $procedure_params);
 	
 			 // Se ejecuta y se evalua 

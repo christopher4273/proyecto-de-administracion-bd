@@ -36,13 +36,13 @@ imagen VARCHAR,
 categoria INT)
 
 CREATE TABLE tbcliente 
-(id_cliente INT identity primary key not null,
+(id_cliente INT primary key not null,
 nombre_completo VARCHAR(300),
 correo VARCHAR(45),
 numero_telefonico INT)
 
 CREATE TABLE tbusuario
-(id_usuario INT identiTy primary key not null,
+(id_usuario INT primary key not null,
 contrasenia VARCHAR (200),
 nombre_completo VARCHAR (40),
 correo VARCHAR(40),
@@ -246,11 +246,11 @@ END
 GO
 
 CREATE PROCEDURE sp_UsuarioCrear
-@id INT, 
+@id_usuario INT, 
 @contrasenia VARCHAR(50),
 @nombre_completo VARCHAR(50),
 @correo VARCHAR(50),
-@numero_telefonico VARCHAR(50) 
+@telefono VARCHAR(50) 
 AS
 BEGIN
 INSERT INTO tbusuario  (
@@ -260,19 +260,18 @@ nombre_completo ,
 correo,
 telefono)
     VALUES (
-@id, 
+@id_usuario, 
 @contrasenia ,
 @nombre_completo ,
 @correo ,
-@numero_telefonico )
-SET @id = SCOPE_IDENTITY()
+@telefono )
 SELECT 
        contrasenia = @contrasenia,
        nombre_completo = @nombre_completo,
 	   correo = @correo,
-	   telefono = @numero_telefonico
+	   telefono = @telefono
 FROM tbusuario 
-WHERE  id_usuario = @id
+WHERE  id_usuario = @id_usuario
 END
 GO
 --READ

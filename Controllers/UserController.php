@@ -16,11 +16,11 @@ class UserController{
             if(isset($_POST['UserController'])){
                 $pvd = new User();
                 //Captura de los datos del formulario (vista).
-                $pvd->id = $_POST['id'];
+                $pvd->id_usuario = $_POST['id_usuario'];
                 $pvd->contrasenia = $_POST['contrasenia'];
                 $pvd->nombre_completo = $_POST['nombre_completo'];
                 $pvd->correo = $_REQUEST['correo'];
-                $pvd->numero_telefonico = $_REQUEST['numero_telefonico'];
+                $pvd->telefono = $_REQUEST['telefono'];
                 //Registro al modelo usuario.
                 $this->usuario->add($pvd); 
                 echo '<script>window.open("../Views/NewUser.php","_self",null,true);</script>';
