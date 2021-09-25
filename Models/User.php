@@ -67,16 +67,16 @@ class User
 		
 		   //Se crea un array con de parámetros
 			$procedure_params = array(
-			array(&$myparams['id'], SQLSRV_PARAM_IN),
-			array(&$myparams['contrasenia'], SQLSRV_PARAM_IN),
-			array(&$myparams['nombre_completo'], SQLSRV_PARAM_IN),
-			array(&$myparams['correo'], SQLSRV_PARAM_IN),
-			array(&$myparams['numero_telefonico'], SQLSRV_PARAM_IN),
+			    array(&$myparams['id'], SQLSRV_PARAM_IN),
+			    array(&$myparams['contrasenia'], SQLSRV_PARAM_IN),
+			    array(&$myparams['nombre_completo'], SQLSRV_PARAM_IN),
+			    array(&$myparams['correo'], SQLSRV_PARAM_IN),
+			    array(&$myparams['numero_telefonico'], SQLSRV_PARAM_IN),
 				
 				);
 				
 				//Se se pasan los parámetros 
-				$sql = "sp_UsuarioCrear @id = ?, 
+				$sql = "EXEC sp_UsuarioCrear @id = ?, 
 				@contrasenia = ?,@nombre_completo = ?,@correo = ?,@numero_telefonico = ?";
 				$stmt = sqlsrv_prepare($con, $sql, $procedure_params);
 	
