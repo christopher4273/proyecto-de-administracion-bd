@@ -267,10 +267,10 @@ telefono)
 @numero_telefonico )
 SET @id = SCOPE_IDENTITY()
 SELECT 
-      Contrasenia = @contrasenia,
-       Nombre_completo = @nombre_completo,
-	   Correo = @correo,
-	   Numero_telefonico = @numero_telefonico
+       contrasenia = @contrasenia,
+       nombre_completo = @nombre_completo,
+	   correo = @correo,
+	   telefono = @numero_telefonico
 FROM tbusuario 
 WHERE  id_usuario = @id
 END

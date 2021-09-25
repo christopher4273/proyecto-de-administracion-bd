@@ -1,8 +1,12 @@
 <?php
 
+require_once '../DataBase/conection.php';
+
 class User
 {
 	//Atributo para conexión a SGBD
+
+	private $con;
 
 		//Atributos del objeto usuario
         public $id;
@@ -16,7 +20,7 @@ class User
 	{
 		try
 		{
-			//$this->con = Conection::conectar();
+			$this->con = Conection::conectar();
 		}
 		catch(Exception $e)
 		{
@@ -27,9 +31,9 @@ class User
     	//Método que registra un nuevo usuario a la tabla.
 	public function add(User $data)
 	{
-		try//,estado,correo,numero_telefonico,tipo_usuario,imagen
+		try
 		{
-			$serverName = "localhost";
+		/*	$serverName = "localhost";
 			$connectionInfo = array( "Database"=>"marketplace");
 			$con = sqlsrv_connect( $serverName, $connectionInfo);
 			if($con) {
@@ -37,7 +41,7 @@ class User
 			}else{
 				 echo "Conexión no se pudo establecer.<br />";
 				 die( print_r( sqlsrv_errors(), true));
-			}
+			}*/
 
 			/*$sql = "EXEC sp_UsuarioCrear";
 	
@@ -71,24 +75,24 @@ class User
 			    array(&$myparams['contrasenia'], SQLSRV_PARAM_IN),
 			    array(&$myparams['nombre_completo'], SQLSRV_PARAM_IN),
 			    array(&$myparams['correo'], SQLSRV_PARAM_IN),
-			    array(&$myparams['numero_telefonico'], SQLSRV_PARAM_IN),
+			    array(&$myparams['numero_telefonico'], SQLSRV_PARAM_IN)
 				
 				);
 				
 				//Se se pasan los parámetros 
 				$sql = "EXEC sp_UsuarioCrear @id = ?, 
 				@contrasenia = ?,@nombre_completo = ?,@correo = ?,@numero_telefonico = ?";
-				$stmt = sqlsrv_prepare($con, $sql, $procedure_params);
+				$stmt = sqlsrv_prepare($this->con, $sql, $procedure_params);
 	
 			 // Se ejecuta y se evalua 
 			if(sqlsrv_execute($stmt))
 			{
-				echo "EXITO AL AGREGAR";
+				echo "EXITO AL AGREGAR.<br />";
 					 
 			}
 			else
 			{
-				echo "ERROR AL AGREGAR";
+				echo "ERROR AL AGREGAR.<br />";
 	
 			}
 		} catch (Exception $e)
