@@ -58,23 +58,13 @@ require_once '../Includes/Header.php';
                 </thead>
                 <tbody>
                     <?php
-                        $usuario = new User();
-                        $id_usuario;
-                        $nombre_completo;
-                        $correo;
-                        $telefono;
-                        while($r = $usuario->get()){
-                            $id_usuario = $r['id_usuario'];
-                            $nombre_completo = $r['nombre_completo'];
-                            $correo = $r['correo'];
-                            $telefono = $r['telefono'];
-                        }
-                    ?>
+                    $usuario = new User();
+                    foreach ($usuario->get() as $r) : ?>
                         <tr class="bg-light">
-                            <td><?php echo $id_usuario; ?></td>
-                            <td><?php echo $nombre_completo; ?></td>
-                            <td><?php echo $correo; ?></td>
-                            <td><?php echo $telefono; ?></td>
+                            <td><?php echo $r['id_usuario']; ?></td>
+                            <td><?php echo $r['nombre_completo']; ?></td>
+                            <td><?php echo $r['correo']; ?></td>
+                            <td><?php echo $r['telefono']; ?></td>
                             <td>
                                 <button type="button" class="btn btn-success editbtn" data-toggle="modal" data-target="#editar">Editar</button>
                                 <button type="button" class="btn btn-danger mt-0">
@@ -82,6 +72,8 @@ require_once '../Includes/Header.php';
                                 </button>
                             </td>
                         </tr>
+
+                    <?php endforeach; ?>
                 </tbody>
             </table>
             <!-- Modal -->
