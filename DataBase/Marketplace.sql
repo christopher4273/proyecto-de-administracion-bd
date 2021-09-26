@@ -317,7 +317,7 @@ AS
 	END
 GO
 --VISTA DE USUARIO, MOSTRAR LOS USUARIOS
-create view v_mostrarusuarios as
+create view v_mostrarUsuarios as
 	SELECT id_usuario, contrasenia, nombre_completo, correo, telefono
 		FROM   tbusuario 
 go

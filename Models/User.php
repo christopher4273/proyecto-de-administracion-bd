@@ -107,15 +107,22 @@ class User
 	{
 		try
 		{
-			$sql = "EXEC csp_UsuarioRead";
+			$sql = "select id_usuario, contrasenia, nombre_completo, correo, telefono
+			FROM v_mostrarUsuarios";
 			$result = array();
 			//Sentencia SQL para selección de datos.
 			$stm = sqlsrv_query($this->con, $sql);
 			//Ejecución de la sentencia SQL.
-			sqlsrv_execute($stm);
 			//fetchAll — Devuelve un array que contiene todas las filas del conjunto
 			//de resultados
-			return $stm->fetchAll(PDO::FETCH_OBJ);
+			while($r = sqlsrv_fetch_array($stm)){
+				$result['id_usuario'] = $r['id_usuario'];
+				$result['nombre_completo'] = $r['nombre_completo'];
+				$result['correo'] = $r['correo'];
+				$result['telefono'] = $r['telefono'];
+				//print $result['id_usuario'];
+			}
+			return $result;
 		}
 		catch(Exception $e)
 		{

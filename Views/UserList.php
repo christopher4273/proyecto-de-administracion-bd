@@ -58,22 +58,30 @@ require_once '../Includes/Header.php';
                 </thead>
                 <tbody>
                     <?php
-                    $usuario = new User();
-                    foreach ($usuario->get() as $r) : ?>
+                        $usuario = new User();
+                        $id_usuario;
+                        $nombre_completo;
+                        $correo;
+                        $telefono;
+                        while($r = $usuario->get()){
+                            $id_usuario = $r['id_usuario'];
+                            $nombre_completo = $r['nombre_completo'];
+                            $correo = $r['correo'];
+                            $telefono = $r['telefono'];
+                        }
+                    ?>
                         <tr class="bg-light">
-                            <td><?php echo $r->id; ?></td>
-                            <td><?php echo $r->nombre_completo; ?></td>
-                            <td><?php echo $r->correo; ?></td>
-                            <td><?php echo $r->numero_telefonico; ?></td>
+                            <td><?php echo $id_usuario; ?></td>
+                            <td><?php echo $nombre_completo; ?></td>
+                            <td><?php echo $correo; ?></td>
+                            <td><?php echo $telefono; ?></td>
                             <td>
                                 <button type="button" class="btn btn-success editbtn" data-toggle="modal" data-target="#editar">Editar</button>
                                 <button type="button" class="btn btn-danger mt-0">
-                                    <a class="link" onclick="javascript:return confirm('¿Seguro de eliminar este registro?');" href="?c=UserController&a=delete&id=<?php echo $r->id; ?>">Eliminar</a>
+                                    <a class="link" onclick="javascript:return confirm('¿Seguro de eliminar este registro?');" href="?c=UserController&a=delete&id=<?php echo $r['id_usuario']; ?>">Eliminar</a>
                                 </button>
                             </td>
                         </tr>
-
-                    <?php endforeach; ?>
                 </tbody>
             </table>
             <!-- Modal -->
@@ -89,7 +97,7 @@ require_once '../Includes/Header.php';
                         <div class="modal-body">
                             <form action="?c=UserController&a=edit" method="post">
                                 <label>Id</label>
-                                <input type="text" name="id" id="id" class="form-control" readonly>
+                                <input type="text" name="id_usuario" id="id_usuario" class="form-control" readonly>
                                 <div class="form-group">
                                     <label for="">Nombre</label>
                                     <input type="text" name="nombre_completo" id="nombre_completo" class="form-control" required>
@@ -100,7 +108,7 @@ require_once '../Includes/Header.php';
                                 </div>
                                 <div class="form-group">
                                     <label for="">Teléfono</label>
-                                    <input type="number" name="numero_telefonico" id="numero_telefonico" class="form-control" required>
+                                    <input type="number" name="telefono" id="telefono" class="form-control" required>
                                 </div>
                                 <div class="mb-2">
                                     <button type="button" name="cerrar" class="btn btn-danger cerrar">Cerrar</button>
@@ -127,10 +135,10 @@ require_once '../Includes/Header.php';
             var datos = $tr.children("td").map(function() {
                 return $(this).text();
             });
-            $('#id').val(datos[0]);
+            $('#id_usuario').val(datos[0]);
             $('#nombre_completo').val(datos[1]);
             $('#correo').val(datos[2]);
-            $('#numero_telefonico').val(datos[3]);
+            $('#telefono').val(datos[3]);
         });
     </script>
 </body>
