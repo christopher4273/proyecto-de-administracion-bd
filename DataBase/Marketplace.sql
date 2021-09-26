@@ -270,12 +270,12 @@ IF OBJECT_ID('csp_UsuarioRead') IS NOT NULL
 	END 
 GO
 CREATE PROC csp_UsuarioRead
-    @id int
+    @id_usuario int
 AS 
 	BEGIN 
-		SELECT id_usuario, contrasenia, combre_completo, correo, telefono
+		SELECT id_usuario, contrasenia, nombre_completo, correo, telefono
 		FROM   tbusuario  
-		WHERE  (id_usuario = @id) 
+		WHERE  (id_usuario = @id_usuario) 
 	END
 GO
 --UPDATE
@@ -285,20 +285,20 @@ IF OBJECT_ID('csp_UsuarioUpdate') IS NOT NULL
 	END 
 GO
 CREATE PROC csp_UsuarioUpdate
-	@id INT, 
+	@id_usuario INT, 
 	@contrasenia VARCHAR(50),
 	@nombre_completo VARCHAR(50),
 	@correo VARCHAR(50),
-	@numero_telefonico VARCHAR(50)
+	@telefono VARCHAR(50)
 AS 
 	BEGIN 
 		UPDATE tbusuario
 		SET  
-			  contrasenia = @contrasenia,
+			   contrasenia = @contrasenia,
 			   nombre_completo = @nombre_completo,
 			   correo = @correo,
-			   telefono = @numero_telefonico
-		WHERE  id_usuario = @id
+			   telefono = @telefono
+		WHERE  id_usuario = @id_usuario
 	END
 GO
 --DELETE
@@ -308,12 +308,12 @@ IF OBJECT_ID('csp_UsuarioDelete') IS NOT NULL
 	END 
 GO
 CREATE PROC csp_UsuarioDelete 
-    @id int
+    @id_usuario int
 AS 
 	BEGIN 
 		DELETE
 		FROM   tbusuario
-		WHERE   id_usuario = @id
+		WHERE   id_usuario = @id_usuario
 	END
 GO
 

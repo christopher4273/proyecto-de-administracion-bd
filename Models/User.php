@@ -103,15 +103,16 @@ class User
 	//Este método selecciona todas las tuplas de la tabla
 	//usuario en caso de error se muestra por pantalla.
 
-	/*public function get()
+	public function get()
 	{
 		try
 		{
+			$sql = "EXEC csp_UsuarioRead";
 			$result = array();
 			//Sentencia SQL para selección de datos.
-			$stm = $this->con->prepare("SELECT * FROM usuario");
+			$stm = sqlsrv_query($this->con, $sql);
 			//Ejecución de la sentencia SQL.
-			$stm->execute();
+			sqlsrv_execute($stm);
 			//fetchAll — Devuelve un array que contiene todas las filas del conjunto
 			//de resultados
 			return $stm->fetchAll(PDO::FETCH_OBJ);
@@ -122,7 +123,7 @@ class User
 			die($e->getMessage());
 		}
 	}
-
+/*
 	public function login($id, $pContrasenna){
 
 		$stm =$this->con->prepare("SELECT * FROM usuario WHERE id=? AND contrasenia=?");
