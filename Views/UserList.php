@@ -59,12 +59,12 @@ require_once '../Includes/Header.php';
                 <tbody>
                     <?php
                     $usuario = new User();
-                    foreach ($usuario->get() as $r) : ?>
+                    foreach ($usuario->get() as $r => $value) : ?>
                         <tr class="bg-light">
-                            <td><?php echo $r['id_usuario']; ?></td>
-                            <td><?php echo $r['nombre_completo']; ?></td>
-                            <td><?php echo $r['correo']; ?></td>
-                            <td><?php echo $r['telefono']; ?></td>
+                            <td><?php echo $value->id_usuario; ?></td>
+                            <td><?php echo $value['nombre_completo']; ?></td>
+                            <td><?php echo $value['correo']; ?></td>
+                            <td><?php echo $value['telefono']; ?></td>
                             <td>
                                 <button type="button" class="btn btn-success editbtn" data-toggle="modal" data-target="#editar">Editar</button>
                                 <button type="button" class="btn btn-danger mt-0">

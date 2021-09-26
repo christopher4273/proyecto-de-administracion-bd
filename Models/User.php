@@ -112,14 +112,33 @@ class User
 			$result = array();
 			//Sentencia SQL para selección de datos.
 			$stm = sqlsrv_query($this->con, $sql);
-			//Ejecución de la sentencia SQL.
-			//fetchAll — Devuelve un array que contiene todas las filas del conjunto
-			//de resultados
+			$i = 0;
+
 			while($r = sqlsrv_fetch_array($stm)){
-				$result['id_usuario'] = $r['id_usuario'];
+				/*$result['id_usuario'] = $r['id_usuario'];
 				$result['nombre_completo'] = $r['nombre_completo'];
 				$result['correo'] = $r['correo'];
-				$result['telefono'] = $r['telefono'];
+				$result['telefono'] = $r['telefono'];*/
+				$id_usuario = $r['id_usuario'];
+				$nombre_completo = $r['nombre_completo'];
+				$correo = $r['correo'];
+				$telefono = $r['telefono'];
+				$result = array(
+						/*'id_usuario'=>$r['id_usuario'],
+						'nombre_completo'=>$r['nombre_completo'],
+						'correo'=>$r['correo'], 
+						'telefono'=>$r['telefono'],*/
+						$id_usuario,
+                        $nombre_completo,
+                        $correo,
+                        $telefono
+				);
+				print $r['id_usuario']."<br />";
+				print $r['nombre_completo']."<br />";
+				print $r['correo']."<br />";
+				print $r['telefono']."<br />";
+				//print $result;
+				$i++;
 				//print $result['id_usuario'];
 			}
 			return $result;
