@@ -316,6 +316,10 @@ AS
 		WHERE   id_usuario = @id_usuario
 	END
 GO
-
+--VISTA DE USUARIO, MOSTRAR LOS USUARIOS
+create view v_mostrarusuarios as
+	SELECT id_usuario, contrasenia, nombre_completo, correo, telefono
+		FROM   tbusuario 
+go
 --FIN DE CRUD PROCEDIMIENTOS USUARIO
--------------------------------------------------
+-------------------------------------------------   
