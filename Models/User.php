@@ -107,7 +107,7 @@ class User
 	{
 		try
 		{
-			$sql = "select id_usuario, contrasenia, nombre_completo, correo, telefono
+			$sql = "select id_usuario, nombre_completo, correo, telefono
 			FROM v_mostrarUsuarios";
 			//Sentencia SQL para selección de datos.
 			$stm = sqlsrv_query($this->con, $sql);
