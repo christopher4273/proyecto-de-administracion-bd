@@ -6,7 +6,7 @@ if (!isset($_SESSION['user_-id'])) {
 } else {
     // Show users the page!
 }
-function q()
+function q() 
 {
     echo "hoka";
     $_SESSION['user_-id'] = null;
@@ -14,7 +14,7 @@ function q()
 //echo $_SESSION['user_-id'] ;
 ?>
 
-<!DOCTYPE html>
+<!DOCTYPE html> 
 
 <html lang="en">
 

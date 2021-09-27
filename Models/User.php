@@ -1,7 +1,7 @@
 <?php
 
 require_once '../DataBase/conection.php';
-
+//
 class User
 {
 	//Atributo para conexión a SGBD
