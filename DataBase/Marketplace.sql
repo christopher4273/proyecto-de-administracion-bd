@@ -332,8 +332,10 @@ AS
 GO
 --VISTA DE USUARIO, MOSTRAR LOS USUARIOS
 create view v_mostrarUsuarios as
-	SELECT id_usuario, contrasenia, nombre_completo, correo, telefono
+	SELECT id_usuario, nombre_completo, correo, telefono
 		FROM   tbusuario 
 go
+/*SELECT id_usuario, nombre_completo, correo, telefono
+		FROM   v_mostrarUsuarios */
 --FIN DE CRUD PROCEDIMIENTOS USUARIO
 -------------------------------------------------   
