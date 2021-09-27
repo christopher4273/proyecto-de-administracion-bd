@@ -59,21 +59,8 @@ require_once '../Includes/Header.php';
                 <tbody>
                     <?php
                     $usuario = new User();
-                    $usuarios = $usuario->get();
-                    foreach ($usuarios as $r => $value) : ?>
-                        <tr class="bg-light">
-                            <td><?php echo $value ?></td>
-                            <td><?php echo $value; ?></td>
-                            <td><?php echo $value; ?></td>
-                            <td><?php echo $value; ?></td>
-                            <td>
-                                <button type="button" class="btn btn-success editbtn" data-toggle="modal" data-target="#editar">Editar</button>
-                                <button type="button" class="btn btn-danger mt-0">
-                                    <a class="link" onclick="javascript:return confirm('¿Seguro de eliminar este registro?');" href="?c=UserController&a=delete&id=<?php echo $r['id_usuario']; ?>">Eliminar</a>
-                                </button>
-                            </td>
-                        </tr>
-                    <?php endforeach; ?>
+                    //$usuarios = $usuario->get();
+                    echo $usuario->get();?>
                 </tbody>
             </table>
             <!-- Modal -->

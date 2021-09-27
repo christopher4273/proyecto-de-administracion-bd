@@ -125,17 +125,20 @@ class User
 				print $result['nombre_completo']."<br />";
 				print $result['correo']."<br />";
 				print $result['telefono']."<br />";*/
-
-				/*$result = array(
-					/*'id_usuario'=>$r['id_usuario'],
-					'nombre_completo'=>$r['nombre_completo'],
-					'correo'=>$r['correo'], 
-					'telefono'=>$r['telefono'],*/
-				/*	'id_usuario' => '12',
-					'nombre_completo' => '34',
-					'correo' => '56',
-					'telefono' => '78'
-				);*/
+				?>
+					<tr class="bg-light">
+						<td><?php echo $id_usuario; ?></td>
+						<td><?php echo $nombre_completo; ?></td>
+						<td><?php echo $correo; ?></td>
+						<td><?php echo $telefono; ?></td>
+						<td>
+							<button type="button" class="btn btn-success editbtn" data-toggle="modal" data-target="#editar">Editar</button>
+							<button type="button" class="btn btn-danger mt-0">
+								<a class="link" onclick="javascript:return confirm('¿Seguro de eliminar este registro?');" href="?c=UserController&a=delete&id=<?php echo $r['id_usuario']; ?>">Eliminar</a>
+							</button>
+						</td>
+					</tr>
+				<?php 
 
 			/*	print $r['nombre_completo']."<br />";
 				print $r['correo']."<br />";
@@ -143,17 +146,12 @@ class User
 				//print $result;
 				//print $result['id_usuario'];
 			}
-			$result = array(
-				/*'id_usuario'=>$r['id_usuario'],
-				'nombre_completo'=>$r['nombre_completo'],
-				'correo'=>$r['correo'], 
-				'telefono'=>$r['telefono'],*/
+			/*$result = array(
 				'id_usuario' => '12',
 				'nombre_completo' => '34',
 				'correo' => '56',
 				'telefono' => '78'
-		    );
-			return $result;
+		    );*/
 		}
 		catch(Exception $e)
 		{
