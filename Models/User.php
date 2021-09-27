@@ -109,10 +109,8 @@ class User
 		{
 			$sql = "select id_usuario, contrasenia, nombre_completo, correo, telefono
 			FROM v_mostrarUsuarios";
-			$result = array();
 			//Sentencia SQL para selección de datos.
 			$stm = sqlsrv_query($this->con, $sql);
-			$i = 0;
 
 			while($r = sqlsrv_fetch_array($stm)){
 				/*$result['id_usuario'] = $r['id_usuario'];
@@ -123,28 +121,27 @@ class User
 				$nombre_completo = $r['nombre_completo'];
 				$correo = $r['correo'];
 				$telefono = $r['telefono'];
-				$result = array(
-						/*'id_usuario'=>$r['id_usuario'],
-						'nombre_completo'=>$r['nombre_completo'],
-						'correo'=>$r['correo'], 
-						'telefono'=>$r['telefono'],*/
-						0=>$id_usuario,
-                        1=>$nombre_completo,
-                        2=>$correo,
-                        3=>$telefono
-				);
-				print $result[0]."<br />";
-				print $result[1]."<br />";
-				print $result[2]."<br />";
-				print $result[3]."<br />";
+				/*print $result['id_usuario']."<br />";
+				print $result['nombre_completo']."<br />";
+				print $result['correo']."<br />";
+				print $result['telefono']."<br />";*/
 
 			/*	print $r['nombre_completo']."<br />";
 				print $r['correo']."<br />";
 				print $r['telefono']."<br />";*/
 				//print $result;
-				$i++;
 				//print $result['id_usuario'];
 			}
+			$result = array(
+				/*'id_usuario'=>$r['id_usuario'],
+				'nombre_completo'=>$r['nombre_completo'],
+				'correo'=>$r['correo'], 
+				'telefono'=>$r['telefono'],*/
+				'id_usuario' => '12',
+				'nombre_completo' => '34',
+				'correo' => '56',
+				'telefono' => '78'
+		);
 			return $result;
 		}
 		catch(Exception $e)
