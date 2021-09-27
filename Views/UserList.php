@@ -73,7 +73,6 @@ require_once '../Includes/Header.php';
                                 </button>
                             </td>
                         </tr>
-
                     <?php endforeach; ?>
                 </tbody>
             </table>
