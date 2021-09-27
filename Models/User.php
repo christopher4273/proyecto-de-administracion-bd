@@ -128,15 +128,19 @@ class User
 						'nombre_completo'=>$r['nombre_completo'],
 						'correo'=>$r['correo'], 
 						'telefono'=>$r['telefono'],*/
-						$id_usuario,
-                        $nombre_completo,
-                        $correo,
-                        $telefono
+						0=>$id_usuario,
+                        1=>$nombre_completo,
+                        2=>$correo,
+                        3=>$telefono
 				);
-				print $r['id_usuario']."<br />";
-				print $r['nombre_completo']."<br />";
+				print $result[0]."<br />";
+				print $result[1]."<br />";
+				print $result[2]."<br />";
+				print $result[3]."<br />";
+
+			/*	print $r['nombre_completo']."<br />";
 				print $r['correo']."<br />";
-				print $r['telefono']."<br />";
+				print $r['telefono']."<br />";*/
 				//print $result;
 				$i++;
 				//print $result['id_usuario'];
