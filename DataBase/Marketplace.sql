@@ -55,7 +55,7 @@ CREATE TABLE tbdetallefactura(
 	foreign key (factura) references tbfactura (id_factura),
 	foreign key (producto) references tbproducto (id_producto)
     )
-
+-------------------------------------------------------------------------------------
 --CRUD DE PROCEDIMIENTOS DE ALMACENAMIENTO DE CATEGORIA
 --CREATE
 IF OBJECT_ID ('csp_categoria') IS NOT NULL
@@ -136,6 +136,13 @@ AS
 			WHERE  id_categoria = @id_categoria 
 	END
 GO
+--VISTA DE CATEGORIA, MOSTRAR LA CATEGORIA
+create view v_mostrarCategoria as
+	SELECT id_categoria, nom_categoria, descripcion
+		FROM   tbcategoria  
+go
+/*SELECT id_categoria, nom_categoria, descripcion
+		FROM   v_mostrarCategoria  */
 --FIN DE CRUD PROCEDIMIENTOS CATEGORIA
 -------------------------------------------------------------------------------------
 --CRUD DE PROCEDIMIENTOS DE ALMACENAMIENTO DE CLIENTES
@@ -224,6 +231,13 @@ AS
 		WHERE  id_cliente = @id_cliente
 	END
 GO
+--VISTA DE CLIENTE, MOSTRAR LOS CLIENTE
+create view v_mostrarCliente as
+	SELECT id_cliente, nombre_completo, correo, numero_telefonico
+    FROM   tbcliente  
+go
+/*SELECT id_cliente, nombre_completo, correo, numero_telefonico
+    FROM   v_mostrarCliente  */
 --FIN DE CRUD PROCEDIMIENTOS CLIENTE
 -------------------------------------------------------------------------------------
 --CRUD DE PROCEDIMIENTOS DE ALMACENAMIENTO DE USUARIOS
