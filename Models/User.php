@@ -126,6 +126,17 @@ class User
 				print $result['correo']."<br />";
 				print $result['telefono']."<br />";*/
 
+				/*$result = array(
+					/*'id_usuario'=>$r['id_usuario'],
+					'nombre_completo'=>$r['nombre_completo'],
+					'correo'=>$r['correo'], 
+					'telefono'=>$r['telefono'],*/
+				/*	'id_usuario' => '12',
+					'nombre_completo' => '34',
+					'correo' => '56',
+					'telefono' => '78'
+				);*/
+
 			/*	print $r['nombre_completo']."<br />";
 				print $r['correo']."<br />";
 				print $r['telefono']."<br />";*/
@@ -141,7 +152,7 @@ class User
 				'nombre_completo' => '34',
 				'correo' => '56',
 				'telefono' => '78'
-		);
+		    );
 			return $result;
 		}
 		catch(Exception $e)
