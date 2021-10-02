@@ -101,7 +101,8 @@ class User
 						</td>
 					</tr>
 				<?php 
-		}   }
+		    }  
+	    }
 		catch(Exception $e)
 		{
 			//Obtener mensaje de error.
