@@ -154,7 +154,6 @@ class User
 		//Sentencia SQL para actualizar los datos.
 		try
 		{
-			$myparams['contrasenia'] = $data->contrasenia;
 			$myparams['nombre_completo'] = $data->nombre_completo;
 			$myparams['correo'] = $data->correo;
 			$myparams['telefono'] = $data->telefono;
@@ -162,7 +161,6 @@ class User
 			
 			//Se crea un array con de parámetros
 			$procedure_params = array(
-				array(&$myparams['contrasenia'], SQLSRV_PARAM_IN),
 				array(&$myparams['nombre_completo'], SQLSRV_PARAM_IN),
 				array(&$myparams['correo'], SQLSRV_PARAM_IN),
 				array(&$myparams['telefono'], SQLSRV_PARAM_IN),
@@ -170,12 +168,14 @@ class User
 				);
 					
 			//Se se pasan los parámetros 
-			$sql = "EXEC csp_UsuarioUpdate @contrasenia = ?, @nombre_completo = ?,
+			$sql = "EXEC csp_UsuarioUpdate @nombre_completo = ?,
 			@correo = ?, @telefono = ?, @id_usuario = ?";
 			$stmt = sqlsrv_prepare($this->con, $sql, $procedure_params);
 		
 			// Se ejecuta y se evalua 
-			sqlsrv_execute($stm);
+			if( sqlsrv_execute( $stmt ) === false ) {
+				die( print_r( sqlsrv_errors(), true));
+	        }
 
 		} catch (Exception $e){
 
