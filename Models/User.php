@@ -46,27 +46,21 @@ class User
 			    array(&$myparams['nombre_completo'], SQLSRV_PARAM_IN),
 			    array(&$myparams['correo'], SQLSRV_PARAM_IN),
 			    array(&$myparams['telefono'], SQLSRV_PARAM_IN)
-				
 				);
 				
 				//Se se pasan los parámetros 
 				$sql = "EXEC sp_UsuarioCrear @id_usuario = ?, 
-				@contrasenia = ?,@nombre_completo = ?,@correo = ?,@telefono = ?";
+				@contrasenia = ?, @nombre_completo = ?, @correo = ?, @telefono = ?";
 				$stmt = sqlsrv_prepare($this->con, $sql, $procedure_params);
 	
 			 // Se ejecuta y se evalua 
-			if(sqlsrv_execute($stmt))
-			{
+			if(sqlsrv_execute($stmt)){
 				echo "EXITO AL AGREGAR.<br />";
-					 
 			}
-			else
-			{
+			else{
 				echo "ERROR AL AGREGAR.<br />";
-	
 			}
-		} catch (Exception $e)
-		{
+		} catch (Exception $e){
 
 		}
 	}
@@ -143,45 +137,51 @@ class User
 	{
 		try
 		{
+			$procedure_params = array($id);
 			//Sentencia SQL para eliminar una tupla utilizando
-			$stm = "EXEC csp_UsuarioDelete @id_usuario = ?";
-			$_SESSION['message'] = 'Usuario eliminado correctamente';
-			$_SESSION['message_type'] = 'success';
-		} catch (Exception $e)
-		{
-			$_SESSION['message'] = 'Error al eliminar usuario';
-			$_SESSION['message_type'] = 'dark';
+			$sql = "EXEC csp_UsuarioDelete @id_usuario = ?";
+			$stm = sqlsrv_prepare($this->con, $sql, $procedure_params);
+
+			sqlsrv_execute($stm);
+		} catch (Exception $e){
+
 		}
 	}
 	//Método que actualiza una tupla a partir de la clausula
 	//Where y el id del usuario.
-	/*public function update($data)
+	public function update($data)
 	{
-		try{
-			//Sentencia SQL para actualizar los datos.
-			$sql = "UPDATE usuario SET nombre_completo=?, correo=? ,numero_telefonico=? WHERE id = ?";
-			//Ejecución de la sentencia a partir de un arreglo.
-			$this->con->prepare($sql)
-			     ->execute(
-				    array(
-                        $data->nombre_completo,
-                       // $data-> estado,
-                        $data->correo,
-                        $data->numero_telefonico,
-                      //  $data->tipo_usuario,
-                      //  $data->imagen,
-						$data->id
-					)
+		//Sentencia SQL para actualizar los datos.
+		try
+		{
+			$myparams['contrasenia'] = $data->contrasenia;
+			$myparams['nombre_completo'] = $data->nombre_completo;
+			$myparams['correo'] = $data->correo;
+			$myparams['telefono'] = $data->telefono;
+			$myparams['id_usuario'] = $data->id_usuario;
+			
+			//Se crea un array con de parámetros
+			$procedure_params = array(
+				array(&$myparams['contrasenia'], SQLSRV_PARAM_IN),
+				array(&$myparams['nombre_completo'], SQLSRV_PARAM_IN),
+				array(&$myparams['correo'], SQLSRV_PARAM_IN),
+				array(&$myparams['telefono'], SQLSRV_PARAM_IN),
+				array(&$myparams['id_usuario'], SQLSRV_PARAM_IN)
 				);
-				$_SESSION['message'] = 'Usuario actualizado correctamente';
-				$_SESSION['message_type'] = 'success';
-			} catch (Exception $e)
-			{
-				$_SESSION['message'] = 'Error al actualizar usuario';
-				$_SESSION['message_type'] = 'dark';
-			}
+					
+			//Se se pasan los parámetros 
+			$sql = "EXEC csp_UsuarioUpdate @contrasenia = ?, @nombre_completo = ?,
+			@correo = ?, @telefono = ?, @id_usuario = ?";
+			$stmt = sqlsrv_prepare($this->con, $sql, $procedure_params);
+		
+			// Se ejecuta y se evalua 
+			sqlsrv_execute($stm);
 
-	}*/
+		} catch (Exception $e){
+
+		}
+
+	}
 
 
 }

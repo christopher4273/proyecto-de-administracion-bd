@@ -49,10 +49,10 @@ class UserController{
     //Método que modifica el modelo de un usuario.
     public function edit(){
         $pvd = new User();
-        $pvd->id=$_REQUEST['id'];
+        $pvd->id=$_REQUEST['id_usuario'];
         $pvd->nombre_completo = $_REQUEST['nombre_completo'];
         $pvd->correo = $_REQUEST['correo'];
-        $pvd->numero_telefonico = $_REQUEST['numero_telefonico'];
+        $pvd->numero_telefonico = $_REQUEST['telefono'];
         $this->usuario->update($pvd); echo '<script  type="text/javascript">window.open("../Views/UserList.php","_self",null,true);</script>';
    
    
