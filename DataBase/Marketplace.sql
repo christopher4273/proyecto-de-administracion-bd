@@ -330,6 +330,22 @@ AS
 		WHERE   id_usuario = @id_usuario
 	END
 GO
+IF OBJECT_ID('csp_UsuarLogin') IS NOT NULL
+	BEGIN 
+		DROP PROC csp_UsuarioRead
+	END 
+GO
+CREATE PROC csp_UsuarLogin
+    @id_usuario int,
+	@contrasenia varchar(200)
+
+AS 
+	BEGIN 
+		SELECT id_usuario, contrasenia
+		FROM   tbusuario  
+		WHERE  (id_usuario = @id_usuario AND contrasenia = @contrasenia) 
+	END
+GO
 --VISTA DE USUARIO, MOSTRAR LOS USUARIOS
 create view v_mostrarUsuarios as
 	SELECT id_usuario, nombre_completo, correo, telefono
