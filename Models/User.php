@@ -101,7 +101,7 @@ class User
 						</td>
 					</tr>
 				<?php 
-		}
+		}   }
 		catch(Exception $e)
 		{
 			//Obtener mensaje de error.
@@ -143,9 +143,7 @@ class User
 		try
 		{
 			//Sentencia SQL para eliminar una tupla utilizando
-			$stm = $this->con
-			            ->prepare("DELETE FROM usuario WHERE id = ?");
-			$stm->execute(array($id));
+			$stm = "EXEC csp_UsuarioDelete @id_usuario = ?";
 			$_SESSION['message'] = 'Usuario eliminado correctamente';
 			$_SESSION['message_type'] = 'success';
 		} catch (Exception $e)
