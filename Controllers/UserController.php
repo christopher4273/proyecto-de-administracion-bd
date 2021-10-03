@@ -51,8 +51,8 @@ class UserController{
         $pvd = new User();
         $pvd->nombre_completo = $_REQUEST['nombre_completo'];
         $pvd->correo = $_REQUEST['correo'];
-        $pvd->numero_telefonico = $_REQUEST['telefono'];
-        $pvd->id=$_REQUEST['id_usuario'];
+        $pvd->telefono = $_REQUEST['telefono'];
+        $pvd->id_usuario=$_REQUEST['id_usuario'];
         $this->usuario->update($pvd); echo '<script  type="text/javascript">window.open("../Views/UserList.php","_self",null,true);</script>';
    
    

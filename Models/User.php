@@ -46,7 +46,7 @@ class User
 			    array(&$myparams['nombre_completo'], SQLSRV_PARAM_IN),
 			    array(&$myparams['correo'], SQLSRV_PARAM_IN),
 			    array(&$myparams['telefono'], SQLSRV_PARAM_IN)
-				);
+			);
 				
 				//Se se pasan los parámetros 
 				$sql = "EXEC sp_UsuarioCrear @id_usuario = ?, 
@@ -165,15 +165,19 @@ class User
 				array(&$myparams['correo'], SQLSRV_PARAM_IN),
 				array(&$myparams['telefono'], SQLSRV_PARAM_IN),
 				array(&$myparams['id_usuario'], SQLSRV_PARAM_IN)
-				);
+			);
 					
 			//Se se pasan los parámetros 
 			$sql = "EXEC csp_UsuarioUpdate @nombre_completo = ?,
 			@correo = ?, @telefono = ?, @id_usuario = ?";
 			$stmt = sqlsrv_prepare($this->con, $sql, $procedure_params);
-		
+	
+			print $data->nombre_completo;
+		    print $data->correo;
+			print $data->telefono;
+			print $data->id_usuario;
 			// Se ejecuta y se evalua 
-			if( sqlsrv_execute( $stmt ) === false ) {
+			if(!sqlsrv_execute($stmt)) {
 				die( print_r( sqlsrv_errors(), true));
 	        }
 

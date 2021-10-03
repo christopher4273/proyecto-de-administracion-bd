@@ -300,7 +300,6 @@ IF OBJECT_ID('csp_UsuarioUpdate') IS NOT NULL
 GO
 CREATE PROC csp_UsuarioUpdate
 	@id_usuario INT, 
-	@contrasenia VARCHAR(50),
 	@nombre_completo VARCHAR(50),
 	@correo VARCHAR(50),
 	@telefono VARCHAR(50)
@@ -308,7 +307,6 @@ AS
 	BEGIN 
 		UPDATE tbusuario
 		SET  
-			   contrasenia = @contrasenia,
 			   nombre_completo = @nombre_completo,
 			   correo = @correo,
 			   telefono = @telefono
