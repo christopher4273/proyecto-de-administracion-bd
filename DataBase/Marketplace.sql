@@ -328,12 +328,12 @@ AS
 		WHERE   id_usuario = @id_usuario
 	END
 GO
-IF OBJECT_ID('csp_UsuarLogin') IS NOT NULL
+IF OBJECT_ID('csp_UsuarioLogin') IS NOT NULL
 	BEGIN 
-		DROP PROC csp_UsuarioRead
+		DROP PROC csp_UsuarioLogin
 	END 
 GO
-CREATE PROC csp_UsuarLogin
+CREATE PROC csp_UsuarioLogin
     @id_usuario int,
 	@contrasenia varchar(200)
 

@@ -103,19 +103,20 @@ class User
 			die($e->getMessage());
 		}
 	}
-/*
+
 	public function login($id, $pContrasenna){
+		$procedure_params = array($id, $pContrasenna);
 
-		$stm =$this->con->prepare("SELECT * FROM usuario WHERE id=? AND contrasenia=?");
-		
-		$stm->execute(array($id,$pContrasenna));
-	//	return $stm->fetch(PDO::FETCH_OBJ);
+		$sql = "csp_UsuarioLogin @id_usuario = ?, @contrasenia=?";
+		$stm = sqlsrv_query($this->con, $sql, $procedure_params);
 
-		
-	 
-		return $stm->fetch(PDO::FETCH_ASSOC);
+		$valiU="";
+		 $valiU = $row = sqlsrv_fetch_array($stm,SQLSRV_FETCH_ASSOC);
+		 return  $valiU ;
+
+	
 	}
-
+/*
 	//Datos usuario x id
 	public function search($id)
 	{

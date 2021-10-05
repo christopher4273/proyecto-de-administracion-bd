@@ -41,8 +41,9 @@ class UserController{
               $_SESSION['message_type'] = 'dark';
               echo '<script>window.open("../Views/Login.php","_self",null,true);</script>';
             } else {
-                    $_SESSION['user_-id'] = $result['id'];
+                    $_SESSION['user_-id'] = $id;
                     header('Location: ../index.php'); 
+                   //echo '<script>window.open("../index.php","_self",null,true);</script>';
             }
         }
     }
