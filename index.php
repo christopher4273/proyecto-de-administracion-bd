@@ -3,14 +3,7 @@ session_start();
 if (!isset($_SESSION['user_-id'])) {
     header('Location: Views/login.php');
     exit;
-} else {
-    // Show users the page!
-}
-function q() 
-{
-    echo "hoka";
-    $_SESSION['user_-id'] = null;
-}
+} 
 //echo $_SESSION['user_-id'] ;
 ?>
 
