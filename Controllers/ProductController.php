@@ -20,7 +20,7 @@ class ProductController{
                 $pvd->descripcion = $_POST['descripcion'];
                 $pvd->stock = $_POST['stock'];
                 $pvd->precio = $_POST['precio'];
-                $pvd->imagen = $_POST['imagen'];
+                //$pvd->imagen = $_POST['imagen'];
                 $pvd->categoria = $_REQUEST['categoria'];
                 //Registro al modelo usuario.
                 $this->producto->add($pvd); 
@@ -38,7 +38,7 @@ class ProductController{
         $pvd->descripcion = $_REQUEST['descripcion'];
         $pvd->stock = $_REQUEST['stock'];
         $pvd->precio=$_REQUEST['precio'];
-        $pvd->imagen=$_REQUEST['imagen'];
+        //$pvd->imagen=$_REQUEST['imagen'];
         $pvd->categoria=$_REQUEST['categoria'];
         
         $this->producto->update($pvd); echo '<script  type="text/javascript">window.open("../Views/ProductList.php","_self",null,true);</script>';

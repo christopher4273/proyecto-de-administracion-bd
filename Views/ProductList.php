@@ -50,7 +50,7 @@ require_once '../Includes/Header.php'; ?>
                         <th scope="col">Descripcion</th>
                         <th scope="col">Stock</th>
                         <th scope="col">Precio</th>
-                        <th scope="col">Imagen</th>
+                     
                         <th scope="col">Categoría</th>
                         <th scope="col"></th>
 
@@ -65,7 +65,7 @@ require_once '../Includes/Header.php'; ?>
                             <td><?php echo $r->descripcion; ?></td>
                             <td><?php echo $r->stock; ?></td>
                             <td><?php echo $r->precio; ?></td>
-                            <td><?php echo $r->imagen; ?></td>
+                           
                             <?php
                             $c = new Category();
                             $c = $c->search($r->categoria);
@@ -74,7 +74,7 @@ require_once '../Includes/Header.php'; ?>
                             <td>
                                 <button type="button" class="btn btn-success editbtn" data-toggle="modal" data-target="#editar">Editar</button>
                                 <button type="button" class="btn btn-danger mt-0">
-                                    <a class="link" onclick="javascript:return confirm('¿Seguro de eliminar este registro?');" href="?c=ProductoController&a=delete&id_producto=<?php echo $r->id_producto; ?>">Eliminar</a>
+                                    <a class="link" onclick="javascript:return confirm('¿Seguro de eliminar este registro?');" href="?c=ProductController&a=delete&id_producto=<?php echo $r->id_producto; ?>">Eliminar</a>
                                 </button>
                             </td>
                         </tr>

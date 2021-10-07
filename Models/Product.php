@@ -13,7 +13,7 @@ class Product
         public $descripcion;
         public $stock;
         public $precio;
-        public $imagen;
+        //public $imagen;
         public $categoria;
 
 	//Método de conexión a SGBD.
@@ -38,7 +38,7 @@ class Product
 			$myparams['descripcion'] = $data->descripcion;
 			$myparams['stock'] = $data->stock;
 			$myparams['precio'] = $data->precio;
-			$myparams['imagen'] = $data->imagen;
+			//$myparams['imagen'] = $data->imagen;
             $myparams['categoria'] = $data->categoria;
 		
 		   //Se crea un array con de parámetros
@@ -47,13 +47,13 @@ class Product
 			    array(&$myparams['descripcion'], SQLSRV_PARAM_IN),
 			    array(&$myparams['stock'], SQLSRV_PARAM_IN),
 			    array(&$myparams['precio'], SQLSRV_PARAM_IN),
-			    array(&$myparams['imagen'], SQLSRV_PARAM_IN),
+			    //array(&$myparams['imagen'], SQLSRV_PARAM_IN),
                 array(&$myparams['categoria'], SQLSRV_PARAM_IN)
 			);
 				
 				//Se se pasan los parámetros 
 				$sql = "EXEC sp_ProductoCrear @id_producto = ?, 
-				@descripcion = ?, @stock = ?, @precio = ?, @imagen = ?, @categoria = ?";
+				@descripcion = ?, @stock = ?, @precio = ?, @categoria = ?";
 				$stmt = sqlsrv_prepare($this->con, $sql, $procedure_params);
 	
 			 // Se ejecuta y se evalua 
@@ -74,7 +74,7 @@ class Product
 	{
 		try
 		{
-			$sql = "select id_producto, descripcion, stock, precio, imagen, categoria
+			$sql = "select id_producto, descripcion, stock, precio, categoria
 			FROM v_mostrarProductos";
 			//Sentencia SQL para selección de datos.
 			$stm = sqlsrv_query($this->con, $sql);
@@ -84,7 +84,7 @@ class Product
 				$descripcion = $r['descripcion'];
 				$stock = $r['stock'];
 				$precio = $r['precio'];
-                $imagen = $r['imagen'];
+                //$imagen = $r['imagen'];
                 $categoria = $r['categoria'];
 				?>
 					<tr class="bg-light">
@@ -92,7 +92,7 @@ class Product
 						<td><?php echo $descripcion; ?></td>
 						<td><?php echo $stock; ?></td>
 						<td><?php echo $precio; ?></td>
-						<td><?php echo $imagen; ?></td>
+						
 						<td><?php echo $categoria; ?></td>
 						<td>
 							<button type="button" class="btn btn-success editbtn" data-toggle="modal" data-target="#editar">Editar</button>
@@ -153,7 +153,7 @@ class Product
 			$myparams['descripcion'] = $data->descripcion;
 			$myparams['stock'] = $data->stock;
 			$myparams['precio'] = $data->precio;
-			$myparams['imagen'] = $data->imagen;
+			//$myparams['imagen'] = $data->imagen;
 			$myparams['categoria'] = $data->categoria;
 			$myparams['id_producto'] = $data->id_producto;
 			
@@ -162,20 +162,20 @@ class Product
 				array(&$myparams['descripcion'], SQLSRV_PARAM_IN),
 				array(&$myparams['stock'], SQLSRV_PARAM_IN),
 				array(&$myparams['precio'], SQLSRV_PARAM_IN),
-				array(&$myparams['imagen'], SQLSRV_PARAM_IN),
+				//array(&$myparams['imagen'], SQLSRV_PARAM_IN),
 				array(&$myparams['categoria'], SQLSRV_PARAM_IN),
 				array(&$myparams['id_producto'], SQLSRV_PARAM_IN)
 			);
 					
 			//Se se pasan los parámetros 
 			$sql = "EXEC csp_ProductoUpdate @descripcion = ?,
-			@stock = ?, @precio = ?, @imagen = ?, @categoria = ?, @id_producto = ?";
+			@stock = ?, @precio = ?, @categoria = ?, @id_producto = ?";
 			$stmt = sqlsrv_prepare($this->con, $sql, $procedure_params);
 	
 			print $data->descripcion;
 		    print $data->stock;
 			print $data->precio;
-			print $data->imagen;
+			//print $data->imagen;
 			print $data->categoria;
 			print $data->id_producto;
 			// Se ejecuta y se evalua 
