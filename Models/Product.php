@@ -9,11 +9,12 @@ class Product
 	private $con;
 
 		//Atributos del objeto usuario
-        public $id_usuario;
-        public $contrasenia;
-        public $nombre_completo;
-        public $correo;
-        public $telefono;
+        public $id_producto;
+        public $descripcion;
+        public $stock;
+        public $precio;
+        public $imagen;
+        public $categoria;
 
 	//Método de conexión a SGBD.
 	public function __CONSTRUCT()
@@ -29,28 +30,30 @@ class Product
 	}
 
     	//Método que registra un nuevo usuario a la tabla.
-	public function add(User $data)
+	public function add(Product $data)
 	{
 		try
 		{
-			$myparams['id_usuario'] = $data->id_usuario;
-			$myparams['contrasenia'] = $data->contrasenia;
-			$myparams['nombre_completo'] = $data->nombre_completo;
-			$myparams['correo'] = $data->correo;
-			$myparams['telefono'] = $data->telefono;
+			$myparams['id_producto'] = $data->id_producto;
+			$myparams['descripcion'] = $data->descripcion;
+			$myparams['stock'] = $data->stock;
+			$myparams['precio'] = $data->precio;
+			$myparams['imagen'] = $data->imagen;
+            $myparams['categoria'] = $data->categoria;
 		
 		   //Se crea un array con de parámetros
 			$procedure_params = array(
-			    array(&$myparams['id_usuario'], SQLSRV_PARAM_IN),
-			    array(&$myparams['contrasenia'], SQLSRV_PARAM_IN),
-			    array(&$myparams['nombre_completo'], SQLSRV_PARAM_IN),
-			    array(&$myparams['correo'], SQLSRV_PARAM_IN),
-			    array(&$myparams['telefono'], SQLSRV_PARAM_IN)
+			    array(&$myparams['id_producto'], SQLSRV_PARAM_IN),
+			    array(&$myparams['descripcion'], SQLSRV_PARAM_IN),
+			    array(&$myparams['stock'], SQLSRV_PARAM_IN),
+			    array(&$myparams['precio'], SQLSRV_PARAM_IN),
+			    array(&$myparams['imagen'], SQLSRV_PARAM_IN),
+                array(&$myparams['categoria'], SQLSRV_PARAM_IN)
 			);
 				
 				//Se se pasan los parámetros 
-				$sql = "EXEC sp_UsuarioCrear @id_usuario = ?, 
-				@contrasenia = ?, @nombre_completo = ?, @correo = ?, @telefono = ?";
+				$sql = "EXEC sp_ProductoCrear @id_producto = ?, 
+				@descripcion = ?, @stock = ?, @precio = ?, @imagen = ?, @categoria = ?";
 				$stmt = sqlsrv_prepare($this->con, $sql, $procedure_params);
 	
 			 // Se ejecuta y se evalua 
@@ -71,26 +74,30 @@ class Product
 	{
 		try
 		{
-			$sql = "select id_usuario, nombre_completo, correo, telefono
-			FROM v_mostrarUsuarios";
+			$sql = "select id_producto, descripcion, stock, precio, imagen, categoria
+			FROM v_mostrarProductos";
 			//Sentencia SQL para selección de datos.
 			$stm = sqlsrv_query($this->con, $sql);
 
 			while($r = sqlsrv_fetch_array($stm)){
-				$id_usuario = $r['id_usuario'];
-				$nombre_completo = $r['nombre_completo'];
-				$correo = $r['correo'];
-				$telefono = $r['telefono'];
+				$id_producto = $r['id_producto'];
+				$descripcion = $r['descripcion'];
+				$stock = $r['stock'];
+				$precio = $r['precio'];
+                $imagen = $r['imagen'];
+                $categoria = $r['categoria'];
 				?>
 					<tr class="bg-light">
-						<td><?php echo $id_usuario; ?></td>
-						<td><?php echo $nombre_completo; ?></td>
-						<td><?php echo $correo; ?></td>
-						<td><?php echo $telefono; ?></td>
+						<td><?php echo $id_producto; ?></td>
+						<td><?php echo $descripcion; ?></td>
+						<td><?php echo $stock; ?></td>
+						<td><?php echo $precio; ?></td>
+						<td><?php echo $imagen; ?></td>
+						<td><?php echo $categoria; ?></td>
 						<td>
 							<button type="button" class="btn btn-success editbtn" data-toggle="modal" data-target="#editar">Editar</button>
 							<button type="button" class="btn btn-danger mt-0">
-								<a class="link" onclick="javascript:return confirm('¿Seguro de eliminar este registro?');" href="?c=UserController&a=delete&id=<?php echo $r['id_usuario']; ?>">Eliminar</a>
+								<a class="link" onclick="javascript:return confirm('¿Seguro de eliminar este registro?');" href="?c=ProductController&a=delete&id=<?php echo $r['id_producto']; ?>">Eliminar</a>
 							</button>
 						</td>
 					</tr>
@@ -104,18 +111,6 @@ class Product
 		}
 	}
 
-	public function login($id, $pContrasenna){
-		$procedure_params = array($id, $pContrasenna);
-
-		$sql = "csp_UsuarioLogin @id_usuario = ?, @contrasenia=?";
-		$stm = sqlsrv_query($this->con, $sql, $procedure_params);
-
-		$valiU="";
-		 $valiU = $row = sqlsrv_fetch_array($stm,SQLSRV_FETCH_ASSOC);
-		 return  $valiU ;
-
-	
-	}
 /*
 	//Datos usuario x id
 	public function search($id)
@@ -140,7 +135,7 @@ class Product
 		{
 			$procedure_params = array($id);
 			//Sentencia SQL para eliminar una tupla utilizando
-			$sql = "EXEC csp_UsuarioDelete @id_usuario = ?";
+			$sql = "EXEC csp_ProductoDelete @id_producto = ?";
 			$stm = sqlsrv_prepare($this->con, $sql, $procedure_params);
 
 			sqlsrv_execute($stm);
@@ -155,28 +150,34 @@ class Product
 		//Sentencia SQL para actualizar los datos.
 		try
 		{
-			$myparams['nombre_completo'] = $data->nombre_completo;
-			$myparams['correo'] = $data->correo;
-			$myparams['telefono'] = $data->telefono;
-			$myparams['id_usuario'] = $data->id_usuario;
+			$myparams['descripcion'] = $data->descripcion;
+			$myparams['stock'] = $data->stock;
+			$myparams['precio'] = $data->precio;
+			$myparams['imagen'] = $data->imagen;
+			$myparams['categoria'] = $data->categoria;
+			$myparams['id_producto'] = $data->id_producto;
 			
 			//Se crea un array con de parámetros
 			$procedure_params = array(
-				array(&$myparams['nombre_completo'], SQLSRV_PARAM_IN),
-				array(&$myparams['correo'], SQLSRV_PARAM_IN),
-				array(&$myparams['telefono'], SQLSRV_PARAM_IN),
-				array(&$myparams['id_usuario'], SQLSRV_PARAM_IN)
+				array(&$myparams['descripcion'], SQLSRV_PARAM_IN),
+				array(&$myparams['stock'], SQLSRV_PARAM_IN),
+				array(&$myparams['precio'], SQLSRV_PARAM_IN),
+				array(&$myparams['imagen'], SQLSRV_PARAM_IN),
+				array(&$myparams['categoria'], SQLSRV_PARAM_IN),
+				array(&$myparams['id_producto'], SQLSRV_PARAM_IN)
 			);
 					
 			//Se se pasan los parámetros 
-			$sql = "EXEC csp_UsuarioUpdate @nombre_completo = ?,
-			@correo = ?, @telefono = ?, @id_usuario = ?";
+			$sql = "EXEC csp_ProductoUpdate @descripcion = ?,
+			@stock = ?, @precio = ?, @imagen = ?, @categoria = ?, @id_producto = ?";
 			$stmt = sqlsrv_prepare($this->con, $sql, $procedure_params);
 	
-			print $data->nombre_completo;
-		    print $data->correo;
-			print $data->telefono;
-			print $data->id_usuario;
+			print $data->descripcion;
+		    print $data->stock;
+			print $data->precio;
+			print $data->imagen;
+			print $data->categoria;
+			print $data->id_producto;
 			// Se ejecuta y se evalua 
 			if(!sqlsrv_execute($stmt)) {
 				die( print_r( sqlsrv_errors(), true));
