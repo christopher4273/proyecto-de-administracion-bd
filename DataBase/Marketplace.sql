@@ -3,7 +3,7 @@ GO
 USE marketplace
 
 CREATE TABLE tbcategoria(
-    id_categoria INT primary key not null,
+    id_categoria INT primary key identity,
     nom_categoria VARCHAR(50),
     descripcion VARCHAR(300)
     )
