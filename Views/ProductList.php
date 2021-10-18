@@ -24,10 +24,7 @@ require_once '../Includes/Header.php'; ?>
     <link href="../css/general.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,400italic,600italic,700italic" rel="stylesheet" type="text/css">
-
-    <title>Document</title>
 </head>
-
 <body style="background-image: url(https://madariagamendoza.cl/wp-content/uploads/2019/01/fondo-gris.jpg); ">
     <div class="row" style="font-family: Segoe UI">
         <div class="col-1"></div>
@@ -58,27 +55,8 @@ require_once '../Includes/Header.php'; ?>
                 </thead>
                 <tbody>
                     <?php
-                    $producto = new Product();
-                    foreach ($producto->get() as $r) : ?>
-                        <tr class="bg-light">
-                            <td><?php echo $r->id_producto; ?></td>
-                            <td><?php echo $r->descripcion; ?></td>
-                            <td><?php echo $r->stock; ?></td>
-                            <td><?php echo $r->precio; ?></td>
-                           
-                            <?php
-                            $c = new Category();
-                            $c = $c->search($r->categoria);
-                            ?>
-                            <td><?php echo $c->nom_categoria; ?></td>
-                            <td>
-                                <button type="button" class="btn btn-success editbtn" data-toggle="modal" data-target="#editar">Editar</button>
-                                <button type="button" class="btn btn-danger mt-0">
-                                    <a class="link" onclick="javascript:return confirm('¿Seguro de eliminar este registro?');" href="?c=ProductController&a=delete&id_producto=<?php echo $r->id_producto; ?>">Eliminar</a>
-                                </button>
-                            </td>
-                        </tr>
-                    <?php endforeach; ?>
+                     $producto = new Product();
+                     echo  $producto->get();?>
                 </tbody>
             </table>
             <!-- Modal -->
