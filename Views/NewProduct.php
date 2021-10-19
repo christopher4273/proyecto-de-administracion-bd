@@ -43,7 +43,7 @@ require_once '../Includes/Header.php';
                 } ?>
                 <h1 class="leap"> Nuevo producto</h1>
                 <!-- <img src="../imagenes/imguserv2.png" alt="imagenusuario" class="rounded">-->
-                <form method="POST" action="?c=CategoryController&a=save">
+                <form method="POST" action="?c=ProductController&a=save">
                     <div class="mb-2">
                         <label for="exampleInputNombre" class="form-label ">ID del producto</label>
                         <input type="number" name="id_producto" class="form-control bg-white" required />

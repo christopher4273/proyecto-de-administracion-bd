@@ -1,13 +1,13 @@
 <?php
-session_start();
+/*session_start();
 
 if (!isset($_SESSION['user_-id'])) {
     header('Location: ../Views/login.php');
     exit;
-}
+}*/
 
-require_once '../Models/Producto.php';
-require_once '../Models/Categoria.php';
+require_once '../Models/Product.php';
+require_once '../Models/Category.php';
 require_once '../DataBase/Conection.php';
 require_once '../Includes/Header.php'; ?>
 <!DOCTYPE html>
@@ -70,7 +70,7 @@ require_once '../Includes/Header.php'; ?>
                             </button>
                         </div>
                         <div class="modal-body">
-                            <form action="?c=ProductoController&a=edit" method="post">
+                            <form action="?c=ProductController&a=edit" method="post">
                                 <label>Id</label>
                                 <input type="text" name="id_producto" id="id_producto" class="form-control" readonly>
                                 <div class="form-group">
@@ -79,11 +79,11 @@ require_once '../Includes/Header.php'; ?>
                                 </div>
                                 <div class="form-group">
                                     <label for="">Stock</label>
-                                    <input type="number" name="stock" id="stock" class="form-control" required>
+                                    <input type="text" name="stock" id="stock" class="form-control" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="">Precio</label>
-                                    <input type="number" name="precio" id="precio" class="form-control" required>
+                                    <input type="text" name="precio" id="precio" class="form-control" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="">Seleccione una categoría</label>

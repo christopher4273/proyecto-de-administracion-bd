@@ -323,7 +323,11 @@ create trigger facturaInsert
 				values ( @accion, @vendedor ,@cliente,  SYSDATETIME())
 			END;
 go
-
+--VISTA DE PRODUCTOS, MOSTRAR LOS PRODUCTOS
+create view v_mostrarProducto as
+	SELECT id_producto, descripcion, stock, precio, categoria
+		FROM   tbproducto 
+go
 -- tabla auditoria producto
 create table productoAuditoria(
   idLog int IDENTITY(1,1) PRIMARY KEY,

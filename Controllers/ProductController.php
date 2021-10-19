@@ -24,7 +24,7 @@ class ProductController{
                 $pvd->categoria = $_REQUEST['categoria'];
                 //Registro al modelo usuario.
                 $this->producto->add($pvd); 
-                echo '<script>window.open("../Views/ProductList.php","_self",null,true);</script>';
+                echo '<script>window.open("../Views/Product.php","_self",null,true);</script>';
             }
         }catch (Exception $e){
             $e->getMessage();
@@ -48,6 +48,6 @@ class ProductController{
     //Método que elimina la tupla usuario con el id dado.
     public function delete(){
         $this->producto->delete($_REQUEST['id_producto']); 
-        echo '<script>window.open("../Views/ProductList.php","_self",null);</script>';
+        //echo '<script>window.open("../Views/ProductList.php","_self",null);</script>';
     }
 }

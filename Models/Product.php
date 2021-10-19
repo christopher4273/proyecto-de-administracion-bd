@@ -75,7 +75,7 @@ class Product
 		try
 		{
 			$sql = "select id_producto, descripcion, stock, precio, categoria
-			FROM v_mostrarProductos";
+			FROM v_mostrarProducto";
 			//Sentencia SQL para selección de datos.
 			$stm = sqlsrv_query($this->con, $sql);
 
