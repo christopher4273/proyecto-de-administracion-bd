@@ -85,7 +85,7 @@ class Category
 					$id_categoria = $r['id_categoria'];
 					$nom_categoria = $r['nom_categoria'];
 					?>
-						<option value="<?php echo $id_categoria = $r['id_categoria']; ?>"><?php echo $nom_categoria = $r['nom_categoria'];; ?></option>
+						<option value="<?php echo $id_categoria; ?>"><?php echo $nom_categoria; ?></option>
 					<?php 
 				}
 			}

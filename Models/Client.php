@@ -95,10 +95,10 @@ class Client
 				}  				
 			}else if($option==2){
 				while($r = sqlsrv_fetch_array($stm)){
-					$id_categoria = $r['id_categoria'];
-					$nom_categoria = $r['nom_categoria'];
+					$id_cliente = $r['id_cliente'];
+					$nombre_completo = $r['nombre_completo'];
 					?>
-						<option value="<?php echo $id_categoria = $r['id_categoria']; ?>"><?php echo $nom_categoria = $r['nom_categoria'];; ?></option>
+						<option value="<?php echo $id_cliente; ?>"><?php echo $nombre_completo; ?></option>
 					<?php 
 				}
 			}

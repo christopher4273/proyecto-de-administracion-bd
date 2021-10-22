@@ -60,7 +60,7 @@ require_once '../Includes/Header.php';
                     <?php
                     $usuario = new User();
                     //$usuarios = $usuario->get();
-                    echo $usuario->get();?>
+                    echo $usuario->get(1);?>
                 </tbody>
             </table>
             <!-- Modal -->

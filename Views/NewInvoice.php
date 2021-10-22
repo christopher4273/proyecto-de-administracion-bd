@@ -65,25 +65,18 @@ require_once '../Includes/Header.php';
                             <?php
                                 $cliente = new Client();
                                 //$usuarios = $usuario->get();
-                                echo $cliente->get();
-                                ?>                
-                            <?php
-                            $cliente = new Client();
-                            foreach ($cliente->get() as $r) {
-                            ?>
-                                <option value="<?php echo $r->id_cliente; ?>"><?php echo $r->nombre_completo; ?></option>
-                            <?php } ?>
+                                $cliente->get(2);
+                            ?>                
                         </select>
                     </div>
                     <div class="mb-2">
                         <select class="form-select" aria-label="Default select example" name="vendedor">
                             <option value="">Seleccione un vendedor</option>
                             <?php
-                            $user = new User();
-                            foreach ($user->get() as $r) {
+                                $user = new User();
+                                //$usuarios = $usuario->get();
+                                $user->get(2);
                             ?>
-                                <option value="<?php echo $r->id; ?>"><?php echo $r->nombre_completo; ?></option>
-                            <?php } ?>
                         </select>
                     </div>
                     <div class="btnContainer">
