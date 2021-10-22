@@ -43,3 +43,20 @@ AS
 	END
 	
 --READ
+CREATE PROC readsp_factura
+    @id_factura int
+AS 
+	BEGIN 
+ 
+		SELECT 
+			 id_factura,
+			 fecha,
+			 subtotal,
+			 impuesto,
+			 total,
+			 cliente,
+			 vendedor
+		FROM   tbfactura  
+		WHERE  (id_factura = @id_factura) 
+	END
+GO
