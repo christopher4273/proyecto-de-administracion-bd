@@ -14,15 +14,15 @@ class CategoryController{
     
     public function save(){
         try{
-            if(isset($_POST['UserController'])){
+            if(isset($_POST['CategoryController'])){
                 $pvd = new Category();
                 //Captura de los datos del formulario (vista).
-                $pvd->id_usuario = $_POST['id_usuario'];
-                $pvd->contrasenia = $_POST['contrasenia'];
-                $pvd->contrasenia = $_POST['descripcion'];
+              //  $pvd->id_usuario = $_POST['id_usuario'];
+                $pvd->nom_categoria = $_POST['nom_categoria'];
+                $pvd->descripcion = $_POST['descripcion'];
                 //Registro al modelo usuario.
-                $this->usuario->add($pvd); 
-                echo '<script>window.open("../Views/Category.php","_self",null,true);</script>';
+                $this->categoria->add($pvd); 
+                echo '<script>window.open("_self",null,true);</script>';
             }
         }catch (Exception $e){
             $e->getMessage();

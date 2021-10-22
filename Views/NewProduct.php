@@ -66,9 +66,9 @@ require_once '../Includes/Header.php';
                                     <select class="form-select" aria-label="Default select example" name="categoria" required>
                                     <?php
                                     $categoria = new Category();
-                                    foreach ($categoria->get() as $r) {
+                                    foreach ($categoria->select() as $r) {
                                     ?>
-                                    <option value="<?php echo $r->id_categoria; ?>"><?php echo $r->nom_categoria; ?></option>
+                                  
                                     <?php } ?>
                                     </select>
                                 </div>

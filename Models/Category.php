@@ -87,6 +87,22 @@ class Category
 			die($e->getMessage());
 		}
 	}
+	public function select(){
+		$sql = "select id_categoria, nom_categoria, descripcion
+		FROM v_mostrarCategoria";
+		//Sentencia SQL para selección de datos.
+		$stm = sqlsrv_query($this->con, $sql);
+		while($r = sqlsrv_fetch_array($stm)){
+			$id_categoria = $r['id_categoria'];
+			$nom_categoria = $r['nom_categoria'];
+			$descripcion = $r['descripcion'];
+			?>
+<option value="<?php echo $id_categoria = $r['id_categoria']; ?>"><?php echo $nom_categoria = $r['nom_categoria'];; ?></option>
+			<?php 
+		}
+	//	return $r;
+		
+	}
 	public function delete($id_categoria)
 	{
 		try
