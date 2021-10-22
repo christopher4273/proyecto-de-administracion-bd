@@ -2,28 +2,20 @@
 --CRUD DE PROCEDIMIENTOS DE ALMACENAMIENTO DE CATEGORIA
 --CREATE
 CREATE PROCEDURE createsp_categoria
-    @id_categoria INT,
-    @nom_categoria VARCHAR(50),
-    @descripcion VARCHAR(300)
+ 
+ @nom_categoria VARCHAR(45),
+  @descripcion VARCHAR(45)
+
 AS
-    BEGIN
-		INSERT INTO tbcategoria (
-			id_categoria,
-			nom_categoria,
-			descripcion
-		)
-	VALUES (
-			@id_categoria,
-			@nom_categoria,
-			@descripcion
-		)
-	SET @id_categoria = SCOPE_IDENTITY()
-		SELECT  id_categoria = @id_categoria,
-				nom_categoria = @nom_categoria,
-				descripcion = @descripcion
-		FROM tbcategoria
-		WHERE id_categoria = @id_categoria
-	END
+BEGIN
+  
+			INSERT INTO tbcategoria
+    ("nom_categoria","descripcion")
+  VALUES
+    (@nom_categoria, @descripcion) 
+
+END 
+GO
 --READ
 CREATE PROC readsp_categoria
     @id_categoria int
