@@ -41,4 +41,5 @@ AS
 		FROM tbfactura
 		WHERE id_factura = @id_factura
 	END
+	
 --READ
