@@ -138,7 +138,7 @@ require_once '../Includes/Header.php'; ?>
 </html>
 <?php
 
-$controller = 'ProductoController';
+$controller = 'ProductController';
 
 // Todo esta lógica hara el papel de un FrontController
 if (!isset($_REQUEST['c'])) {

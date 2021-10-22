@@ -5,7 +5,8 @@ if (!isset($_SESSION['user_-id'])) {
     exit;
 }*/
 require_once '../Controllers/ProductController.php';
-require_once '../DataBase/Conection.php';
+require_once '../DataBase/conection.php';
+require_once '../Models/Category.php';
 require_once '../Includes/Header.php';
 ?>
 <!DOCTYPE html>
@@ -63,17 +64,12 @@ require_once '../Includes/Header.php';
                     <div class="form-group">
                                     <label for="">Seleccione una categoría</label>
                                     <select class="form-select" aria-label="Default select example" name="categoria" required>
-                                        <option value="<?php echo $c->id_categoria; ?>"><?php echo $c->nom_categoria; ?>
-                                        </option>
-                                        <?php
-                                        $categoria = new Category();
-                                        foreach ($categoria->get() as $cat) {
-
-                                        ?>
-                                            <option value="<?php echo $cat->id_categoria; ?>">
-                                                <?php echo $cat->nom_categoria; ?>
-                                            </option>
-                                        <?php } ?>
+                                    <?php
+                                    $categoria = new Category();
+                                    foreach ($categoria->get() as $r) {
+                                    ?>
+                                    <option value="<?php echo $r->id_categoria; ?>"><?php echo $r->nom_categoria; ?></option>
+                                    <?php } ?>
                                     </select>
                                 </div>
                     <div class="btnContainer mb-4">
