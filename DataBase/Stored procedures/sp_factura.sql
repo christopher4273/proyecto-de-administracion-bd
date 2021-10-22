@@ -60,3 +60,27 @@ AS
 		WHERE  (id_factura = @id_factura) 
 	END
 GO
+--UPDATE
+CREATE PROC updatesp_factura
+    @id_factura INT,
+    @fecha datetime,
+    @subtotal float,
+	@impuesto float,
+	@total float,
+	@cliente int,
+	@vendedor int
+  
+AS 
+	BEGIN 
+		UPDATE tbfactura
+			SET 
+			 id_factura = @id_factura,
+			 fecha = @fecha,
+			 subtotal = @subtotal,
+			 impuesto = @impuesto,
+			 total = @total,
+			 cliente = @cliente,
+			 vendedor = @vendedor
+			WHERE   id_factura = @id_factura
+	END
+GO
