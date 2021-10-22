@@ -5,7 +5,7 @@ if (!isset($_SESSION['user_-id'])) {
     exit;
 }*/
 require_once '../Controllers/ProductController.php';
-require_once '../DataBase/conection.php';
+require_once '../DataBase/Conection.php';
 require_once '../Models/Category.php';
 require_once '../Includes/Header.php';
 ?>

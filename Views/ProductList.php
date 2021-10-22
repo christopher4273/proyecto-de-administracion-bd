@@ -91,14 +91,9 @@ require_once '../Includes/Header.php'; ?>
                                         <option value="<?php echo $c->id_categoria; ?>"><?php echo $c->nom_categoria; ?>
                                         </option>
                                         <?php
-                                        $categoria = new Category();
-                                        foreach ($categoria->get() as $cat) {
-
+                                       $categoria = new Category();
+                                       $categoria->get(2);
                                         ?>
-                                            <option value="<?php echo $cat->id_categoria; ?>">
-                                                <?php echo $cat->nom_categoria; ?>
-                                            </option>
-                                        <?php } ?>
                                     </select>
                                 </div>
                                 <div class="mb-2">
