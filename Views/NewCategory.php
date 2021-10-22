@@ -44,6 +44,10 @@ require_once '../Includes/Header.php';
                 <h1 class="leap"> Nueva Categoria</h1>
                 <!-- <img src="../imagenes/imguserv2.png" alt="imagenusuario" class="rounded">-->
                 <form method="POST" action="?c=CategoryController&a=save">
+                <div class="mb-2">
+                        <label for="exampleInputNombre" class="form-label ">Código</label>
+                        <input type="text" name="nom_categoria" class="form-control bg-white" required />
+                    </div>
                     <div class="mb-2">
                         <label for="exampleInputNombre" class="form-label ">Nombre Categoria</label>
                         <input type="text" name="nom_categoria" class="form-control bg-white" required />

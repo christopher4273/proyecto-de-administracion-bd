@@ -19,7 +19,7 @@ class CategoryController{
                 //Captura de los datos del formulario (vista).
                 $pvd->id_usuario = $_POST['id_usuario'];
                 $pvd->contrasenia = $_POST['contrasenia'];
-
+                $pvd->contrasenia = $_POST['descripcion'];
                 //Registro al modelo usuario.
                 $this->usuario->add($pvd); 
                 echo '<script>window.open("../Views/Category.php","_self",null,true);</script>';
