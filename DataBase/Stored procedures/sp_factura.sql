@@ -84,3 +84,25 @@ AS
 			WHERE   id_factura = @id_factura
 	END
 GO
+--DELETE
+CREATE PROC deletesp_factura 
+    @id_factura INT
+AS 
+	BEGIN 
+		DELETE
+			FROM   tbfactura
+			WHERE   id_factura = @id_factura
+	END
+GO
+--VISTA DE CATEGORIA, MOSTRAR LA CATEGORIA
+create view v_mostrarFactura as
+	SELECT 
+			id_factura,
+			 fecha,
+			 subtotal,
+			 impuesto,
+			 total,
+			 cliente,
+			 vendedor
+		FROM   tbfactura  
+go
