@@ -52,7 +52,7 @@ require_once '../Includes/Header.php'; ?>
                     <?php
                     $client = new Client();
                     //$usuarios = $client->get();
-                    echo $client->get();?>
+                    echo $client->get(1);?>
                 </tbody>
             </table>
             <!-- Modal -->

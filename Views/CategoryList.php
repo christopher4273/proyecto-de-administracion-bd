@@ -49,7 +49,7 @@ require_once '../DataBase/Conection.php'; ?>
                 <tbody>
                     <?php
                     $categoria = new Category();
-                    echo  $categoria->get();?>
+                    echo  $categoria->get(1);?>
                 </tbody>
             </table>
             <!-- Modal -->

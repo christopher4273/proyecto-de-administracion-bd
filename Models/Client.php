@@ -63,7 +63,7 @@ class Client
 	}
 	//Este método selecciona todas las tuplas de la tabla
 	//usuario en caso de error se muestra por pantalla.
-	public function get()
+	public function get($option)
 	{
 		try
 		{
@@ -72,26 +72,36 @@ class Client
 			//Sentencia SQL para selección de datos.
 			$stm = sqlsrv_query($this->con, $sql);
 
-			while($r = sqlsrv_fetch_array($stm)){
-				$id_cliente = $r['id_cliente'];
-				$nombre_completo = $r['nombre_completo'];
-				$correo = $r['correo'];
-				$numero_telefonico = $r['numero_telefonico'];
-				?>
-					<tr class="bg-light">
-						<td><?php echo $id_cliente; ?></td>
-						<td><?php echo $nombre_completo; ?></td>
-						<td><?php echo $correo; ?></td>
-						<td><?php echo $numero_telefonico; ?></td>
-						<td>
-							<button type="button" class="btn btn-success editbtn" data-toggle="modal" data-target="#editar">Editar</button>
-							<button type="button" class="btn btn-danger mt-0">
-								<a class="link" onclick="javascript:return confirm('¿Seguro de eliminar este registro?');" href="?c=ClientController&a=delete&id=<?php echo $r['id_cliente']; ?>">Eliminar</a>
-							</button>
-						</td>
-					</tr>
-				<?php 
-		    }  
+			if($option==1){
+				while($r = sqlsrv_fetch_array($stm)){
+					$id_cliente = $r['id_cliente'];
+					$nombre_completo = $r['nombre_completo'];
+					$correo = $r['correo'];
+					$numero_telefonico = $r['numero_telefonico'];
+					?>
+						<tr class="bg-light">
+							<td><?php echo $id_cliente; ?></td>
+							<td><?php echo $nombre_completo; ?></td>
+							<td><?php echo $correo; ?></td>
+							<td><?php echo $numero_telefonico; ?></td>
+							<td>
+								<button type="button" class="btn btn-success editbtn" data-toggle="modal" data-target="#editar">Editar</button>
+								<button type="button" class="btn btn-danger mt-0">
+									<a class="link" onclick="javascript:return confirm('¿Seguro de eliminar este registro?');" href="?c=ClientController&a=delete&id=<?php echo $r['id_cliente']; ?>">Eliminar</a>
+								</button>
+							</td>
+						</tr>
+					<?php 
+				}  				
+			}else if($option==2){
+				while($r = sqlsrv_fetch_array($stm)){
+					$id_categoria = $r['id_categoria'];
+					$nom_categoria = $r['nom_categoria'];
+					?>
+						<option value="<?php echo $id_categoria = $r['id_categoria']; ?>"><?php echo $nom_categoria = $r['nom_categoria'];; ?></option>
+					<?php 
+				}
+			}
 	    }
 		catch(Exception $e)
 		{

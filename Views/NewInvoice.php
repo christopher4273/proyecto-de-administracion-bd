@@ -7,7 +7,7 @@ if (!isset($_SESSION['user_-id'])) {
 }
 
 require_once '../Controllers/InvoiceController.php';
-require_once '../Controllers/DetalleController.php';
+//require_once '../Controllers/DetalleController.php';
 require_once '../Models/User.php';
 require_once '../Models/Client.php';
 require_once '../Models/Invoice.php';
@@ -63,7 +63,12 @@ require_once '../Includes/Header.php';
                         <select class="form-select" aria-label="Default select example" name="cliente">
                             <option value="">Seleccione un cliente</option>
                             <?php
-                            $cliente = new Cliente();
+                                $cliente = new Client();
+                                //$usuarios = $usuario->get();
+                                echo $cliente->get();
+                                ?>                
+                            <?php
+                            $cliente = new Client();
                             foreach ($cliente->get() as $r) {
                             ?>
                                 <option value="<?php echo $r->id_cliente; ?>"><?php echo $r->nombre_completo; ?></option>

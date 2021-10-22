@@ -65,11 +65,9 @@ require_once '../Includes/Header.php';
                                     <label for="">Seleccione una categoría</label>
                                     <select class="form-select" aria-label="Default select example" name="categoria" required>
                                     <?php
-                                    $categoria = new Category();
-                                    foreach ($categoria->select() as $r) {
+                                        $categoria = new Category();
+                                        $categoria->get(2);
                                     ?>
-                                  
-                                    <?php } ?>
                                     </select>
                                 </div>
                     <div class="btnContainer mb-4">
