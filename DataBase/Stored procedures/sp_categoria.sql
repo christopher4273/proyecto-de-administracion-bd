@@ -9,7 +9,7 @@ CREATE PROCEDURE createsp_categoria
 AS
 BEGIN
   
-			INSERT INTO tbcategoria
+	INSERT INTO tbcategoria
     ("nom_categoria","descripcion")
   VALUES
     (@nom_categoria, @descripcion) 
