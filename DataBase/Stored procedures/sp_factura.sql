@@ -10,19 +10,19 @@ CREATE PROCEDURE createsp_factura
 	@vendedor int
 
 AS
-BEGIN
+	BEGIN
   
-	INSERT INTO tbfactura
-    ("fecha","subtotal", "impuesto", "total", "cliente", "vendedor")
-	VALUES (
-			@fecha,
-			@subtotal,
-			@impuesto,
-			@total,
-			@cliente,
-			@vendedor
-		)
-END 
+		INSERT INTO tbfactura
+    		("fecha","subtotal", "impuesto", "total", "cliente", "vendedor")
+			VALUES (
+				@fecha,
+				@subtotal,
+				@impuesto,
+				@total,
+				@cliente,
+				@vendedor
+			)
+	END 
 GO
 	
 --READ
