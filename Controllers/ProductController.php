@@ -47,7 +47,7 @@ class ProductController{
     }
     //Método que elimina la tupla usuario con el id dado.
     public function delete(){
-        $this->producto->delete($_REQUEST['id_producto']); 
-        //echo '<script>window.open("../Views/ProductList.php","_self",null);</script>';
+        $this->producto->delete($_REQUEST['id']); 
+        echo '<script>window.open("../Views/ProductList.php","_self",null);</script>';
     }
 }
