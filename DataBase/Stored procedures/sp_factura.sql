@@ -57,7 +57,6 @@ AS
 	BEGIN 
 		UPDATE tbfactura
 			SET 
-			 id_factura = @id_factura,
 			 fecha = @fecha,
 			 subtotal = @subtotal,
 			 impuesto = @impuesto,

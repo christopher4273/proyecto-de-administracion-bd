@@ -34,7 +34,7 @@ CREATE TABLE tbusuario(
     )
 
 CREATE TABLE tbfactura(
-    id_factura INT primary key not null,
+    id_factura INT primary key identity,
     fecha DATETIME,
     subtotal FLOAT,
     impuesto FLOAT,
