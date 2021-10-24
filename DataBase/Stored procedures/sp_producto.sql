@@ -40,33 +40,5 @@ AS
         WHERE  (id_producto = @id_producto)
     END
 GO
---UPDATE
-CREATE PROC csp_ProductoUpdate
-    @id_producto INT, 
-    @descripcion VARCHAR(50),
-    @stock INT,
-    @precio FLOAT,
-    @categoria INT
 
-AS 
-    BEGIN 
-        UPDATE tbproducto
-        SET  
-               descripcion = @descripcion,
-               stock = @stock,
-               precio = @precio,
-               categoria = @categoria
-			   FROM tbproducto as p inner join tbcategoria as c on p.categoria = c.id_categoria
-        WHERE  id_producto = @id_producto
-    END
-GO
---DELETE
-CREATE PROC csp_ProductoDelete 
-    @id_producto int
-AS 
-    BEGIN 
-        DELETE
-        FROM tbproducto
-        WHERE   id_producto = @id_producto
-    END
-GO
+-------------------------------------------------------------------------------------------------
