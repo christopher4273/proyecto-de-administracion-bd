@@ -46,7 +46,7 @@ CREATE TABLE tbfactura(
     )
 
 CREATE TABLE tbdetallefactura(
-    id_detallefactura INT primary key not null,
+    id_detallefactura INT primary key identity,
     subtotal FLOAT,
     descuento FLOAT,
     cantidad INT,
