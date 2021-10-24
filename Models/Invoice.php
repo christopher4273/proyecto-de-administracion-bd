@@ -82,7 +82,7 @@ class Invoice
 			if($option==1){
 				while($r = sqlsrv_fetch_array($stm)){
 					$id_factura = $r['id_factura'];
-					$fecha = $r['fecha'];
+					$fecha =  $r['fecha']->format('d-m-Y');
 					$subtotal = $r['subtotal'];
 					$impuesto = $r['impuesto'];
 					$total = $r['total'];	
@@ -92,8 +92,8 @@ class Invoice
 						<tr class="bg-light">
 							<td><?php echo $id_factura; ?></td>
 							<td><?php echo $fecha; ?></td>
-							<td><?php echo $subtotal; ?></td>
 							<td><?php echo $impuesto; ?></td>
+							<td><?php echo $subtotal; ?></td>
 							<td><?php echo $total; ?></td>
 							<td><?php echo $cliente; ?></td>
 							<td><?php echo $vendedor; ?></td>

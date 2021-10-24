@@ -83,54 +83,7 @@ require_once '../Includes/Header.php';
                     </div>
                 </form>
             </div>
-            <div class="newSale">
-                <form method="POST" action="?c=DetalleController&a=save">
-                    <div class="saleTitle"> Añadir productos a la factura</div>
-                    <br>
-                    <div class="mb-2">
-                        <select class="form-select" aria-label="Default select example" name="factura" required>
-                            <option value="">Seleccione una factura</option>
-                            <?php
-                            $factura = new Factura();
-                            foreach ($factura->get() as $r) {
-                            ?>
-                                <?php
-                                $c = new Cliente();
-                                $c = $c->search($r->cliente);
-                                ?>
-                                <option value="<?php echo $r->id_factura; ?>">Id factura: <?php echo $r->id_factura; ?>
-                                    Cliente: <?php echo $c->nombre_completo; ?>
-                                </option>
-                            <?php } ?>
-                        </select>
-                    </div>
-                    <div class="mb-2">
-                        <label for="descuento" class="form-label">Ingrese el descuento a aplicar </label>
-                        <input type="text" name="descuento" class="form-control" placeholder="Ingrese el descuento a aplicar" required/>
-                    </div>
-                    <div class="mb-2">
-                        <select class="form-select" aria-label="Default select example" name="producto" required>
-                            <option value="">Seleccione un producto</option>
-                            <?php
-                            $producto = new Producto();
-                            foreach ($producto->get() as $r) {
-                            ?>
-                                <option value="<?php echo $r->id_producto; ?>"><?php echo $r->descripcion; ?></option>
-                            <?php } ?>
-                        </select>
-                    </div>
-                    <div class="mb-2">
-                        <label for="cantidad" class="form-label">Cantidad </label>
-                        <input type="number" name="cantidad" class="form-control" placeholder="Ingrese la cantidad de productos" required/>
-                    </div>
-                    <div class="btnContainer">
-                        <input type="submit" name="DetalleController" class="btn btn-success" value="Guardar">
-                        <button type="button" class="btn btn-danger">
-                            <a class="link" href="../index.php"><span class="sr-only"></span>Cancelar</a>
-                        </button>
-                    </div>
-                </form>
-            </div>
+
         </div>
         <div class="col-2"></div>
         <div>
@@ -148,7 +101,7 @@ require_once '../Includes/Header.php';
 
 //require_once '../DataBase/Conection.php';
 
-$controller = 'FacturaController';
+$controller = 'InvoiceController';
 
 // Todo esta lógica hara el papel de un FrontController
 if (!isset($_REQUEST['c'])) {

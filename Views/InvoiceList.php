@@ -52,14 +52,14 @@ require_once '../Models/Client.php';
                     <tr>
                         <th scope="col">Id factura</th>
                         <th scope="col">Fecha</th>
-                        <th scope="col">Cliente</th>
-                        <th scope="col">Vendedor</th>
                         <th scope="col">Producto</th>
                         <th scope="col">Cantidad</th>
                         <th scope="col">Descuento</th>
                         <th scope="col">Impuesto</th>
                         <th scope="col">Subtotal</th>
                         <th scope="col">Total</th>
+                        <th scope="col">Cliente</th>
+                        <th scope="col">Vendedor</th>
 
                     </tr>
                 </thead>
