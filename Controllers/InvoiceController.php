@@ -13,22 +13,25 @@ class InvoiceController{
     }
     //Método que registrar.
     public function save(){
-        if(isset($_POST['InvoiceController'])){
-        $pvd = new Invoice();
-        //Captura de los datos del formulario (vista).
-       // $pvd->id_factura = $_POST['id_factura'];
-        $pvd->fecha =  date("Y-m-d H:i:s");
-        $pvd->subtotal = 0.0;
-        $pvd->impuesto = 0.0;
-        $pvd->total = 0.0;
-        $pvd->cliente = $_POST['cliente'];
-        $pvd->vendedor = $_POST['vendedor'];
-        //Registro.
-        $this->factura->add($pvd);
-        //echo '<script>window.open("../Views/NewInvoice.php","_self",null,true);</script>';
-    
-     }
-
+        try{
+            if(isset($_POST['InvoiceController'])){
+                $pvd = new Invoice();
+                //Captura de los datos del formulario (vista).
+            // $pvd->id_factura = $_POST['id_factura'];
+                $pvd->fecha =  date("Y-m-d H:i:s");
+                $pvd->subtotal = 0.0;
+                $pvd->impuesto = 0.0;
+                $pvd->total = 0.0;
+                $pvd->cliente = $_POST['cliente'];
+                $pvd->vendedor = $_POST['vendedor'];
+                //Registro.
+                $this->factura->add($pvd);
+                echo '<script>window.open("../Views/NewInvoice.php","_self",null,true);</script>';
+        
+            }
+        }catch (Exception $e){
+            $e->getMessage();
+        }
     }
 
     /*public function calculate($id){

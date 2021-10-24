@@ -1,5 +1,5 @@
 <?php
-
+require_once '../DataBase/conection.php';
 class Invoice
 {
 	//Atributo para conexión a SGBD
