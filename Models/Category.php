@@ -73,7 +73,7 @@ class Category
 							<td>
 								<button type="button" class="btn btn-success editbtn" data-toggle="modal" data-target="#editar">Editar</button>
 								<button type="button" class="btn btn-danger mt-0">
-									<a class="link" onclick="javascript:return confirm('¿Seguro de eliminar este registro?');" href="?c=categoryController&a=delete&id=<?php echo $r['id_categoria']; ?>">Eliminar</a>
+									<a class="link" onclick="javascript:return confirm('¿Seguro de eliminar este registro?');" href="?c=CategoryController&a=delete&id=<?php echo $r['id_categoria']; ?>">Eliminar</a>
 								</button>
 							</td>
 						</tr>

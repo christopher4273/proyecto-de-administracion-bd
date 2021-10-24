@@ -32,7 +32,7 @@ class CategoryController{
     //Método que elimina la tupla categoria con el id dado.
     public function delete(){
         $this->categoria->delete($_REQUEST['id']); 
-        //echo '<script>window.open("../Views/CategoryList.php","_self",null);</script>';
+        echo '<script>window.open("../Views/CategoryList.php","_self",null);</script>';
     }
 
     //Método que modifica el modelo de un usuario.

@@ -55,15 +55,14 @@ class Factura
 			);
 				
 				//Se se pasan los parámetros 
-				$sql = "EXEC createsp_factura @id_factura = ?, @fecha = ?, @subtotal = ?,
-			    @impuesto = ?, @total = ?, @cliente = ?, @vendedor = ?";
-				$stmt = sqlsrv_prepare($this->con, $sql, $procedure_params);
+			$sql = "EXEC createsp_factura @id_factura = ?, @fecha = ?, @subtotal = ?,
+			@impuesto = ?, @total = ?, @cliente = ?, @vendedor = ?";
+			$stmt = sqlsrv_prepare($this->con, $sql, $procedure_params);
 	
 			 // Se ejecuta y se evalua 
 			if(sqlsrv_execute($stmt)){
 				echo "EXITO AL AGREGAR.<br />";
-			}
-			else{
+			}else{
 				echo "ERROR AL AGREGAR.<br />";
 			}
 		} catch (Exception $e){
@@ -85,6 +84,59 @@ class Factura
 			//de resultados
 			return $stm->fetchAll(PDO::FETCH_OBJ);
 		}
+		catch(Exception $e)
+		{
+			//Obtener mensaje de error.
+			die($e->getMessage());
+		}
+	}
+
+	public function get($option)
+	{
+		try
+		{
+			$sql = "select id_factura, fecha, subtotal, impuesto,
+			total, cliente, vendedor FROM v_mostrarFactura";
+			//Sentencia SQL para selección de datos.
+			$stm = sqlsrv_query($this->con, $sql);
+			if($option==1){
+				while($r = sqlsrv_fetch_array($stm)){
+					$id_factura = $r['id_factura'];
+					$fecha = $r['fecha'];
+					$subtotal = $r['subtotal'];
+					$impuesto = $r['impuesto'];
+					$total = $r['total'];	
+					$cliente = $r['cliente'];		
+					$vendedor = $r['vendedor'];								
+					?>
+						<tr class="bg-light">
+							<td><?php echo $id_factura; ?></td>
+							<td><?php echo $fecha; ?></td>
+							<td><?php echo $subtotal; ?></td>
+							<td><?php echo $impuesto; ?></td>
+							<td><?php echo $total; ?></td>
+							<td><?php echo $cliente; ?></td>
+							<td><?php echo $vendedor; ?></td>
+							<td>
+								<button type="button" class="btn btn-success editbtn" data-toggle="modal" data-target="#editar">Editar</button>
+								<button type="button" class="btn btn-danger mt-0">
+									<a class="link" onclick="javascript:return confirm('¿Seguro de eliminar este registro?');" href="?c=InvoiceController&a=delete&id=<?php echo $r['id_factura']; ?>">Eliminar</a>
+								</button>
+							</td>
+						</tr>
+					<?php 
+				}  				
+
+			}else if($option==2){
+				while($r = sqlsrv_fetch_array($stm)){
+					$id_factura = $r['id_factura'];
+					$fecha = $r['fecha'];
+					?>
+						<option value="<?php echo $id_factura; ?>"><?php echo $fecha; ?></option>
+					<?php 
+				}
+			}
+	    }
 		catch(Exception $e)
 		{
 			//Obtener mensaje de error.
