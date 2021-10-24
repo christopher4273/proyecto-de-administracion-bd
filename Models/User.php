@@ -55,7 +55,8 @@ class User
 	
 			 // Se ejecuta y se evalua 
 			if(sqlsrv_execute($stmt)){
-				echo "EXITO AL AGREGAR.<br />";
+				$_SESSION['message'] = 'Usuario creado correctamente';
+				$_SESSION['message_type'] = 'success';
 			}
 			else{
 				echo "ERROR AL AGREGAR.<br />";

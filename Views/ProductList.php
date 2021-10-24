@@ -56,7 +56,7 @@ require_once '../Includes/Header.php'; ?>
                 <tbody>
                     <?php
                      $producto = new Product();
-                     echo  $producto->get();?>
+                     echo  $producto->get(1);?>
                 </tbody>
             </table>
             <!-- Modal -->

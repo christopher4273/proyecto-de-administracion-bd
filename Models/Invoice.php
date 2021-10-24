@@ -1,5 +1,5 @@
 <?php
-
+require_once '../DataBase/conection.php';
 class Invoice
 {
 	//Atributo para conexión a SGBD
@@ -7,7 +7,6 @@ class Invoice
 	private $con;
 
 		//Atributos del objeto usuario
-      public  $id_factura;
       public  $fecha;
       public  $subtotal;
       public  $impuesto ;
@@ -35,7 +34,7 @@ class Invoice
 	{
 		try
 		{
-			$myparams['id_factura'] = $data->id_factura;
+			//$myparams['id_factura'] = $data->id_factura;
 			$myparams['fecha'] = $data->fecha;
 			$myparams['subtotal'] = $data->subtotal;
 			$myparams['impuesto'] = $data->impuesto;
@@ -45,7 +44,7 @@ class Invoice
 		
 		   //Se crea un array con de parámetros
 			$procedure_params = array(
-			    array(&$myparams['id_factura'], SQLSRV_PARAM_IN),
+			    //array(&$myparams['id_factura'], SQLSRV_PARAM_IN),
 			    array(&$myparams['fecha'], SQLSRV_PARAM_IN),
 			    array(&$myparams['subtotal'], SQLSRV_PARAM_IN),
 			    array(&$myparams['impuesto'], SQLSRV_PARAM_IN),
@@ -55,7 +54,7 @@ class Invoice
 			);
 				
 				//Se se pasan los parámetros 
-			$sql = "EXEC createsp_factura @id_factura = ?, @fecha = ?, @subtotal = ?,
+			$sql = "EXEC createsp_factura @fecha = ?, @subtotal = ?,
 			@impuesto = ?, @total = ?, @cliente = ?, @vendedor = ?";
 			$stmt = sqlsrv_prepare($this->con, $sql, $procedure_params);
 	
