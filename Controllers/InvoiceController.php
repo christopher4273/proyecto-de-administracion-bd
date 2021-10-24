@@ -16,11 +16,11 @@ class InvoiceController{
         if(isset($_POST['InvoiceController'])){
         $pvd = new Invoice();
         //Captura de los datos del formulario (vista).
-        $pvd->id_factura = $_POST['id_factura'];
+       // $pvd->id_factura = $_POST['id_factura'];
         $pvd->fecha =  date("Y-m-d H:i:s");
-        $pvd->subtotal = 0;
-        $pvd->impuesto = 0;
-        $pvd->total = 0;
+        $pvd->subtotal = 0.0;
+        $pvd->impuesto = 0.0;
+        $pvd->total = 0.0;
         $pvd->cliente = $_POST['cliente'];
         $pvd->vendedor = $_POST['vendedor'];
         //Registro.

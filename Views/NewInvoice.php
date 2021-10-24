@@ -53,12 +53,8 @@ require_once '../Includes/Header.php';
                 </div>
             <div class="newSale">
 
-                <form method="POST" action="?c=FacturaController&a=save" class="facturaForm">
+                <form method="POST" action="?c=InvoiceController&a=save" class="facturaForm">
                     <div class="saleTitle"> Agregar una nueva factura </div>
-                    <div class="mb-2">
-                        <label for="id_factura" class="form-label">Id factura</label>
-                        <input type="number" name="id_factura" class="form-control" placeholder="Ingrese el id de la factura" required/>
-                    </div>
                     <div class="mb-2">
                         <select class="form-select" aria-label="Default select example" name="cliente">
                             <option value="">Seleccione un cliente</option>
@@ -80,7 +76,7 @@ require_once '../Includes/Header.php';
                         </select>
                     </div>
                     <div class="btnContainer">
-                        <input type="submit" name="FacturaController" class="btn btn-success" value="Guardar">
+                        <input type="submit" name="InvoiceController" class="btn btn-success" value="Guardar">
                         <button type="button" class="btn btn-danger">
                             <a class="link" href="../index.php"><span class="sr-only"></span>Cancelar</a>
                         </button>
