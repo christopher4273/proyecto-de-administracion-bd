@@ -24,7 +24,7 @@ class ProductController{
                 $pvd->categoria = $_REQUEST['categoria'];
                 //Registro al modelo usuario.
                 $this->producto->add($pvd); 
-                echo '<script>window.open("../Views/Product.php","_self",null,true);</script>';
+                echo '<script>window.open("../Views/NewProduct.php","_self",null,true);</script>';
             }
         }catch (Exception $e){
             $e->getMessage();

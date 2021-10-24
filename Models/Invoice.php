@@ -1,6 +1,6 @@
 <?php
 
-class Factura
+class Invoice
 {
 	//Atributo para conexión a SGBD
 
@@ -31,7 +31,7 @@ class Factura
 	}
 
     	//Método que registra un nuevo usuario a la tabla.
-	public function add(Factura $data)
+	public function add(Invoice $data)
 	{
 		try
 		{
@@ -71,25 +71,6 @@ class Factura
 	}
 	//Este método selecciona todas las tuplas de la tabla
 	//usuario en caso de error se muestra por pantalla.
-	public function get()
-	{
-		try
-		{
-			$result = array();
-			//Sentencia SQL para selección de datos.
-			$stm = $this->con->prepare("SELECT * FROM factura");
-			//Ejecución de la sentencia SQL.
-			$stm->execute();
-			//fetchAll — Devuelve un array que contiene todas las filas del conjunto
-			//de resultados
-			return $stm->fetchAll(PDO::FETCH_OBJ);
-		}
-		catch(Exception $e)
-		{
-			//Obtener mensaje de error.
-			die($e->getMessage());
-		}
-	}
 
 	public function get($option)
 	{

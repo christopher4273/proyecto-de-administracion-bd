@@ -3,18 +3,18 @@
 require_once '../Models/Invoice.php';
 //require_once '../Models/Detalle.php';
 require_once '../DataBase/Conection.php';    
-class FacturaController{
+class InvoiceController{
     private $factura;
     private $detalle;
     //Creación del modelo
     public function __CONSTRUCT(){
-        $this->factura = new Factura();
+        $this->factura = new Invoice();
         //$this->detalle = new Detalle();
     }
     //Método que registrar.
     public function save(){
         if(isset($_POST['InvoiceController'])){
-        $pvd = new Factura();
+        $pvd = new Invoice();
         //Captura de los datos del formulario (vista).
         $pvd->id_factura = $_POST['id_factura'];
         $pvd->fecha =  date("Y-m-d H:i:s");
@@ -25,7 +25,7 @@ class FacturaController{
         $pvd->vendedor = $_POST['vendedor'];
         //Registro.
         $this->factura->add($pvd);
-        echo '<script>window.open("../Views/NewInvoice.php","_self",null,true);</script>';
+        //echo '<script>window.open("../Views/NewInvoice.php","_self",null,true);</script>';
     
      }
 

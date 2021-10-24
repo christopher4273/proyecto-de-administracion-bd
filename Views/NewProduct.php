@@ -73,7 +73,7 @@ require_once '../Includes/Header.php';
                     <div class="btnContainer mb-4">
                         <input type="submit" name="ProductController" class="btn btn-success" value="Guardar">
 
-                        </input>
+                        
                         <button type="button" class="btn btn-danger">
                             <a class="link" href="../index.php"><span class="sr-only"></span>Cancelar</a>
                         </button>

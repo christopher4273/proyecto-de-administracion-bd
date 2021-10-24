@@ -88,12 +88,10 @@ require_once '../Includes/Header.php'; ?>
                                 <div class="form-group">
                                     <label for="">Seleccione una categoría</label>
                                     <select class="form-select" aria-label="Default select example" name="categoria" required>
-                                        <option value="<?php echo $c->id_categoria; ?>"><?php echo $c->nom_categoria; ?>
-                                        </option>
-                                        <?php
-                                       $categoria = new Category();
-                                       $categoria->get(2);
-                                        ?>
+                                    <?php
+                                        $categoria = new Category();
+                                        $categoria->get(2);
+                                    ?>
                                     </select>
                                 </div>
                                 <div class="mb-2">
