@@ -65,36 +65,9 @@ require_once '../Models/Client.php';
                 </thead>
                 <tbody>
                     <?php
-                    $factura = new Factura();
-                    foreach ($factura->get() as $r) : 
-                    if($r->subtotal!=0){?>
-                        <?php
-
-                        $cliente = new Cliente();
-                        $c = $cliente->search($r->cliente);
-
-                        $user = new User();
-                        $u = $user->search($r->vendedor);
-
-                        $detalle = new Detalle();
-                        $row = $detalle->search($r->id_factura);
-
-                        $product = new Producto();
-                        $p = $product->search($row->producto);
-                        ?>
-                        <tr class="bg-light">
-                            <td><?php echo $r->id_factura; ?></td>
-                            <td><?php echo $r->fecha; ?></td>
-                            <td><?php echo $c->nombre_completo; ?></td>
-                            <td><?php echo $u->nombre_completo; ?></td>
-                            <td><?php echo $p->id_producto; ?></td>
-                            <td><?php echo $row->cantidad; ?></td>
-                            <td><?php echo $row->descuento; ?></td>
-                            <td><?php echo $r->impuesto; ?></td>
-                            <td><?php echo $r->subtotal; ?></td>
-                            <td><?php echo $r->total; ?></td>
-                        </tr>
-                    <?php } endforeach; ?>
+                        $invoice = new Invoice();
+                        echo $invoice->get(1);
+                     ?>
                 </tbody>
             </table>
             <div class="mb-2">
@@ -110,7 +83,7 @@ require_once '../Models/Client.php';
 </html>
 <?php
 
-$controller = 'DetalleController';
+$controller = 'InvoiceController';
 
 // Todo esta lógica hara el papel de un FrontController
 if (!isset($_REQUEST['c'])) {
