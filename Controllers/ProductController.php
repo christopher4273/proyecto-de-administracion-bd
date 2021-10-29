@@ -10,7 +10,7 @@ class ProductController{
     public function __CONSTRUCT(){
         $this->producto = new Product();
     }
-    //Método que registra al modelo un nuevo usuario.
+    //Método que registra al modelo un nuevo producto.
     public function save(){
         try{
             if(isset($_POST['ProductController'])){
@@ -31,7 +31,7 @@ class ProductController{
         }
      }
 
-    //Método que modifica el modelo de un usuario.
+    //Método que modifica el modelo de un producto.
     public function edit(){
         $pvd = new Product();
         $pvd->id_producto = $_REQUEST['id_producto'];
@@ -45,7 +45,14 @@ class ProductController{
    
    
     }
-    //Método que elimina la tupla usuario con el id dado.
+    public function editStock(){
+        $pvd = new Product();
+        $pvd->id_producto = $_REQUEST['id_producto'];
+        $pvd->stock = $_REQUEST['stock'];
+
+        $this->producto->updateStock($pvd); echo '<script  type="text/javascript">window.open("../Views/ProductList.php","_self",null,true);</script>';
+    }
+    //Método que elimina la tupla producto con el id dado.
     public function delete(){
         $this->producto->delete($_REQUEST['id']); 
         echo '<script>window.open("../Views/ProductList.php","_self",null);</script>';
