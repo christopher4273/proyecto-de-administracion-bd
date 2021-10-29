@@ -40,6 +40,16 @@ AS
         WHERE  (id_producto = @id_producto)
     END
 GO
+--DELETE
+CREATE PROC csp_ProductoDelete 
+    @id_producto int
+AS 
+	BEGIN 
+		DELETE
+		FROM   tbproducto
+		WHERE   id_producto = @id_producto
+	END
+GO
 --VISTA DE PRODUCTOS, MOSTRAR LOS PRODUCTOS
 create view v_mostrarProducto as
 	SELECT id_producto, descripcion, stock, precio, categoria
