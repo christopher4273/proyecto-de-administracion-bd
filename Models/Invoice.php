@@ -40,7 +40,7 @@ class Invoice
 			$myparams['impuesto'] = $data->impuesto;
 			$myparams['total'] = $data->total;
 			$myparams['cliente'] = $data->cliente;
-			$myparams['vendedor'] = $_SESSION['user_-id'];			
+			$myparams['vendedor'] = $data->vendedor;			
 		
 		   //Se crea un array con de parámetros
 			$procedure_params = array(
@@ -72,10 +72,13 @@ class Invoice
 	//usuario en caso de error se muestra por pantalla.
 
 	public function getId(){
-		$sql = "EXEC readsp_id_factura";		
-		$stmt = sqlsrv_query($this->con, $sql);
+		$query = "EXEC readsp_id_factura";		
+		$stm = sqlsrv_query($this->con, $query);
+		while($r = sqlsrv_fetch_array($stm)){
+			$id_factura=$r['id_factura'];
+		}
 		?>
-		<label name="factura" class="form-control bg-white" disabled style="width:150px;"> <?php echo $stmt; ?></label>	
+		<label name="factura" class="form-control bg-white" disabled style="width:150px;"> <?php echo $id_factura; ?></label>	
 		<?php	
 	}
 

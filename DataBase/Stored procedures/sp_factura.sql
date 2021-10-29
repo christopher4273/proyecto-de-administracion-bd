@@ -48,7 +48,7 @@ CREATE PROC readsp_id_factura
 AS 
 	BEGIN 
  
-		SELECT ident_current('tbfactura')
+		SELECT ident_current('tbfactura') as id_factura
 	END
 GO
 --UPDATE
