@@ -43,6 +43,14 @@ AS
 		WHERE  (id_factura = @id_factura) 
 	END
 GO
+
+CREATE PROC readsp_id_factura
+AS 
+	BEGIN 
+ 
+		SELECT ident_current('tbfactura')
+	END
+GO
 --UPDATE
 CREATE PROC updatesp_factura
     @id_factura INT,

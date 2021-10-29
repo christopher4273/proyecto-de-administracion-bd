@@ -11,6 +11,7 @@ class InvoiceController{
         $this->factura = new Invoice();
         //$this->detalle = new Detalle();
     }
+
     //Método que registrar.
     public function save(){
         try{
@@ -26,7 +27,7 @@ class InvoiceController{
                 $pvd->vendedor = $_POST['vendedor'];
                 //Registro.
                 $this->factura->add($pvd);
-                echo '<script>window.open("../Views/NewInvoice.php","_self",null,true);</script>';
+                //echo '<script>window.open("../Views/NewInvoice.php","_self",null,true);</script>';
         
             }
         }catch (Exception $e){

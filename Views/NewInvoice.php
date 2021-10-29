@@ -47,14 +47,18 @@ require_once '../Includes/Header.php';
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                <?php $_SESSION['message'] = null;
-                    $_SESSION['message_type'] = null;
-                } ?>
+                    <?php $_SESSION['message'] = null;
+                        $_SESSION['message_type'] = null;
+                    } ?>
                 </div>
             <div class="newSale">
 
                 <form method="POST" action="?c=InvoiceController&a=save" class="facturaForm">
                     <div class="saleTitle"> Agregar una nueva factura </div>
+                    <?php
+                        $r = new Invoice();
+                        echo $r->getId();
+                    ?>
                     <div class="mb-2">
                         <select class="form-select" aria-label="Default select example" name="cliente">
                             <option value="">Seleccione un cliente</option>
@@ -63,16 +67,6 @@ require_once '../Includes/Header.php';
                                 //$usuarios = $usuario->get();
                                 $cliente->get(2);
                             ?>                
-                        </select>
-                    </div>
-                    <div class="mb-2">
-                        <select class="form-select" aria-label="Default select example" name="vendedor">
-                            <option value="">Seleccione un vendedor</option>
-                            <?php
-                                $user = new User();
-                                //$usuarios = $usuario->get();
-                                $user->get(2);
-                            ?>
                         </select>
                     </div>
                     <div class="btnContainer">

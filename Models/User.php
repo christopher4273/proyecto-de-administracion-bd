@@ -97,7 +97,7 @@ class User
 						</tr>
 					<?php 
 				}  
-			}else if($option==2){
+			}/*else if($option==2){
 				while($r = sqlsrv_fetch_array($stm)){
 					$id_usuario = $r['id_usuario'];
 					$nombre_completo = $r['nombre_completo'];
@@ -105,7 +105,7 @@ class User
 						<option value="<?php echo $id_usuario; ?>"><?php echo $nombre_completo; ?></option>
 					<?php 
 				}
-			}
+			}*/
 	    }
 		catch(Exception $e)
 		{

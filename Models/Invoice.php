@@ -40,7 +40,7 @@ class Invoice
 			$myparams['impuesto'] = $data->impuesto;
 			$myparams['total'] = $data->total;
 			$myparams['cliente'] = $data->cliente;
-			$myparams['vendedor'] = $data->vendedor;			
+			$myparams['vendedor'] = $_SESSION['user_-id'];			
 		
 		   //Se crea un array con de parámetros
 			$procedure_params = array(
@@ -70,6 +70,14 @@ class Invoice
 	}
 	//Este método selecciona todas las tuplas de la tabla
 	//usuario en caso de error se muestra por pantalla.
+
+	public function getId(){
+		$sql = "EXEC readsp_id_factura";		
+		$stmt = sqlsrv_query($this->con, $sql);
+		?>
+		<label name="factura" class="form-control bg-white" disabled style="width:150px;"> <?php echo $stmt; ?></label>	
+		<?php	
+	}
 
 	public function get($option)
 	{
