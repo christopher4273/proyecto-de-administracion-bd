@@ -77,9 +77,13 @@ class Invoice
 		while($r = sqlsrv_fetch_array($stm)){
 			$id_factura=$r['id_factura'];
 		}
-		?>
-		<label name="factura" class="form-control bg-white" disabled style="width:150px;"> <?php echo $id_factura; ?></label>	
-		<?php	
+		if($id_factura!=null){
+			//return $id_factura;
+			/*?>
+				<label name="factura" class="form-control bg-white" disabled style="width:150px;"> <?php echo $id_factura; ?></label>	
+			<?php*/	
+		}
+		return $id_factura;
 	}
 
 	public function get($option)

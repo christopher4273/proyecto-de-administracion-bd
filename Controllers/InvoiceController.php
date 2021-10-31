@@ -27,7 +27,7 @@ class InvoiceController{
                 $pvd->vendedor = $_SESSION['user_-id'];
                 //Registro.
                 $this->factura->add($pvd);
-                echo '<script>window.open("../Views/NewInvoice.php","_self",null,true);</script>';
+               // echo '<script>window.open("../Views/NewInvoice.php","_self",null,true);</script>';
         
             }
         }catch (Exception $e){

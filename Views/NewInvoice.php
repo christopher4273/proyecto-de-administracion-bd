@@ -31,8 +31,27 @@ require_once '../Includes/Header.php';
     <link href="../css/general.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,400italic,600italic,700italic" rel="stylesheet" type="text/css">
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
+
+<script type="text/javascript">
+    function loadId(){
+        //var invoice = new Invoice();
+        document.getElementById('factura').innerHTML = 'JAIUSHAISIUSH ';
+    }
+    /*function getSuccessOutput() {
+    $.ajax({
+        url:'/echo/js/?js=hello%20world!',
+        complete: function (response) {
+            $('#factura').html(response.responseText);
+        },
+        error: function () {
+            $('#factura').html('Bummer: there was an error!');
+        },
+    });
+    return false;
+}*/
+</script>
 
 <body style="background-image: url(https://madariagamendoza.cl/wp-content/uploads/2019/01/fondo-gris.jpg); ">
     <div class="row justfy-content-center">
@@ -57,8 +76,9 @@ require_once '../Includes/Header.php';
                     <div class="saleTitle"> Agregar una nueva factura </div>
                     <?php
                         $r = new Invoice();
-                        echo $r->getId();
-                    ?>
+                    ?>    
+                    <div id="factura" class="form-control bg-white" disabled style="width:150px;"></div>
+                    <br>
                     <div class="mb-2">
                         <select class="form-select" aria-label="Default select example" name="cliente">
                             <option value="">Seleccione un cliente</option>
@@ -70,7 +90,7 @@ require_once '../Includes/Header.php';
                         </select>
                     </div>
                     <div class="btnContainer">
-                        <input type="submit" name="InvoiceController" class="btn btn-success" value="Guardar">
+                        <input type="submit" onclick="loadId()" name="InvoiceController" class="btn btn-success" value="Guardar">
                         <button type="button" class="btn btn-danger">
                             <a class="link" href="../index.php"><span class="sr-only"></span>Cancelar</a>
                         </button>
