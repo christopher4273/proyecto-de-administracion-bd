@@ -35,22 +35,23 @@ require_once '../Includes/Header.php';
 </head>
 
 <script type="text/javascript">
-    function loadId(){
-        //var invoice = new Invoice();
-        document.getElementById('factura').innerHTML = 'JAIUSHAISIUSH ';
-    }
-    /*function getSuccessOutput() {
-    $.ajax({
-        url:'/echo/js/?js=hello%20world!',
-        complete: function (response) {
-            $('#factura').html(response.responseText);
-        },
-        error: function () {
-            $('#factura').html('Bummer: there was an error!');
-        },
+    $(document).ready(function(){
+        $('#InvoiceController').click(function(){
+            var d = $('#facturaForm').serialize();
+            $.ajax({
+                type:"POST",
+                url:"../Controllers/InvoiceController.php",
+                data:{datos: d, action:'add'},
+                success:function(s){
+                    if(s==1){
+                        
+                    }else{
+
+                    }
+                }
+            });
+        });
     });
-    return false;
-}*/
 </script>
 
 <body style="background-image: url(https://madariagamendoza.cl/wp-content/uploads/2019/01/fondo-gris.jpg); ">
@@ -72,15 +73,16 @@ require_once '../Includes/Header.php';
                 </div>
             <div class="newSale">
 
-                <form method="POST" action="?c=InvoiceController&a=save" class="facturaForm">
+                <form method="POST" id="facturaForm" class="facturaForm">
                     <div class="saleTitle"> Agregar una nueva factura </div>
                     <?php
                         $r = new Invoice();
+                        $r->getId();
                     ?>    
-                    <div id="factura" class="form-control bg-white" disabled style="width:150px;"></div>
+                    <div id="idFactura" class="form-control bg-white" disabled style="width:150px;"></div>
                     <br>
                     <div class="mb-2">
-                        <select class="form-select" aria-label="Default select example" name="cliente">
+                        <select id="cliente" class="form-select" aria-label="Default select example" name="cliente">
                             <option value="">Seleccione un cliente</option>
                             <?php
                                 $cliente = new Client();
@@ -89,8 +91,11 @@ require_once '../Includes/Header.php';
                             ?>                
                         </select>
                     </div>
+                    <div class="mb-2">
+                        <input hidden="true" type="text" id="vendedor" name="vendedor" class="form-control bg-white" value="<?php echo $_SESSION['user_-id']; ?>"/> 
+                    </div>
                     <div class="btnContainer">
-                        <input type="submit" onclick="loadId()" name="InvoiceController" class="btn btn-success" value="Guardar">
+                        <button type="button" id="InvoiceController" name="InvoiceController" class="btn btn-success">Guardar</button>
                         <button type="button" class="btn btn-danger">
                             <a class="link" href="../index.php"><span class="sr-only"></span>Cancelar</a>
                         </button>
