@@ -11,6 +11,16 @@ require_once '../DataBase/Conection.php';
             $invoiceController->save();
         }
     }
+
+    if(isset($_GET['action']) && !empty($_GET['action'])) {
+        $invoiceController = new InvoiceController();
+        $act = $_GET['action'];
+        if($act=='getId'){
+            $inv=new Invoice();
+            $inv->getId();
+        }
+    }
+
 ?>
 
 <?php

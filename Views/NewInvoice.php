@@ -13,7 +13,6 @@
     require_once '../Models/Product.php';
     require_once '../DataBase/Conection.php';
     require_once '../Includes/Header.php';
-
 ?>
 <!DOCTYPE html>
 
@@ -41,12 +40,26 @@
                     data:{datos: d, action:'add'},
                     success:function(){
                         document.getElementById('InvoiceController').disabled=true;
-                        var id=document.getElementById('factura').value;
-                        document.getElementById('idFactura').value=id;
+                        //var id=document.getElementById('factura').value;
+                        //document.getElementById('idFactura').value=id;
                         document.getElementById('cliente').value="";
+                        showId();
                     }
                 });
             });
+
+            function showId(){
+                $.ajax({
+                    type: 'GET',
+                    url: '../Controllers/InvoiceController.php',
+                    data: {action:'getId'},
+                    dataType:'text',
+                    success: function(respuesta) {
+                        //Copiamos el resultado en #mostrar
+                        $('#idFactura').html(respuesta);
+                    }
+                });
+            }
         });
 
         function enable(){
@@ -57,6 +70,15 @@
                 document.getElementById('InvoiceController').disabled=true;
             }
         }
+
+         /*function showId(){
+            var text = $.ajax({
+                url:"../Controllers/InvoiceController.php",
+                dataType:'text',
+                async:false
+            }).responseText;
+            document.getElementById('idFactura').value=text;
+        }*/
     </script>
     <body style="background-image: url(https://madariagamendoza.cl/wp-content/uploads/2019/01/fondo-gris.jpg); ">
         <div class="row justfy-content-center">
@@ -78,10 +100,10 @@
                     <form method="POST" id="facturaForm" class="facturaForm">
                         <div class="saleTitle"> Agregar una nueva factura </div>
                         <?php
-                            $r = new Invoice();
-                            $r->getId(2);
+                            /*$r = new Invoice();
+                            $r->getId();*/
                         ?>    
-                        <input type="text" id="idFactura" class="form-control bg-white" style="width:150px;" readonly/>
+                        <div id="idFactura" class="form-control bg-white" style="width:150px;"></div>
                         <br>
                         <div class="mb-2">
                             <select id="cliente" onchange="enable()" class="form-select" aria-label="Default select example" name="cliente">
@@ -110,7 +132,6 @@
     </body>
 </html>
 <?php
-
     $controller = 'InvoiceController';
 
     // Todo esta lógica hara el papel de un FrontController

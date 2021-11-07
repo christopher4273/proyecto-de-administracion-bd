@@ -61,7 +61,6 @@ class Invoice
 			 // Se ejecuta y se evalua 
 			if(sqlsrv_execute($stmt)){
 				echo "EXITO AL AGREGAR.<br />";
-				getId(1);
 			}else{
 				echo "ERROR AL AGREGAR.<br />";
 			}
@@ -72,18 +71,20 @@ class Invoice
 	//Este método selecciona todas las tuplas de la tabla
 	//usuario en caso de error se muestra por pantalla.
 
-	public function getId($param){
+	public function getId(){
 		$query = "EXEC readsp_id_factura";		
 		$stm = sqlsrv_query($this->con, $query);
 		while($r = sqlsrv_fetch_array($stm)){
 			$id_factura=$r['id_factura'];
 		}
-		if($id_factura!=null && $param!=1){
+		if($id_factura!=null){
 			//return $id_factura;
-			?>
-				<input hidden readonly type="text" id="factura"  class="form-control bg-white" style="width:150px;" value="<?php echo $id_factura; ?>"/>	
-			<?php
+			/*?>
+				<input readonly type="text" id="factura"  class="form-control bg-white" style="width:150px;" value="<?php echo $id_factura; ?>"/>	
+			<?php*/
+			echo $id_factura;
 		}
+
 	}
 
 	public function get($option)
