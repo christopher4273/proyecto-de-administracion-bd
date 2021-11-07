@@ -87,7 +87,8 @@ AS
 GO
 --VISTA DE PRODUCTOS, MOSTRAR LOS PRODUCTOS
 create view v_mostrarProducto as
-	SELECT id_producto, descripcion, stock, precio, categoria
-		FROM   tbproducto 
+	SELECT id_producto, p.descripcion, stock, precio, (select c.nom_categoria FROM tbcategoria as c WHERE p.categoria = c.id_categoria) as Categoria
+		FROM   tbproducto as p inner join tbcategoria as c on p.categoria = c.id_categoria
+		WHERE p.id_producto = p.id_producto AND p.categoria = c.id_categoria
 go
 -------------------------------------------------------------------------------------------------
