@@ -42,6 +42,7 @@
                         document.getElementById('InvoiceController').disabled=true;
                         //var id=document.getElementById('factura').value;
                         //document.getElementById('idFactura').value=id;
+                        $('#client').html(document.getElementById('cliente').value);
                         document.getElementById('cliente').value="";
                         showId();
                     }
@@ -57,6 +58,19 @@
                     success: function(respuesta) {
                         //Copiamos el resultado en #mostrar
                         $('#idFactura').html(respuesta);
+                    }
+                });
+            }
+
+            function showClient(){
+                $.ajax({
+                    type: 'GET',
+                    url: '../Controllers/InvoiceController.php',
+                    data: {action:'getClient'},
+                    dataType:'text',
+                    success: function(respuesta) {
+                        //Copiamos el resultado en #mostrar
+                        $('#client').html(respuesta);
                     }
                 });
             }
@@ -88,16 +102,10 @@
                     } ?>
                 </div>
                 <div class="newSale">
+                    <div class="saleTitle"> Agregar una nueva factura </div>   
                     <form method="POST" id="facturaForm" class="facturaForm">
-                        <div class="saleTitle"> Agregar una nueva factura </div>
-                        <?php
-                            /*$r = new Invoice();
-                            $r->getId();*/
-                        ?> 
-                        <strong for="idFactura" class="form-label ">Factura</strong>   
-                        <div id="idFactura" class="form-control bg-white" style="width:150px;"></div>
-                        <br>
                         <div class="mb-2">
+                            <br>
                             <select id="cliente" onchange="enable()" class="form-select" aria-label="Default select example" name="cliente">
                                 <option value="">Seleccione un cliente</option>
                                 <?php
@@ -109,14 +117,21 @@
                         </div>
                         <div class="mb-2">
                             <input hidden="true" type="text" id="vendedor" name="vendedor" class="form-control bg-white" value="<?php echo $_SESSION['user_-id']; ?>"/> 
-                        </div>
-                        <div class="btnContainer">
+                        </div>                   
+                        <div>
                             <button type="button" disabled id="InvoiceController" name="InvoiceController" class="btn btn-success">Guardar</button>
-                            <button type="button" class="btn btn-danger">
-                                <a class="link" href="../index.php"><span class="sr-only"></span>Cancelar</a>
-                            </button>
                         </div>
                     </form>
+                    <div class="invoiceData">
+                        <div class="mb-2">
+                                <strong for="idFactura" class="form-label ">Factura</strong>
+                                <div id="idFactura" class="form-control bg-white" style="width:150px;"></div>
+                        </div>
+                        <div class="mb-2">
+                                <strong for="client" class="form-label ">Cliente</strong>
+                                <div id="client" class="form-control bg-white" style="width:250px;"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="col-2"></div>
