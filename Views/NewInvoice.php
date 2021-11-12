@@ -70,15 +70,6 @@
                 document.getElementById('InvoiceController').disabled=true;
             }
         }
-
-         /*function showId(){
-            var text = $.ajax({
-                url:"../Controllers/InvoiceController.php",
-                dataType:'text',
-                async:false
-            }).responseText;
-            document.getElementById('idFactura').value=text;
-        }*/
     </script>
     <body style="background-image: url(https://madariagamendoza.cl/wp-content/uploads/2019/01/fondo-gris.jpg); ">
         <div class="row justfy-content-center">
