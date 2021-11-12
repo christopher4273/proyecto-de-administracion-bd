@@ -102,7 +102,8 @@
                         <?php
                             /*$r = new Invoice();
                             $r->getId();*/
-                        ?>    
+                        ?> 
+                        <strong for="idFactura" class="form-label ">Factura</strong>   
                         <div id="idFactura" class="form-control bg-white" style="width:150px;"></div>
                         <br>
                         <div class="mb-2">
