@@ -119,7 +119,7 @@
                             <input hidden="true" type="text" id="vendedor" name="vendedor" class="form-control bg-white" value="<?php echo $_SESSION['user_-id']; ?>"/> 
                         </div>                   
                         <div>
-                            <button type="button" disabled id="InvoiceController" name="InvoiceController" class="btn btn-success">Guardar</button>
+                            <button type="button" disabled id="InvoiceController" name="InvoiceController" class="btn btn-success btn-save">Guardar</button>
                         </div>
                     </form>
                     <div class="invoiceData">
