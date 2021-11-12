@@ -48,7 +48,7 @@ CREATE PROC readsp_id_factura
 AS 
 	BEGIN 
  
-		SELECT ident_current('tbfactura') as id_factura
+		SELECT TOP 1 * FROM Table ORDER BY ID DESC
 	END
 GO
 --UPDATE

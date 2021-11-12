@@ -80,10 +80,11 @@ class Invoice
 		if($id_factura!=null){
 			//return $id_factura;
 			/*?>
-				<label name="factura" class="form-control bg-white" disabled style="width:150px;"> <?php echo $id_factura; ?></label>	
-			<?php*/	
+				<input readonly type="text" id="factura"  class="form-control bg-white" style="width:150px;" value="<?php echo $id_factura; ?>"/>	
+			<?php*/
+			echo $id_factura;
 		}
-		return $id_factura;
+
 	}
 
 	public function get($option)
