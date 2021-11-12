@@ -64,15 +64,15 @@
             }
 
             function showClient(){
-                var c = document.getElementById('cliente').value;
+                //var c=document.getElementById('cliente').value
                 $.ajax({
                     type: 'GET',
-                    url: '../Controllers/InvoiceController.php',
-                    data: {action:'search', client:c},
+                    url: '../Controllers/ClientController.php',
+                    data: {action:'search', client:'546785'},
                     dataType:'text',
                     success: function(respuesta) {
                         //Copiamos el resultado en #mostrar
-                        $('#client').html(respuesta);
+                        $('#client').html(document.getElementById('cliente').value);
                     }
                 });
             }

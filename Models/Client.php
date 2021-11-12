@@ -112,13 +112,14 @@ class Client
 	//Datos usuario x id
 	public function search($id)
 	{
-		$query = "EXEC readsp_cliente";		
-		$stm = sqlsrv_query($this->con, $query);
-		while($r = sqlsrv_fetch_array($stm)){
-			$cli=$r['id_cliente'];
-		}
-		if($cli!=null){
-			echo $cli;
+		$procedure_params = array($id);
+		$query = "EXEC readsp_cliente @id_cliente = ?";		
+		$stm = sqlsrv_query($this->con, $query, $procedure_params);
+		$row = sqlsrv_fetch_array($stm,SQLSRV_FETCH_ASSOC);
+		if($row!=null){
+			echo $row;
+		}else{
+			echo $id;
 		}
 	}
 

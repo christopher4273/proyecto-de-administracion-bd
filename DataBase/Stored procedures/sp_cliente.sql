@@ -32,7 +32,7 @@ CREATE PROC readsp_cliente
     @id_cliente int
 AS 
 BEGIN 
-    SELECT id_cliente, nombre_completo, correo, numero_telefonico
+    SELECT  nombre_completo
     FROM   tbcliente  
     WHERE  (id_cliente = @id_cliente) 
 END

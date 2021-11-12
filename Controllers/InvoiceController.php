@@ -1,7 +1,6 @@
 <?php
 //Se incluye el modelo donde conectará el controlador.
 require_once '../Models/Invoice.php';
-require_once '../Models/Client.php';
 //require_once '../Models/Detalle.php';
 require_once '../DataBase/Conection.php';    
 
@@ -18,14 +17,6 @@ require_once '../DataBase/Conection.php';
         if($act=='getId'){
             $inv=new Invoice();
             $inv->getId();
-        }
-    }
-
-    if(isset($_GET['action']) && !empty($_GET['action'])) {
-        $act = $_GET['action'];
-        if($act=='search'){
-            $clien=new Client();
-            $clien->search($_GET['client']);
         }
     }
 
