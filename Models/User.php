@@ -90,9 +90,9 @@ class User
 							<td><?php echo $telefono; ?></td>
 							<td>
 
-								<a type="button" class="btn btn-success editbtn fas fa-edit" data-toggle="modal" data-target="#editar"></a>
+								<a type="button" class="btn btn-success editbtn far fa-edit" data-toggle="modal" data-target="#editar"></a>
 								
-								<a type="button"  class="btn btn-danger fas fa-trash" onclick="javascript:return confirm('¿Seguro de eliminar este registro?');" href="?c=UserController&a=delete&id=<?php echo $r['id_usuario']; ?>"></i></a>
+								<a type="button" class="btn btn-danger deletebtn fas fa-trash" onclick="javascript:return confirm('¿Seguro de eliminar este registro?');" href="?c=UserController&a=delete&id=<?php echo $r['id_usuario']; ?>"></i></a>
 								
 							</td>
 						</tr>

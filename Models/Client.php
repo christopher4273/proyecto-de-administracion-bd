@@ -113,16 +113,13 @@ class Client
 	//Datos usuario x id
 	public function search($id)
 	{
-		try
-		{
-			//la clausula Where para especificar el id del usuario.
-			$stm = $this->con->prepare("SELECT * FROM cliente WHERE id_cliente = ?");
-			//Ejecución de la sentencia SQL utilizando el parámetro id.
-			$stm->execute(array($id));
-			return $stm->fetch(PDO::FETCH_OBJ);
-		} catch (Exception $e)
-		{
-			die($e->getMessage());
+		$query = "EXEC readsp_cliente";		
+		$stm = sqlsrv_query($this->con, $query);
+		while($r = sqlsrv_fetch_array($stm)){
+			$cli=$r['id_cliente'];
+		}
+		if($cli!=null){
+			echo $cli;
 		}
 	}
 

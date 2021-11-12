@@ -42,9 +42,10 @@
                         document.getElementById('InvoiceController').disabled=true;
                         //var id=document.getElementById('factura').value;
                         //document.getElementById('idFactura').value=id;
-                        $('#client').html(document.getElementById('cliente').value);
+                        //$('#client').html(document.getElementById('cliente').value);
                         document.getElementById('cliente').value="";
                         showId();
+                        showClient();
                     }
                 });
             });
@@ -63,10 +64,11 @@
             }
 
             function showClient(){
+                var c = document.getElementById('cliente').value;
                 $.ajax({
                     type: 'GET',
                     url: '../Controllers/InvoiceController.php',
-                    data: {action:'getClient'},
+                    data: {action:'search', client:c},
                     dataType:'text',
                     success: function(respuesta) {
                         //Copiamos el resultado en #mostrar
