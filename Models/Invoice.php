@@ -114,10 +114,9 @@ class Invoice
 							<td><?php echo $cliente; ?></td>
 							<td><?php echo $vendedor; ?></td>
 							<td>
-								<button type="button" class="btn btn-success editbtn" data-toggle="modal" data-target="#editar">Editar</button>
-								<button type="button" class="btn btn-danger mt-0">
-									<a class="link" onclick="javascript:return confirm('¿Seguro de eliminar este registro?');" href="?c=InvoiceController&a=delete&id=<?php echo $r['id_factura']; ?>">Eliminar</a>
-								</button>
+								<a type="button" class="btn btn-success editbtn far fa-edit" data-toggle="modal" data-target="#editar"></a>
+								<a type="button" class="btn btn-danger deletebtn fas fa-trash" onclick="javascript:return confirm('¿Seguro de eliminar este registro?');" href="?c=InvoiceController&a=delete&id=<?php echo $r['id_factura']; ?>"></a>
+								
 							</td>
 						</tr>
 					<?php 

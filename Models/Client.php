@@ -85,9 +85,8 @@ class Client
 							<td><?php echo $correo; ?></td>
 							<td><?php echo $numero_telefonico; ?></td>
 							<td>
-								<button type="button" class="btn btn-success editbtn" data-toggle="modal" data-target="#editar">Editar</button>
-								<button type="button" class="btn btn-danger mt-0">
-									<a class="link" onclick="javascript:return confirm('¿Seguro de eliminar este registro?');" href="?c=ClientController&a=delete&id=<?php echo $r['id_cliente']; ?>">Eliminar</a>
+								<a type="button" class="btn btn-success editbtn far fa-edit" data-toggle="modal" data-target="#editar"></a>
+								<a type="button" class="btn btn-danger deletebtn fas fa-trash" onclick="javascript:return confirm('¿Seguro de eliminar este registro?');" href="?c=ClientController&a=delete&id=<?php echo $r['id_cliente']; ?>"></a>
 								</button>
 							</td>
 						</tr>
