@@ -104,33 +104,6 @@ require_once '../Includes/Header.php'; ?>
                     </div>
                 </div>
             </div>
-             <!-- Editar Stock -->
-             <div class="modal fade" id="editarStock" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Editar Stock</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <form action="?c=ProductController&a=editStock" method="post">
-                                <label>Id</label>
-                                <input type="text" name="id_producto" id="id_producto" class="form-control" readonly>
-                                <div class="form-group">
-                                    <label for="">Stock</label>
-                                    <input type="text" name="stock" id="stock" class="form-control" required>
-                                </div>
-                                <div class="mb-2"> 
-                                    <button type="submit" name="save" class="btn btn-success save" href="ProductList.php">Guardar cambios</button>
-                                </div>
-                                </td>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
             <div class="mb-2">
                 <button type="button" class="btn btn-dark">

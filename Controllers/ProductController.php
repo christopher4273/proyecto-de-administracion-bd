@@ -45,13 +45,13 @@ class ProductController{
    
    
     }
-    public function editStock(){
-        $pvd = new Product();
-        $pvd->id_producto = $_REQUEST['id_producto'];
-        $pvd->stock = $_REQUEST['stock'];
+    //public function editStock(){
+   //     $pvd = new Product();
+  //      $pvd->id_producto = $_REQUEST['id_producto'];
+  //      $pvd->stock = $_REQUEST['stock'];
 
-        $this->producto->updateStock($pvd); echo '<script  type="text/javascript">window.open("../Views/ProductList.php","_self",null,true);</script>';
-    }
+   //     $this->producto->updateStock($pvd); echo '<script  type="text/javascript">window.open("../Views/ProductList.php","_self",null,true);</script>';
+  //  }
     //Método que elimina la tupla producto con el id dado.
     public function delete(){
         $this->producto->delete($_REQUEST['id']); 
