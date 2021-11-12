@@ -154,7 +154,14 @@ class User
 			$sql = "EXEC csp_UsuarioDelete @id_usuario = ?";
 			$stm = sqlsrv_prepare($this->con, $sql, $procedure_params);
 
-			sqlsrv_execute($stm);
+			if(sqlsrv_execute($stm))
+			{
+				$_SESSION['message'] = "Usuario $id eliminado correctamente";
+				$_SESSION['message_type'] = 'success';
+			}else{
+				$_SESSION['message'] = 'Error al eliminar usuario';
+				$_SESSION['message_type'] = 'dark';
+			}
 		} catch (Exception $e){
 
 		}
@@ -190,9 +197,15 @@ class User
 			print $data->id_usuario;
 			// Se ejecuta y se evalua 
 			if(!sqlsrv_execute($stmt)) {
-				die( print_r( sqlsrv_errors(), true));
-	        }
+				//die( print_r( sqlsrv_errors(), true));
 
+				$_SESSION['message'] = 'Error al modificar usuario';
+				$_SESSION['message_type'] = 'dark';
+			}
+			else{
+				$_SESSION['message'] = "Usuario $data->id_usuario actualizado correctamente";
+				$_SESSION['message_type'] = 'success';
+			}
 		} catch (Exception $e){
 
 		}
