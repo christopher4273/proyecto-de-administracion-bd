@@ -34,6 +34,7 @@ create table productoAuditoria(
   idLog int IDENTITY(1,1) PRIMARY KEY,
   actividad varchar(99) NOT NULL,
   precioAc varchar(99) NOT NULL,
+  stock varchar (99),
   fecha date NOT NULL
 )
 go
@@ -45,12 +46,14 @@ create trigger productoInsert
 			declare @accion varchar(90)
 			declare @precioaAc varchar(40)
 			declare @idproducto varchar(40)
+			declare @stock varchar (99)
+			select @stock = stock from inserted
 			select @idproducto = id_producto from inserted
 			select @precioaAc = precio from inserted
 			BEGIN
 				SET NOCOUNT ON; -- Evita salida de informacion sobre los registros afectados
 				select @accion = Concat('Se actualizo el producto: ', @idproducto)
 				insert into productoAuditoria
-				values ( @accion, @precioaAc,  SYSDATETIME())
+				values ( @accion, @precioaAc, @stock, SYSDATETIME())
 			END;
 go
