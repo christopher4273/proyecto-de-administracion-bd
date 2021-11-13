@@ -70,7 +70,7 @@ class Product
 	//Este método selecciona todas las tuplas de la tabla
 	//usuario en caso de error se muestra por pantalla.
 
-	public function get()
+	public function get($option)
 	{
 		try
 		{
@@ -78,31 +78,40 @@ class Product
 			FROM v_mostrarProducto";
 			//Sentencia SQL para selección de datos.
 			$stm = sqlsrv_query($this->con, $sql);
-
-			while($r = sqlsrv_fetch_array($stm)){
-				$id_producto = $r['id_producto'];
-				$descripcion = $r['descripcion'];
-				$stock = $r['stock'];
-				$precio = $r['precio'];
-                //$imagen = $r['imagen'];
-                $categoria = $r['categoria'];
-				?>
-					<tr class="bg-light">
-						<td><?php echo $id_producto; ?></td>
-						<td><?php echo $descripcion; ?></td>
-						<td><?php echo $stock; ?></td>
-						<td><?php echo $precio; ?></td>
-						
-						<td><?php echo $categoria; ?></td>
-						<td>
-							<a type="button" class="btn btn-success editbtn far fa-edit" data-toggle="modal" data-target="#editar"></a>
+			if($option==1){
+				while($r = sqlsrv_fetch_array($stm)){
+					$id_producto = $r['id_producto'];
+					$descripcion = $r['descripcion'];
+					$stock = $r['stock'];
+					$precio = $r['precio'];
+					//$imagen = $r['imagen'];
+					$categoria = $r['categoria'];
+					?>
+						<tr class="bg-light">
+							<td><?php echo $id_producto; ?></td>
+							<td><?php echo $descripcion; ?></td>
+							<td><?php echo $stock; ?></td>
+							<td><?php echo $precio; ?></td>
 							
-							<a type="button" class="btn btn-danger deletebtn fas fa-trash" onclick="javascript:return confirm('¿Seguro de eliminar este registro?');" href="?c=ProductController&a=delete&id=<?php echo $r['id_producto']; ?>"></i></a>
-		                	
-						</td>
-					</tr>
-				<?php 
-		    }  
+							<td><?php echo $categoria; ?></td>
+							<td>
+								<a type="button" class="btn btn-success editbtn far fa-edit" data-toggle="modal" data-target="#editar"></a>
+								
+								<a type="button" class="btn btn-danger deletebtn fas fa-trash" onclick="javascript:return confirm('¿Seguro de eliminar este registro?');" href="?c=ProductController&a=delete&id=<?php echo $r['id_producto']; ?>"></i></a>
+								
+							</td>
+						</tr>
+					<?php 
+				} 
+			}else if($option==2){
+				while($r = sqlsrv_fetch_array($stm)){
+					$id_producto = $r['id_producto'];
+					$descripcion = $r['descripcion'];
+					?>
+						<option value="<?php echo $id_producto; ?>"><?php echo $descripcion; ?></option>
+					<?php 
+				}
+			}	 
 	    }
 		catch(Exception $e)
 		{

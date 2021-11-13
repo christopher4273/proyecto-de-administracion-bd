@@ -88,9 +88,9 @@
             }
         }
 
-        function newDiv(){
+        /*function newDiv(){
             $('.newDetail').append('<h2>¡Felicidades! Has insertado un texto en el div</h2>');
-        }
+        }*/
     </script>
     <body style="background-image: url(https://madariagamendoza.cl/wp-content/uploads/2019/01/fondo-gris.jpg); ">
         <div class="row justfy-content-center">
@@ -109,7 +109,7 @@
                     } ?>
                 </div>
                 <div class="newSale">
-                    <div class="saleTitle"> Agregar una nueva factura </div>   
+                    <div class="saleTitle"> Facturación </div>   
                     <form method="POST" id="facturaForm" class="facturaForm">
                         <div class="mb-2">
                             <br>
@@ -117,7 +117,6 @@
                                 <option value="">Seleccione un cliente</option>
                                 <?php
                                     $cliente = new Client();
-                                    //$usuarios = $usuario->get();
                                     $cliente->get(2);
                                 ?>                
                             </select>
@@ -130,17 +129,30 @@
                         </div>
                     </form>
                     <div class="invoiceData">
-                        <div class="mb-2">
+                        <div class="mb-1">
                             <strong for="idFactura" class="form-label ">Factura</strong>
-                            <div id="idFactura" class="form-control bg-white" style="width:150px;"></div>
+                            <div id="idFactura" class="form-control bg-white invoice-data"></div>
                         </div>
-                        <div class="mb-2">
+                        <div class="mb-1">
                             <strong for="client" class="form-label ">Cliente</strong>
-                            <div id="client" class="form-control bg-white" style="width:250px;"></div>
+                            <div id="client" class="form-control bg-white invoice-data" ></div>
                         </div>
                     </div>
+                    <br>
                     <div class="newDetail">
-                        <a title="Agregar detalles a la factura" type="button" onclick="newDiv()" class="fas fa-plus-square addDetail" id="addDetail" name="addDetail"></a>
+                        <div class="mb-2">
+                            <select id="product" class="form-select" aria-label="Default select example" name="product">
+                                <option value="">Seleccione un producto</option>
+                                <?php
+                                    $product = new Product();
+                                    $product->get(2);
+                                ?>               
+                            </select>
+                        </div>
+                        <a title="Agregar detalles a la factura" type="button" class="fas fa-plus-square addDetail" id="addDetail" name="addDetail"></a>
+                    </div>
+                    <div class="detail">
+                        
                     </div>
                 </div>
             </div>

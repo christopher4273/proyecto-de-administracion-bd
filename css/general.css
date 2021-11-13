@@ -40,18 +40,39 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: large;
+    font-size: 25px;
     font-weight: 750;
+}
+
+.detail{
+    width:100%;
+    background-color: whitesmoke;
+    border: black 2px solid;
+    min-height: 100px;
+    max-height: auto;
 }
 
 .newDetail{
     display: flex;
-    justify-content: flex-end;
+    /*justify-content: flex-end;*/
+}
+
+.invoiceData{
+    width: 80%;
+}
+
+.mb-1{
+    width:100%;
+}
+
+.invoice-data{
+    width: 95%;
 }
 
 .addDetail{
     color: #000 !important;
     font-size: 40px;
+    margin-left: auto;
 }
 
 .addDetail:hover{
