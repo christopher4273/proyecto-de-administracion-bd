@@ -44,6 +44,20 @@ body{
     font-weight: 750;
 }
 
+.newDetail{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.addDetail{
+    color: #000 !important;
+    font-size: 40px;
+}
+
+.addDetail:hover{
+    color:whitesmoke !important;
+}
+
 .btnContainer{
     margin-top: 15px;
 }

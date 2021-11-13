@@ -87,7 +87,6 @@ class Client
 							<td>
 								<a type="button" class="btn btn-success editbtn far fa-edit" data-toggle="modal" data-target="#editar"></a>
 								<a type="button" class="btn btn-danger deletebtn fas fa-trash" onclick="javascript:return confirm('¿Seguro de eliminar este registro?');" href="?c=ClientController&a=delete&id=<?php echo $r['id_cliente']; ?>"></a>
-								</button>
 							</td>
 						</tr>
 					<?php 
@@ -97,7 +96,7 @@ class Client
 					$id_cliente = $r['id_cliente'];
 					$nombre_completo = $r['nombre_completo'];
 					?>
-						<option value="<?php echo $id_cliente; ?>"><?php echo $nombre_completo; ?></option>
+						<option id="clientSelected" value="<?php echo $id_cliente; ?>"><?php echo $nombre_completo; ?></option>
 					<?php 
 				}
 			}

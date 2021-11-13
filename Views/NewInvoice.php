@@ -29,6 +29,7 @@
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
         <link href="https://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,400italic,600italic,700italic" rel="stylesheet" type="text/css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     </head>
     <script type="text/javascript">
         $(document).ready(function(){
@@ -64,11 +65,11 @@
             }
 
             function showClient(){
-                //var c=document.getElementById('cliente').value
+                var c=document.getElementById('clientSelected').value
                 $.ajax({
                     type: 'GET',
                     url: '../Controllers/ClientController.php',
-                    data: {action:'search', client:'546785'},
+                    data: {action:'search', client:c},
                     dataType:'text',
                     success: function(respuesta) {
                         //Copiamos el resultado en #mostrar
@@ -85,6 +86,10 @@
             else{
                 document.getElementById('InvoiceController').disabled=true;
             }
+        }
+
+        function newDiv(){
+            $('.newDetail').append('<h2>¡Felicidades! Has insertado un texto en el div</h2>');
         }
     </script>
     <body style="background-image: url(https://madariagamendoza.cl/wp-content/uploads/2019/01/fondo-gris.jpg); ">
@@ -126,13 +131,16 @@
                     </form>
                     <div class="invoiceData">
                         <div class="mb-2">
-                                <strong for="idFactura" class="form-label ">Factura</strong>
-                                <div id="idFactura" class="form-control bg-white" style="width:150px;"></div>
+                            <strong for="idFactura" class="form-label ">Factura</strong>
+                            <div id="idFactura" class="form-control bg-white" style="width:150px;"></div>
                         </div>
                         <div class="mb-2">
-                                <strong for="client" class="form-label ">Cliente</strong>
-                                <div id="client" class="form-control bg-white" style="width:250px;"></div>
+                            <strong for="client" class="form-label ">Cliente</strong>
+                            <div id="client" class="form-control bg-white" style="width:250px;"></div>
                         </div>
+                    </div>
+                    <div class="newDetail">
+                        <a title="Agregar detalles a la factura" type="button" onclick="newDiv()" class="fas fa-plus-square addDetail" id="addDetail" name="addDetail"></a>
                     </div>
                 </div>
             </div>
