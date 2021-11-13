@@ -115,11 +115,11 @@ class Client
 		$procedure_params = array($id);
 		$query = "EXEC readsp_cliente @id_cliente = ?";		
 		$stm = sqlsrv_query($this->con, $query, $procedure_params);
-		$row = sqlsrv_fetch_array($stm,SQLSRV_FETCH_ASSOC);
-		if($row!=null){
-			echo $row;
-		}else{
-			echo $id;
+		while($r = sqlsrv_fetch_array($stm)){
+			$cliente=$r['nombre_completo'];
+		}
+		if($cliente!=null){
+			echo $cliente;
 		}
 	}
 

@@ -45,7 +45,6 @@
                         //$('#client').html(document.getElementById('cliente').value);
                         document.getElementById('cliente').value="";
                         showId();
-                        showClient();
                     }
                 });
             });
@@ -59,6 +58,7 @@
                     success: function(respuesta) {
                         //Copiamos el resultado en #mostrar
                         $('#idFactura').html(respuesta);
+                        showClient();
                     }
                 });
             }
@@ -72,7 +72,7 @@
                     dataType:'text',
                     success: function(respuesta) {
                         //Copiamos el resultado en #mostrar
-                        $('#client').html(document.getElementById('cliente').value);
+                        $('#client').html(respuesta);
                     }
                 });
             }
