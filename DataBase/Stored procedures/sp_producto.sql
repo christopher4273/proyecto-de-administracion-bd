@@ -70,6 +70,16 @@ AS
 		WHERE   id_producto = @id_producto
 	END
 GO
+
+CREATE PROC readsp_producto
+    @id_producto int
+AS 
+BEGIN 
+    SELECT precio
+    FROM   tbproducto  
+    WHERE  (id_producto = @id_producto) 
+END
+GO
 --VISTA DE PRODUCTOS, MOSTRAR LOS PRODUCTOS
 create view v_mostrarProducto as
 	SELECT id_producto, p.descripcion, stock, precio, (select c.nom_categoria FROM tbcategoria as c WHERE p.categoria = c.id_categoria) as Categoria

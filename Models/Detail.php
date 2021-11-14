@@ -107,7 +107,7 @@ class Detail
 	}
 
 	//Este método elimina la tupla producto dado un id.
-	public function delete($id_detalle)
+	/*public function delete($id_detalle)
 	{
 		try
 		{
@@ -121,7 +121,7 @@ class Detail
 			$_SESSION['message'] = 'error';
 			$_SESSION['message_type'] = 'dark';
 		}
-	}
+	}*/
 	//Método que actualiza una tupla a partir de la clausula
 	//Where y el id del producto.
 	/*public function update($data)

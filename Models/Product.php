@@ -122,22 +122,26 @@ class Product
 
 	
 
-/*
+
 	//Datos usuario x id
 	public function search($id)
 	{
 		try
 		{
-			//la clausula Where para especificar el id del usuario.
-			$stm = $this->con->prepare("SELECT * FROM usuario WHERE id = ?");
-			//Ejecución de la sentencia SQL utilizando el parámetro id.
-			$stm->execute(array($id));
-			return $stm->fetch(PDO::FETCH_OBJ);
+			$procedure_params = array($id);
+			$query = "EXEC readsp_cliente @id_cliente = ?";		
+			$stm = sqlsrv_query($this->con, $query, $procedure_params);
+			while($r = sqlsrv_fetch_array($stm)){
+				$cliente=$r['nombre_completo'];
+			}
+			if($cliente!=null){
+				echo $cliente;
+			}
 		} catch (Exception $e)
 		{
 			die($e->getMessage());
 		}
-	}*/
+	}
 
 	//Este método elimina la tupla usuario dado un id.
 	public function delete($id)

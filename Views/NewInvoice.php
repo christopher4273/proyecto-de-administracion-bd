@@ -98,22 +98,27 @@
             var prod = document.getElementById('idProduct').value;
             var cant = document.getElementById('cantidad').value;
 
-            if(document.getElementById('idProduct').value !="" && document.getElementById('cantidad').value !=0){
-
+            if(document.getElementById('idProduct').value !="" && document.getElementById('cantidad').value > 0){
                 document.getElementById('product').value = "";
                 document.getElementById('cantidad').value = "";
                 count = count + 1;
                 output = '<tr id="row_'+count+'">';
-                output += '<td>'+prod+' <input type="hidden" name="hidden_first_name[]" id="first_name'+count+'" class="first_name" value="'+prod+'" /></td>';
-                output += '<td>'+cant+' <input type="hidden" name="hidden_last_name[]" id="last_name'+count+'" value="'+cant+'" /></td>';
-                output += '<td><button type="button" name="view_details" class="btn btn-warning btn-xs view_details" id="'+count+'">View</button></td>';
-                output += '<td><button type="button" name="remove_details" class="btn btn-danger btn-xs remove_details" id="'+count+'">Remove</button></td>';
+                output += '<td>'+prod+' <input type="hidden" name="prod[]" id="prod'+count+'" value="'+prod+'" /></td>';
+                output += '<td>'+cant+' <input type="hidden" name="cant[]" id="cant'+count+'" value="'+cant+'" /></td>';
+                
+                output += '<td><button type="button" name="remove_details" class="btn btn-danger btn-xs remove_details" id="'+count+'">Eliminar</button></td>';
                 output += '</tr>';
                 $('#user_data').append(output);
             }    
            /* $('.detailsContainer').append('<input disabled class="form-control bg-white detailInfo" value="¡Felicidades! Has insertado un texto en el div!"/>',
             '<input disabled class="form-control bg-white" value="¡Felicidades! Has insertado un texto en el div!"/>');*/
         }
+
+        $(document).on('click', '.remove_details', function(){
+            var row_id = $(this).attr("id");
+            $('#row_'+row_id+'').remove();
+        });
+
     </script>
     <body style="background-image: url(https://madariagamendoza.cl/wp-content/uploads/2019/01/fondo-gris.jpg); ">
         <div class="row justfy-content-center">
@@ -176,7 +181,7 @@
                             <input type="number" id="cantidad" name="cantidad" class="form-control" placeholder="Ingrese la cantidad de productos" required />
                         </div>
                         <div class="mb-2" >
-                            <a onclick="newDiv()" disabled title="Agregar a la factura" type="button" class="fas fa-plus-square addDetail" id="addDetail" name="addDetail"></a>
+                            <a onclick="newDiv()" title="Agregar a la factura" type="button" class="fas fa-plus-square addDetail" id="addDetail" name="addDetail"></a>
                         </div>
                     </div>
                     <form method="POST" class="detailForm">
@@ -187,6 +192,7 @@
                                     <th>Cantidad</th>
                                     <th>Descuento</th>
                                     <th>Subtotal</th>
+                                    <th>Acción</th>
                                 </tr>
                             </table>
                         </div>
