@@ -108,7 +108,7 @@ class Product
 					$id_producto = $r['id_producto'];
 					$descripcion = $r['descripcion'];
 					?>
-						<option value="<?php echo $id_producto; ?>"><?php echo $descripcion; ?></option>
+						<option id="idProduct" value="<?php echo $id_producto; ?>"><?php echo $descripcion; ?></option>
 					<?php 
 				}
 			}	 

@@ -44,9 +44,15 @@ body{
     font-weight: 750;
 }
 
+.container-saveDetail{
+    display: flex;
+    justify-content: flex-end;
+    margin: 5px;
+}
+
 .detail{
     width:100%;
-    background-color: whitesmoke;
+    background-color:whitesmoke;
     border: black 2px solid;
     min-height: 100px;
     max-height: auto;
@@ -76,7 +82,7 @@ body{
 }
 
 .addDetail:hover{
-    color:whitesmoke !important;
+    color:rgba(20, 110, 68) !important;
 }
 
 .btnContainer{
