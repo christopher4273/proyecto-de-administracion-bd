@@ -129,13 +129,13 @@ class Product
 		try
 		{
 			$procedure_params = array($id);
-			$query = "EXEC readsp_cliente @id_cliente = ?";		
+			$query = "EXEC readsp_producto @id_producto = ?";		
 			$stm = sqlsrv_query($this->con, $query, $procedure_params);
 			while($r = sqlsrv_fetch_array($stm)){
-				$cliente=$r['nombre_completo'];
+				$precio=$r['precio'];
 			}
-			if($cliente!=null){
-				echo $cliente;
+			if($precio!=null){
+				echo $precio;
 			}
 		} catch (Exception $e)
 		{

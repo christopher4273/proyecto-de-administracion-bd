@@ -97,22 +97,51 @@
         function newDiv(){
             var prod = document.getElementById('idProduct').value;
             var cant = document.getElementById('cantidad').value;
+            var desc = document.getElementById('descuento').value;
+            var precio = 0;
 
             if(document.getElementById('idProduct').value !="" && document.getElementById('cantidad').value > 0){
-                document.getElementById('product').value = "";
-                document.getElementById('cantidad').value = "";
-                count = count + 1;
-                output = '<tr id="row_'+count+'">';
-                output += '<td>'+prod+' <input type="hidden" name="prod[]" id="prod'+count+'" value="'+prod+'" /></td>';
-                output += '<td>'+cant+' <input type="hidden" name="cant[]" id="cant'+count+'" value="'+cant+'" /></td>';
-                
-                output += '<td><button type="button" name="remove_details" class="btn btn-danger btn-xs remove_details" id="'+count+'">Eliminar</button></td>';
-                output += '</tr>';
-                $('#user_data').append(output);
+                $.ajax({
+                    type: 'GET',
+                    url: '../Controllers/DetailController.php',
+                    data: {action:'search', product: prod},
+                    dataType:'text',
+                    success: function(respuesta) {
+                        //Copiamos el resultado en #mostrar
+                        precio=respuesta;
+                        sendData(prod, cant, precio);
+                    }
+                });
+
             }    
            /* $('.detailsContainer').append('<input disabled class="form-control bg-white detailInfo" value="¡Felicidades! Has insertado un texto en el div!"/>',
             '<input disabled class="form-control bg-white" value="¡Felicidades! Has insertado un texto en el div!"/>');*/
         }
+
+        function sendData(prod, cant, precio, desc){
+            var desc=0;
+            $.ajax({
+                type: 'GET',
+                url: '../Controllers/ProductController.php',
+                data: {action:'sendData', cantidad: cant, precio: precio},
+                dataType:'text',
+                success: function(respuesta) {
+                    //Copiamos el resultado en #mostrar
+                    
+                    count = count + 1;
+                    output = '<tr id="row_'+count+'">';
+                    output += '<td>'+prod+' <input type="hidden" name="prod[]" id="prod'+count+'" value="'+prod+'" /></td>';
+                    output += '<td>'+cant+' <input type="hidden" name="cant[]" id="cant'+count+'" value="'+cant+'" /></td>';
+                    output += '<td>'+precio+' <input type="hidden" name="precio[]" id="precio'+count+'" value="'+precio+'" /></td>';
+                    output += '<td>'+precio+' <input type="hidden" name="precio[]" id="precio'+count+'" value="'+precio+'" /></td>';
+                    output += '<td><button type="button" name="remove_details" class="btn btn-danger btn-xs remove_details" id="'+count+'">Eliminar</button></td>';
+                    output += '</tr>';
+                    $('#user_data').append(output);
+                    document.getElementById('product').value = "";
+                    document.getElementById('cantidad').value = "";                    
+                }
+            }); 
+        }       
 
         $(document).on('click', '.remove_details', function(){
             var row_id = $(this).attr("id");
@@ -180,6 +209,9 @@
                         <div class="mb-2" style="width: 30%">
                             <input type="number" id="cantidad" name="cantidad" class="form-control" placeholder="Ingrese la cantidad de productos" required />
                         </div>
+                        <div class="mb-2" style="width: 30%">
+                            <input type="text" id="descuento" name="descuento" class="form-control" placeholder="Ingrese el % de descuento a aplicar" required/>
+                        </div>
                         <div class="mb-2" >
                             <a onclick="newDiv()" title="Agregar a la factura" type="button" class="fas fa-plus-square addDetail" id="addDetail" name="addDetail"></a>
                         </div>
@@ -190,6 +222,7 @@
                                 <tr>
                                     <th>Producto</th>
                                     <th>Cantidad</th>
+                                    <th>Precio unitario</th>
                                     <th>Descuento</th>
                                     <th>Subtotal</th>
                                     <th>Acción</th>

@@ -1,8 +1,8 @@
 <?php
 //Se incluye el modelo donde conectará el controlador.
 require_once '../Models/Product.php';
-//require_once '../DataBase/Conection.php';    
- //
+//require_once '../DataBase/Conection.php'; 
+
 class ProductController{
 
     private $producto;
