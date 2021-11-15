@@ -60,22 +60,4 @@ class InvoiceController{
             $e->getMessage();
         }
     }
-
-    /*public function calculate($id){
-        $pvd = new Factura();
-        $f=new Factura();
-        $array = $this->detalle->details($id);
-        $f = $this->factura->search($id);
-        $sub=0;
-        $det=0;
-        foreach($array as $detail){
-            $det = $detail->subtotal;
-            $sub = $sub+$det;
-        }
-        $f->subtotal = $sub;
-        $f->impuesto = $sub*0.13;
-        $f->total = $f->subtotal+$f->impuesto;
-        $pvd=$f;
-        $this->factura->update($pvd);
-    }*/
 }

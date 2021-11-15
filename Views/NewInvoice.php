@@ -32,22 +32,26 @@
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     </head>
     <script type="text/javascript">
+        var added = 0;
         $(document).ready(function(){
             $('#InvoiceController').click(function(){
-                var d = $('#facturaForm').serialize();
-                $.ajax({
-                    type:"POST",
-                    url:"../Controllers/InvoiceController.php",
-                    data:{datos: d, action:'add'},
-                    success:function(){
-                        document.getElementById('InvoiceController').disabled=true;
-                        //var id=document.getElementById('factura').value;
-                        //document.getElementById('idFactura').value=id;
-                        //$('#client').html(document.getElementById('cliente').value);
-                        document.getElementById('cliente').value="";
-                        showId();
-                    }
-                });
+                if(added == 0){
+                    var d = $('#facturaForm').serialize();
+                    $.ajax({
+                        type:"POST",
+                        url:"../Controllers/InvoiceController.php",
+                        data:{datos: d, action:'add'},
+                        success:function(){
+                            document.getElementById('InvoiceController').disabled=true;
+                            document.getElementById('cliente').value="";
+                            showId();
+                            added=1;
+                        }
+                    });
+                }
+                else{
+                    document.getElementById('InvoiceController').disabled=true;
+                }
             });
 
             function showId(){
@@ -65,7 +69,7 @@
             }
 
             function showClient(){
-                var c=document.getElementById('clientSelected').value
+                var c=document.getElementById('provisional').value;
                 $.ajax({
                     type: 'GET',
                     url: '../Controllers/ClientController.php',
@@ -77,72 +81,102 @@
                     }
                 });
             }
+
+            $('#addDetail').click(function(){
+                var prod = document.getElementById('idProduct').value;
+                var cant = document.getElementById('cantidad').value;
+                var desc = document.getElementById('descuento').value;
+                var precio = 0;
+
+                if($('#idFactura').html() !="" && document.getElementById('cantidad').value > 0 && added == 1){
+                    $.ajax({
+                        type: 'GET',
+                        url: '../Controllers/DetailController.php',
+                        data: {action:'search', product: prod},
+                        dataType:'text',
+                        success: function(respuesta) {
+                            //Copiamos el resultado en #mostrar
+                            precio=respuesta;
+                            sendData(prod, cant, precio, desc);
+                        }
+                    });
+
+                }    
+            });
+
+            /*function newDiv(){
+
+            }*/
+            var count = 0;
+            function sendData(prod, cant, precio, desc){
+                $.ajax({
+                    type: 'GET',
+                    url: '../Controllers/DetailController.php',
+                    data: {action:'sendData', producto: prod, cantidad: cant, precio: precio, descuento: desc},
+                    dataType:'text',
+                    success: function(respuesta) {
+                        //Copiamos el resultado en #mostrar
+                        var data = $.parseJSON(respuesta);
+                        var desc = data.descuento;
+                        var subtotal = data.subtotal;
+                        var fact = $('#idFactura').html();
+
+                        count = count + 1;
+                        output = '<tr id="row_'+count+'">';
+                        output += '<td>'+fact+' <input type="hidden" name="fact[]" id="fact'+count+'" value="'+fact+'" /></td>';
+                        output += '<td>'+prod+' <input type="hidden" name="prod[]" id="prod'+count+'" value="'+prod+'" /></td>';
+                        output += '<td>'+cant+' <input type="hidden" name="cant[]" id="cant'+count+'" value="'+cant+'" /></td>';
+                        output += '<td>'+precio+' <input type="hidden" name="precio[]" id="precio'+count+'" value="'+precio+'" /></td>';
+                        output += '<td>'+desc+' <input type="hidden" name="desc[]" id="desc'+count+'" value="'+desc+'" /></td>';
+                        output += '<td>'+subtotal+' <input type="hidden" name="subtotal[]" id="subtotal'+count+'" value="'+subtotal+'" /></td>';
+                        output += '<td><button type="button" name="remove_details" class="btn btn-danger btn-xs remove_details" id="'+count+'">Eliminar</button></td>';
+                        output += '</tr>';
+                        $('#user_data').append(output);
+                        document.getElementById('product').value = "";
+                        document.getElementById('cantidad').value = "";  
+                        document.getElementById('descuento').value = "";                  
+                    }
+                }); 
+            }
+
+            /*$('#detailForm').on('submit', function(event){
+                event.preventDefault();
+                var count_data = 0;
+                $('#prod').each(function(){
+                    count_data = count_data + 1;
+                });
+                if(count_data > 0){
+                    var form_data = $(this).serialize();
+                    $.ajax({
+                        url:'../Controllers/DetailController.php',
+                        method:"POST",
+                        data:form_data,
+                        success:function(data){
+                            
+                        }
+                    })
+                }/*else{
+                    $('#action_alert').html('<p>Please Add atleast one data</p>');
+                    $('#action_alert').dialog('open');
+                }*/
+            //});
         });
 
+        function cleanInvoice(){
+            $('#client').html("");
+            $('#idFactura').html("");
+            added = 0;
+        }
+
         function enable(){
-            if(document.getElementById('cliente').value!=""){
+            if(document.getElementById('cliente').value!="" && added == 0){
                 document.getElementById('InvoiceController').disabled=false;
+                document.getElementById('provisional').value = document.getElementById('cliente').value;
             }
             else{
                 document.getElementById('InvoiceController').disabled=true;
             }
         }
-        var count = 0;
-        /*$('#addDetail').click(function(){
-            count=count+1;
-            output += '<input type="">'
-        });*/
-        
-
-        function newDiv(){
-            var prod = document.getElementById('idProduct').value;
-            var cant = document.getElementById('cantidad').value;
-            var desc = document.getElementById('descuento').value;
-            var precio = 0;
-
-            if(document.getElementById('idProduct').value !="" && document.getElementById('cantidad').value > 0){
-                $.ajax({
-                    type: 'GET',
-                    url: '../Controllers/DetailController.php',
-                    data: {action:'search', product: prod},
-                    dataType:'text',
-                    success: function(respuesta) {
-                        //Copiamos el resultado en #mostrar
-                        precio=respuesta;
-                        sendData(prod, cant, precio);
-                    }
-                });
-
-            }    
-           /* $('.detailsContainer').append('<input disabled class="form-control bg-white detailInfo" value="¡Felicidades! Has insertado un texto en el div!"/>',
-            '<input disabled class="form-control bg-white" value="¡Felicidades! Has insertado un texto en el div!"/>');*/
-        }
-
-        function sendData(prod, cant, precio, desc){
-            var desc=0;
-            $.ajax({
-                type: 'GET',
-                url: '../Controllers/ProductController.php',
-                data: {action:'sendData', cantidad: cant, precio: precio},
-                dataType:'text',
-                success: function(respuesta) {
-                    //Copiamos el resultado en #mostrar
-                    
-                    count = count + 1;
-                    output = '<tr id="row_'+count+'">';
-                    output += '<td>'+prod+' <input type="hidden" name="prod[]" id="prod'+count+'" value="'+prod+'" /></td>';
-                    output += '<td>'+cant+' <input type="hidden" name="cant[]" id="cant'+count+'" value="'+cant+'" /></td>';
-                    output += '<td>'+precio+' <input type="hidden" name="precio[]" id="precio'+count+'" value="'+precio+'" /></td>';
-                    output += '<td>'+precio+' <input type="hidden" name="precio[]" id="precio'+count+'" value="'+precio+'" /></td>';
-                    output += '<td><button type="button" name="remove_details" class="btn btn-danger btn-xs remove_details" id="'+count+'">Eliminar</button></td>';
-                    output += '</tr>';
-                    $('#user_data').append(output);
-                    document.getElementById('product').value = "";
-                    document.getElementById('cantidad').value = "";                    
-                }
-            }); 
-        }       
-
         $(document).on('click', '.remove_details', function(){
             var row_id = $(this).attr("id");
             $('#row_'+row_id+'').remove();
@@ -190,9 +224,15 @@
                             <strong for="idFactura" class="form-label ">Factura</strong>
                             <div id="idFactura" class="form-control bg-white invoice-data"></div>
                         </div>
+                        <input hidden="true" id="provisional" class="form-control"/>
                         <div class="mb-1">
                             <strong for="client" class="form-label ">Cliente</strong>
                             <div id="client" class="form-control bg-white invoice-data" ></div>
+                        </div>
+                        <div class="mb-2">
+                            <button onclick="cleanInvoice()" type="button" id="cleanInvoice" class="btn btn-danger" style="margin-top:24px;">
+                                Limpiar
+                            </button>
                         </div>
                     </div>
                     <br>
@@ -213,13 +253,14 @@
                             <input type="text" id="descuento" name="descuento" class="form-control" placeholder="Ingrese el % de descuento a aplicar" required/>
                         </div>
                         <div class="mb-2" >
-                            <a onclick="newDiv()" title="Agregar a la factura" type="button" class="fas fa-plus-square addDetail" id="addDetail" name="addDetail"></a>
+                            <a title="Agregar a la factura" type="button" class="fas fa-plus-square addDetail" id="addDetail" name="addDetail"></a>
                         </div>
                     </div>
-                    <form method="POST" class="detailForm">
+                    <form method="POST" class="detailForm" id="detailForm" action="?c=DetailController&a=save">
                         <div class="detail">
                             <table class="table table-striped table-bordered" id="user_data">  
                                 <tr>
+                                    <th>Factura</th>
                                     <th>Producto</th>
                                     <th>Cantidad</th>
                                     <th>Precio unitario</th>
@@ -230,9 +271,9 @@
                             </table>
                         </div>
                         <div class="container-saveDetail">
-                            <button title="Guardar detalles" type="submit" name="DetailController" class="btn btn-success" style="margin-right: 5px"> Guardar</button>
+                            <button title="Guardar detalles" type="submit" id="DetailController" name="DetailController" class="btn btn-success" style="margin-right: 5px"> Guardar</button>
                             <button type="button" class="btn btn-danger">
-                                    <a class="link" href="../index.php"><span class="sr-only"></span>Cancelar</a>
+                                    <a class="link" >Cancelar</a>
                             </button>
                         </div>
                     </form>    

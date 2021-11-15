@@ -30,31 +30,46 @@ class Detail
 	}
 
     	
-	public function add(Detail $data)
+	public function add($data, $sql)
 	{
 		try
 		{
-			//Sentencia SQL.
-			$sql = "INSERT INTO detallefactura (subtotal,descuento,producto,cantidad,factura)
-		        VALUES ( ?, ?, ?, ?, ?)";
-
-			$this->con->prepare($sql)
-		     ->execute(
-				array(
-                    $data->subtotal,
-                    $data->descuento,
-                    $data->producto,
-					$data->cantidad,
-                    $data->factura
-                )
-			);
-			$_SESSION['message'] = 'Detalle creado correctamente';
-			$_SESSION['message_type'] = 'success';
+			/*$myparams['factura'] = $data->factura;
+			$myparams['descuento'] = $data->descuento;
+			$myparams['subtotal'] = $data->subtotal;
+			$myparams['producto'] = $data->producto;
+            $myparams['cantidad'] = $data->cantidad;
+		
+		   //Se crea un array con de parámetros
+			$procedure_params = array(
+			    array(&$myparams['producto'], SQLSRV_PARAM_IN),
+			    array(&$myparams['descuento'], SQLSRV_PARAM_IN),
+			    array(&$myparams['subtotal'], SQLSRV_PARAM_IN),
+			    array(&$myparams['factura'], SQLSRV_PARAM_IN),
+			    //array(&$myparams['imagen'], SQLSRV_PARAM_IN),
+                array(&$myparams['cantidad'], SQLSRV_PARAM_IN)
+			);*/
+				
+				//Se se pasan los parámetros 
+				$stmt = sqlsrv_prepare($this->con, $sql, $data);
+	
+			 // Se ejecuta y se evalua 
+			if(sqlsrv_execute($stmt)){
+				echo "EXITO AL AGREGAR.<br />";
+				$_SESSION['message'] = 'Detalle creado correctamente';
+				$_SESSION['message_type'] = 'success';
+			}
+			else{
+				echo "ERROR AL AGREGAR.<br />";
+				$_SESSION['message'] = 'Error al crear detalle';
+				$_SESSION['message_type'] = 'dark';
+			}
 		} catch (Exception $e)
 		{
 			$_SESSION['message'] = 'Error al crear detalle';
 			$_SESSION['message_type'] = 'dark';
 		}
+
 	}
 	public function get()
 	{
