@@ -31,7 +31,7 @@ if (!isset($_SESSION['user_-id'])) {
 <body style="background-image: url(https://madariagamendoza.cl/wp-content/uploads/2019/01/fondo-gris.jpg); ">
     <div>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <a class="navbar-brand" href="#">TECHNOMAR</a>
+            <a class="navbar-brand" href="#">TECHNOMARKET</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -39,11 +39,7 @@ if (!isset($_SESSION['user_-id'])) {
             <div class="collapse navbar-collapse" id="navbarColor01">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="index.php">
-                        <img scr="../Views/Imagenes/imgNav/home.png" width="100" height="100">
-                        Inicio
-                        </img>
-                        <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="index.php">Inicio<span class="sr-only">(current)</span></a>
                     </li>
 
                     <li class="nav-item">
@@ -125,9 +121,6 @@ if (!isset($_SESSION['user_-id'])) {
                 <p class="lead text-center">TECHNO MARKET es un sistema process sale que te brindará la gestión de los productos de tu tienda
                 de abarrotes, además de las experiencia de llevar un registro de tus clientes para actividades de tu conveniencia.</p>
             </div>
-            <img scr="../Views/home.png" width="100" height="100">
-                        Inicio
-                        </img>
             <div class="col-3"></div>
 
         </main>
