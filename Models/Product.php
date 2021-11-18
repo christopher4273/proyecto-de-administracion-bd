@@ -160,7 +160,7 @@ class Product
 				$_SESSION['message'] = "Producto eliminado correctamente";
 				$_SESSION['message_type'] = 'success';
 			}else{
-				$_SESSION['message'] = 'Error al eliminar ';
+				$_SESSION['message'] = 'Error al eliminar, ya asociado con una factura';
 				$_SESSION['message_type'] = 'dark';
 			}
 		} catch (Exception $e){

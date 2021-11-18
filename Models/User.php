@@ -59,7 +59,7 @@ class User
 				$_SESSION['message_type'] = 'success';
 			}
 			else{
-				echo "ERROR AL AGREGAR.<br />";
+
 			}
 		} catch (Exception $e){
 

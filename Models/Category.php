@@ -40,11 +40,12 @@ class Category
 				@descripcion = ?";
 				$stmt = sqlsrv_prepare($this->con, $sql, $procedure_params);
 			 // Se ejecuta y se evalua 
-			if(sqlsrv_execute($stmt)){
-				echo "EXITO AL AGREGAR.<br />";
+			 if(sqlsrv_execute($stmt)){
+				$_SESSION['message'] = 'categoria creada correctamente';
+				$_SESSION['message_type'] = 'success';
 			}
 			else{
-				echo "ERROR AL AGREGAR.<br />";
+				
 			}
 		} catch (Exception $e){
 
@@ -105,7 +106,14 @@ class Category
 			$sql = "EXEC deletesp_categoria @id_categoria = ?";
 			$stm = sqlsrv_prepare($this->con, $sql, $procedure_params);
 
-			sqlsrv_execute($stm);
+			if(sqlsrv_execute($stm))
+			{
+				$_SESSION['message'] = "Categoria eliminada correctamente";
+				$_SESSION['message_type'] = 'success';
+			}else{
+				$_SESSION['message'] = 'Error al eliminar, ya asociada a un producto';
+				$_SESSION['message_type'] = 'dark';
+			}
 		} catch (Exception $e){
 
 		}
@@ -138,8 +146,15 @@ class Category
 			print $data->descripcion;
 			// Se ejecuta y se evalua 
 			if(!sqlsrv_execute($stmt)) {
-				die( print_r( sqlsrv_errors(), true));
-	        }
+				//die( print_r( sqlsrv_errors(), true));
+
+				$_SESSION['message'] = 'Error al modificar ';
+				$_SESSION['message_type'] = 'dark';
+			}
+			else{
+				$_SESSION['message'] = "Categoria actualizada correctamente";
+				$_SESSION['message_type'] = 'success';
+			}
 
 		} catch (Exception $e){
 

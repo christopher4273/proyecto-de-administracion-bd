@@ -52,10 +52,11 @@ class Client
 	
 			 // Se ejecuta y se evalua 
 			if(sqlsrv_execute($stmt)){
-				echo "EXITO AL AGREGAR.<br />";
+				$_SESSION['message'] = 'cliente creado correctamente';
+				$_SESSION['message_type'] = 'success';
 			}
 			else{
-				echo "ERROR AL AGREGAR.<br />";
+				
 			}
 		} catch (Exception $e){
 
@@ -132,7 +133,15 @@ class Client
 			$sql = "EXEC deletesp_cliente @id_cliente = ?";
 			$stm = sqlsrv_prepare($this->con, $sql, $procedure_params);
 
-			sqlsrv_execute($stm);
+			if(sqlsrv_execute($stm))
+			{
+				$_SESSION['message'] = "Cliente eliminado correctamente";
+				$_SESSION['message_type'] = 'success';
+			}else{
+				$_SESSION['message'] = 'Error al eliminar, previamente asociado a una factura ';
+				$_SESSION['message_type'] = 'dark';
+			}
+			
 		} catch (Exception $e){
 
 		}
@@ -167,8 +176,15 @@ class Client
 			print $data->id_cliente;
 			// Se ejecuta y se evalua 
 			if(!sqlsrv_execute($stmt)) {
-				die( print_r( sqlsrv_errors(), true));
-	        }
+				//die( print_r( sqlsrv_errors(), true));
+
+				$_SESSION['message'] = 'Error al modificar ';
+				$_SESSION['message_type'] = 'dark';
+			}
+			else{
+				$_SESSION['message'] = "cliente actualizado correctamente";
+				$_SESSION['message_type'] = 'success';
+			}
 
 		} catch (Exception $e){
 

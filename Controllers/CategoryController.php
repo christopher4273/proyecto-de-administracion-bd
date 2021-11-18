@@ -22,7 +22,7 @@ class CategoryController{
                 $pvd->descripcion = $_POST['descripcion'];
                 //Registro al modelo usuario.
                 $this->categoria->add($pvd); 
-                echo '<script>window.open("_self",null,true);</script>';
+                echo '<script>window.open("../Views/NewCategory.php","_self",null,true);</script>';
             }
         }catch (Exception $e){
             $e->getMessage();
