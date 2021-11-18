@@ -34,32 +34,29 @@ class Detail
 	{
 		try
 		{
-			/*$myparams['factura'] = $data->factura;
-			$myparams['descuento'] = $data->descuento;
-			$myparams['subtotal'] = $data->subtotal;
-			$myparams['producto'] = $data->producto;
-            $myparams['cantidad'] = $data->cantidad;
-		
-		   //Se crea un array con de parámetros
-			$procedure_params = array(
-			    array(&$myparams['producto'], SQLSRV_PARAM_IN),
-			    array(&$myparams['descuento'], SQLSRV_PARAM_IN),
-			    array(&$myparams['subtotal'], SQLSRV_PARAM_IN),
-			    array(&$myparams['factura'], SQLSRV_PARAM_IN),
-			    //array(&$myparams['imagen'], SQLSRV_PARAM_IN),
-                array(&$myparams['cantidad'], SQLSRV_PARAM_IN)
-			);*/
-				
 				//Se se pasan los parámetros 
-				$stmt = sqlsrv_prepare($this->con, $sql, $data);
+			$stmt = sqlsrv_prepare($this->con, $sql, $data);
 	
 			 // Se ejecuta y se evalua 
-			if(sqlsrv_execute($stmt)){
+
+			 /*		if(sqlsrv_execute($stmt)){
+						echo "EXITO AL AGREGAR.<br />";
+						$_SESSION['message'] = 'Detalle creado correctamente';
+						$_SESSION['message_type'] = 'success';
+					}
+					else{
+						echo "ERROR AL AGREGAR.<br />";
+						$_SESSION['message'] = 'Error al crear detalle';
+						$_SESSION['message_type'] = 'dark';
+					} */
+			$validar=0;
+			if(!sqlsrv_execute($stmt)){
+				$validar=1;
 				echo "EXITO AL AGREGAR.<br />";
 				$_SESSION['message'] = 'Detalle creado correctamente';
 				$_SESSION['message_type'] = 'success';
 			}
-			else{
+			else if($validar==0){
 				echo "ERROR AL AGREGAR.<br />";
 				$_SESSION['message'] = 'Error al crear detalle';
 				$_SESSION['message_type'] = 'dark';
