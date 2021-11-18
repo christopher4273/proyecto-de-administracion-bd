@@ -52,7 +52,7 @@ class Client
 	
 			 // Se ejecuta y se evalua 
 			if(sqlsrv_execute($stmt)){
-				$_SESSION['message'] = 'cliente creado correctamente';
+				$_SESSION['message'] = 'Cliente creado correctamente';
 				$_SESSION['message_type'] = 'success';
 			}
 			else{
@@ -182,7 +182,7 @@ class Client
 				$_SESSION['message_type'] = 'dark';
 			}
 			else{
-				$_SESSION['message'] = "cliente actualizado correctamente";
+				$_SESSION['message'] = "Cliente actualizado correctamente";
 				$_SESSION['message_type'] = 'success';
 			}
 

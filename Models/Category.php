@@ -41,7 +41,7 @@ class Category
 				$stmt = sqlsrv_prepare($this->con, $sql, $procedure_params);
 			 // Se ejecuta y se evalua 
 			 if(sqlsrv_execute($stmt)){
-				$_SESSION['message'] = 'categoria creada correctamente';
+				$_SESSION['message'] = 'Categoria creada correctamente';
 				$_SESSION['message_type'] = 'success';
 			}
 			else{

@@ -208,7 +208,7 @@ class Product
 				$_SESSION['message_type'] = 'dark';
 			}
 			else{
-				$_SESSION['message'] = "producto actualizado correctamente";
+				$_SESSION['message'] = "Producto actualizado correctamente";
 				$_SESSION['message_type'] = 'success';
 			}
 		} catch (Exception $e){
@@ -217,42 +217,6 @@ class Product
 
 	}
 
-	//public function updateStock($data)
-	//{
-		//Sentencia SQL para actualizar los datos.
-	//	try
-	//	{
-			
-	//		$myparams['stock'] = $data->stock;
-			
-	//		$myparams['id_producto'] = $data->id_producto;
-			
-			//Se crea un array con de parámetros
-	//		$procedure_params = array(
-				
-	//			array(&$myparams['stock'], SQLSRV_PARAM_IN),
-				
-	//			array(&$myparams['id_producto'], SQLSRV_PARAM_IN)
-	//		);
-					
-			//Se se pasan los parámetros 
-	//		$sql = "EXEC csp_ProductoStockUpd @stock = ?, @id_producto = ?";
-			
-	//		$stmt = sqlsrv_prepare($this->con, $sql, $procedure_params);
-	
-			
-	//	    print $data->stock;
-			
-	//		print $data->id_producto;
-			// Se ejecuta y se evalua 
-	//		if(!sqlsrv_execute($stmt)) {
-	//			die( print_r( sqlsrv_errors(), true));
-	 //       }
 
-	//	} catch (Exception $e){
-
-	//	}
-
-	//}
 
 }
