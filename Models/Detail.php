@@ -35,28 +35,15 @@ class Detail
 		try
 		{
 				//Se se pasan los parámetros 
-			$stmt = sqlsrv_prepare($this->con, $sql, $data);
+				$stmt = sqlsrv_prepare($this->con, $sql, $data);
 	
 			 // Se ejecuta y se evalua 
-
-			 /*		if(sqlsrv_execute($stmt)){
-						echo "EXITO AL AGREGAR.<br />";
-						$_SESSION['message'] = 'Detalle creado correctamente';
-						$_SESSION['message_type'] = 'success';
-					}
-					else{
-						echo "ERROR AL AGREGAR.<br />";
-						$_SESSION['message'] = 'Error al crear detalle';
-						$_SESSION['message_type'] = 'dark';
-					} */
-			$validar=0;
-			if(!sqlsrv_execute($stmt)){
-				$validar=1;
+			if(sqlsrv_execute($stmt)){
 				echo "EXITO AL AGREGAR.<br />";
 				$_SESSION['message'] = 'Detalle creado correctamente';
 				$_SESSION['message_type'] = 'success';
 			}
-			else if($validar==0){
+			else{
 				echo "ERROR AL AGREGAR.<br />";
 				$_SESSION['message'] = 'Error al crear detalle';
 				$_SESSION['message_type'] = 'dark';
