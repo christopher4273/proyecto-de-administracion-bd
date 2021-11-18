@@ -91,16 +91,18 @@ class Invoice
 	{
 		try
 		{
-			$sql = "select id_factura, fecha, subtotal, impuesto,
-			total, cliente, vendedor FROM v_mostrarFactura";
+			$sql = "select * FROM v_mostrarFactura";
 			//Sentencia SQL para selección de datos.
 			$stm = sqlsrv_query($this->con, $sql);
 			if($option==1){
 				while($r = sqlsrv_fetch_array($stm)){
 					$id_factura = $r['id_factura'];
 					$fecha =  $r['fecha']->format('d-m-Y');
-					$subtotal = $r['subtotal'];
+					$producto = $r['id_producto'];
+					$cantidad = $r['cantidad'];
+					$descuento = $r['descuento'];
 					$impuesto = $r['impuesto'];
+					$subtotal = $r['subtotal'];
 					$total = $r['total'];	
 					$cliente = $r['cliente'];		
 					$vendedor = $r['vendedor'];								
@@ -108,16 +110,14 @@ class Invoice
 						<tr class="bg-light">
 							<td><?php echo $id_factura; ?></td>
 							<td><?php echo $fecha; ?></td>
+							<td><?php echo $producto; ?></td>
+							<td><?php echo $cantidad; ?></td>
+							<td><?php echo $descuento; ?></td>
 							<td><?php echo $impuesto; ?></td>
 							<td><?php echo $subtotal; ?></td>
 							<td><?php echo $total; ?></td>
 							<td><?php echo $cliente; ?></td>
 							<td><?php echo $vendedor; ?></td>
-							<td>
-								<a type="button" class="btn btn-success editbtn far fa-edit" data-toggle="modal" data-target="#editar"></a>
-								<a type="button" class="btn btn-danger deletebtn fas fa-trash" onclick="javascript:return confirm('¿Seguro de eliminar este registro?');" href="?c=InvoiceController&a=delete&id=<?php echo $r['id_factura']; ?>"></a>
-								
-							</td>
 						</tr>
 					<?php 
 				}  				

@@ -27,20 +27,23 @@ GO
 	
 --READ
 CREATE PROC readsp_factura
-    @id_factura int
 AS 
 	BEGIN 
  
 		SELECT 
-			 id_factura,
-			 fecha,
-			 subtotal,
-			 impuesto,
-			 total,
-			 cliente,
-			 vendedor
-		FROM   tbfactura  
-		WHERE  (id_factura = @id_factura) 
+			 f.id_factura,
+			 f.fecha,
+			 p.id_producto,
+			 d.cantidad,
+			 d.descuento,
+			 f.impuesto,
+			 f.subtotal,
+			 f.total,
+			 f.cliente,
+			 f.vendedor
+		FROM   tbfactura AS f INNER JOIN tbdetallefactura 
+		AS d ON f.id_factura = d.factura INNER JOIN tbproducto 
+		AS p ON d.producto = p.id_producto  
 	END
 GO
 
@@ -87,12 +90,17 @@ GO
 --VISTA DE CATEGORIA, MOSTRAR LA CATEGORIA
 create view v_mostrarFactura as
 	SELECT 
-			id_factura,
-			 fecha,
-			 subtotal,
-			 impuesto,
-			 total,
-			 cliente,
-			 vendedor
-		FROM   tbfactura  
+		f.id_factura,
+		f.fecha,
+	    p.id_producto,
+		d.cantidad,
+		d.descuento,
+		f.impuesto,
+		f.subtotal,
+		f.total,
+		f.cliente,
+		f.vendedor
+	FROM   tbfactura AS f INNER JOIN tbdetallefactura 
+	AS d ON f.id_factura = d.factura INNER JOIN tbproducto 
+	AS p ON d.producto = p.id_producto  
 go
