@@ -145,8 +145,8 @@ class Client
 		{
 			$myparams['nombre_completo'] = $data->nombre_completo;
 			$myparams['correo'] = $data->correo;
-			$myparams['numero_telefonico'] = $data->telefono;
-			$myparams['id_cliente'] = $data->id_usuario;
+			$myparams['numero_telefonico'] = $data->numero_telefonico;
+			$myparams['id_cliente'] = $data->id_cliente;
 			
 			//Se crea un array con de parámetros
 			$procedure_params = array(
