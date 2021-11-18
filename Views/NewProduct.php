@@ -1,9 +1,9 @@
 <?php
-/*session_start();
+session_start();
 if (!isset($_SESSION['user_-id'])) {
     header('Location: ../Views/login.php');
     exit;
-}*/
+}
 require_once '../Controllers/ProductController.php';
 require_once '../DataBase/Conection.php';
 require_once '../Models/Category.php';

@@ -58,11 +58,14 @@ class Product
 	
 			 // Se ejecuta y se evalua 
 			if(sqlsrv_execute($stmt)){
-				echo "EXITO AL AGREGAR.<br />";
+				$_SESSION['message'] = "Producto agregado correctamente";
+				$_SESSION['message_type'] = 'success';
 			}
 			else{
-				echo "ERROR AL AGREGAR.<br />";
+				$_SESSION['message'] = 'Error al agregar producto';
+				$_SESSION['message_type'] = 'dark';
 			}
+
 		} catch (Exception $e){
 
 		}
@@ -152,8 +155,14 @@ class Product
 			//Sentencia SQL para eliminar una tupla utilizando
 			$sql = "EXEC csp_ProductoDelete @id_producto = ?";
 			$stm = sqlsrv_prepare($this->con, $sql, $procedure_params);
-
-			sqlsrv_execute($stm);
+			if(sqlsrv_execute($stm))
+			{
+				$_SESSION['message'] = "Producto eliminado correctamente";
+				$_SESSION['message_type'] = 'success';
+			}else{
+				$_SESSION['message'] = 'Error al eliminar ';
+				$_SESSION['message_type'] = 'dark';
+			}
 		} catch (Exception $e){
 
 		}
@@ -195,9 +204,13 @@ class Product
 			print $data->id_producto;
 			// Se ejecuta y se evalua 
 			if(!sqlsrv_execute($stmt)) {
-				die( print_r( sqlsrv_errors(), true));
-	        }
-
+				$_SESSION['message'] = 'Error al modificar Producto';
+				$_SESSION['message_type'] = 'dark';
+			}
+			else{
+				$_SESSION['message'] = "producto actualizado correctamente";
+				$_SESSION['message_type'] = 'success';
+			}
 		} catch (Exception $e){
 
 		}
